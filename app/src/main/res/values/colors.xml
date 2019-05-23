@@ -8,4 +8,6 @@
 
     <color name="primaryText">#f0f8ff</color>
     <color name="secondaryText">#a8aaab</color>
+
+    <color name="splashBackground">#4F5255</color>
 </resources>
