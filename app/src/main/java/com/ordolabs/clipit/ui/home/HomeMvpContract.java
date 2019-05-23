@@ -13,8 +13,6 @@ import com.ordolabs.clipit.ui.base.BaseMvpView;
 
 interface HomeMvpContract {
     interface View extends BaseMvpView {
-        @Override
-        Intent getStartingIntent(@NonNull Context callingContext);
     }
 
     interface Presenter<V extends BaseMvpView> extends BaseMvpPresenter<V> {
