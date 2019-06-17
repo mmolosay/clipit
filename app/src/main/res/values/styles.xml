@@ -14,10 +14,7 @@
         <item name="colorPrimary">@color/toolbarBG</item>
         <item name="android:windowBackground">@color/windowBG</item>
         <item name="android:navigationBarColor">@color/navBarBG</item>
-
         <item name="android:actionBarStyle">@style/ToolbarStyle</item>
-
-        <item name="android:textColor">@color/light1</item>
     </style>
 
     <!-- Style for splash screen. -->
@@ -34,6 +31,24 @@
     <style name="SelectableItemStyle" parent="@style/AppTheme">
         <item name="android:theme">@style/SelectableItemCircularBG</item>
         <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="PrimaryTextStyle">
+        <item name="android:textColor">@color/light1</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+    </style>
+
+    <style name="SecondaryTextStyle">
+        <item name="android:textColor">@color/light2</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+    </style>
+
+    <style name="TertiaryTextStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/light3</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
     </style>
 
 </resources>

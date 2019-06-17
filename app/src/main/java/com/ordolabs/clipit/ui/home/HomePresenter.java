@@ -21,7 +21,7 @@ class HomePresenter<V extends HomeActivity> extends BasePresenter<V> implements 
 
     @Override
     protected void initViews() {
-        toolbar = mvpView.findViewById(R.id.toolbar);
+        toolbar = mvpView.findViewById(R.id.homeToolbar);
     }
 
     @Override
