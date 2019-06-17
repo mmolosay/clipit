@@ -27,7 +27,7 @@
             android:layout_marginBottom="30dp"
             android:clickable="true"
             android:focusable="true"
-            app:backgroundTint="@color/primary"
+            app:backgroundTint="@color/toolbarBG"
             app:borderWidth="0dp"
             app:elevation="0dp"
             app:srcCompat="@drawable/ic_add_light_24dp" />

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="transparent">#0000</color>
-    <color name="primaryDark">#28292e</color> <!--for status bar-->
-    <color name="primary">#32343a</color> <!--for toolbar-->
-    <color name="windowBackground">#282a2e</color> <!--for activity background-->
-    <color name="navigationBar">#28282C</color> <!--for navigation bar (if it presents)-->
 
-    <color name="primaryText">#f0f8ff</color>
-    <color name="secondaryText">#a8aaab</color>
+    <color name="statusBarBG">#28292e</color> <!--for status bar-->
+    <color name="toolbarBG">#32343a</color> <!--for toolbar-->
+    <color name="windowBG">#282a2e</color> <!--for activity background-->
+    <color name="navBarBG">#28282C</color> <!--for navigation bar (if it presents)-->
 
-    <color name="splashBackground">#4F5255</color>
+    <color name="light1">#f0f8ff</color>
+    <color name="light2">#a8aaab</color>
+    <color name="light3">#777879</color>
 </resources>
