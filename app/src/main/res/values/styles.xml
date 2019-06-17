@@ -1,14 +1,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Style for toolbar. -->
-    <style name="ToolbarStyle" parent="@style/Widget.AppCompat.ActionBar.Solid">
-        <item name="android:background">@color/toolbarBG</item>
-        <item name="colorPrimary">@color/toolbarBG</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:gravity">center_vertical</item>
-    </style>
+    <!--==================== APP THEME ====================-->
 
-    <!-- Base style for application. -->
+    <!-- Base theme for application -->
     <style name="AppTheme" parent="@style/Theme.AppCompat.NoActionBar">
         <item name="android:colorPrimaryDark">@color/statusBarBG</item>
         <item name="colorPrimary">@color/toolbarBG</item>
@@ -17,38 +11,50 @@
         <item name="android:actionBarStyle">@style/ToolbarStyle</item>
     </style>
 
-    <!-- Style for splash screen. -->
-    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+    <!--==================== FRAGMENTS ====================-->
+
+    <!-- Toolbar -->
+    <style name="ToolbarStyle" parent="@style/Widget.AppCompat.ActionBar.Solid">
+        <item name="android:background">@color/toolbarBG</item>
+        <item name="colorPrimary">@color/toolbarBG</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <!-- Splash screen -->
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
 
-    <!-- Style for circular touch animation. -->
+    <!-- Circular touch animation -->
     <style name="SelectableItemCircularBG">
         <item name="android:colorControlHighlight">@color/test</item>
     </style>
 
-    <!-- Style for selectable items. -->
+    <!-- Selectable items -->
     <style name="SelectableItemStyle" parent="@style/AppTheme">
         <item name="android:theme">@style/SelectableItemCircularBG</item>
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
+    <!--==================== TEXT STYLES ====================-->
+
     <style name="PrimaryTextStyle">
         <item name="android:textColor">@color/light1</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
     <style name="SecondaryTextStyle">
         <item name="android:textColor">@color/light2</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
     <style name="TertiaryTextStyle" parent="android:Widget.TextView">
         <item name="android:textColor">@color/light3</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
 </resources>

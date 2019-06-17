@@ -10,11 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning"> <!-- TODO: delete before release -->
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning"> <!-- TODO: delete before release -->
+
+        <service android:name=".data.ClipboardListenerService"/>
 
         <activity
             android:name=".ui.splash.SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

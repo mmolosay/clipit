@@ -9,7 +9,7 @@ import com.ordolabs.clipit.ui.base.BasePresenter;
  * Created by ordogod on 23.05.19.
  **/
 
-class HomePresenter<V extends HomeActivity> extends BasePresenter<V> implements HomeMvpContract.Presenter<V> {
+public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> implements HomeMvpContract.Presenter<V> {
 
     private Toolbar toolbar;
 
