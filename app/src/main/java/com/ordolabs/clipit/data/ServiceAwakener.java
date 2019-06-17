@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import java.util.Objects;
+
 /**
  * Created by ordogod on 17.06.19.
  **/
@@ -13,15 +15,10 @@ public class ServiceAwakener extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        try {
-            if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction()) ||
-                    intent.getAction().equals("android.intent.action.REAWAKE_SERVICE")) {
-                context.startService(new Intent(context, ClipboardListenerService.class));
-            }
-        }
-        catch (Exception e) {
-            Log.e("WARNING", "Empty intent action body.");
-            e.printStackTrace();
+        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction()) ||
+            Objects.requireNonNull(intent.getAction()).equals("android.intent.action.REAWAKE_SERVICE")) {
+
+            context.startService(new Intent(context, ClipboardListenerService.class));
         }
     }
 }

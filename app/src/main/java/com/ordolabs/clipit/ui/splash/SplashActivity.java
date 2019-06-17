@@ -77,6 +77,7 @@ public class SplashActivity extends BaseActivity {
                 }
             } catch (Exception e) {
                 Log.e("ERROR" , String.valueOf(e));
+                e.printStackTrace();
             }
         }
         else { // start home activity if not a first launch
