@@ -5,4 +5,6 @@
     <string name="homeNoClipsInfo">Seems like there is no clips yet. Copy something into your clipboard and find it here!</string>
 
     <string name="homeNoClipsImgDescription">Empty folder image.</string>
+
+    <string name="autorunRequiredToast">Please, turn ON autorun for "ClipIt!" to keep it working even if app is closed.</string>>
 </resources>

@@ -1,8 +1,11 @@
 package com.ordolabs.clipit.ui.home;
 
+import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 
 import com.ordolabs.clipit.R;
+import com.ordolabs.clipit.data.ClipboardListenerService;
+import com.ordolabs.clipit.data.HomeModel;
 import com.ordolabs.clipit.ui.base.BasePresenter;
 
 /**
@@ -11,9 +14,13 @@ import com.ordolabs.clipit.ui.base.BasePresenter;
 
 public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> implements HomeMvpContract.Presenter<V> {
 
+    private HomeModel mvpModel;
     private Toolbar toolbar;
 
     HomePresenter(V mvpView) {
+        mvpModel = new HomeModel(this);
+        mvpView.startService(new Intent(mvpView, ClipboardListenerService.class));
+
         attachView(mvpView);
         initViews();
         prepareViews();

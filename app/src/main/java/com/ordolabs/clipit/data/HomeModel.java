@@ -1,8 +1,5 @@
 package com.ordolabs.clipit.data;
 
-import android.content.ClipboardManager;
-
-import com.ordolabs.clipit.ui.home.HomeActivity;
 import com.ordolabs.clipit.ui.home.HomePresenter;
 
 /**
@@ -11,9 +8,9 @@ import com.ordolabs.clipit.ui.home.HomePresenter;
 
 public class HomeModel {
 
-    private HomePresenter<HomeActivity> mvpPresenter;
+    private HomePresenter mvpPresenter;
 
-    public HomeModel(HomePresenter<HomeActivity> mvpPresenter) {
+    public HomeModel(HomePresenter mvpPresenter) {
         this.mvpPresenter = mvpPresenter;
     }
 }

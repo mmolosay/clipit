@@ -2,7 +2,6 @@ package com.ordolabs.clipit.data;
 
 import android.app.Service;
 import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.widget.Toast;
@@ -16,7 +15,6 @@ import java.util.Objects;
 public class ClipboardListenerService extends Service {
 
     private ClipboardManager clipboardManager;
-    private Context context = this;
     private ClipboardManager.OnPrimaryClipChangedListener onPrimaryClipChangedListener =
             new ClipboardManager.OnPrimaryClipChangedListener() {
                 @Override
@@ -24,8 +22,8 @@ public class ClipboardListenerService extends Service {
                     String clipText = Objects.requireNonNull(clipboardManager.getPrimaryClip())
                             .getItemAt(0)
                             .getText().toString();
-                    if (clipText.length() > 20) clipText = clipText.substring(0, 20) + "…";
-                    Toast.makeText(context, "\"" + clipText + "\" copied!" , Toast.LENGTH_SHORT).show();
+                    if (clipText.length() > 25) clipText = clipText.substring(0, 20) + "…";
+                    Toast.makeText(getApplicationContext(), "\"" + clipText + "\" is clipped!" , Toast.LENGTH_SHORT).show();
                 }
             };
 
@@ -33,9 +31,20 @@ public class ClipboardListenerService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        Toast.makeText(this, "Service started.", Toast.LENGTH_SHORT).show();
         clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         clipboardManager.addPrimaryClipChangedListener(onPrimaryClipChangedListener);
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        super.onStartCommand(intent, flags, startId);
+        return START_STICKY;
+    }
+
+    @Override
+    public void onTaskRemoved(Intent rootIntent) {
+        Intent intent = new Intent().setAction("android.intent.action.REAWAKE_SERVICE").setClass(this, ServiceAwakener.class);
+        this.sendBroadcast(intent);
     }
 
     @Override
@@ -45,9 +54,9 @@ public class ClipboardListenerService extends Service {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         if (clipboardManager != null) {
             clipboardManager.removePrimaryClipChangedListener(onPrimaryClipChangedListener);
         }
+        super.onDestroy();
     }
 }
