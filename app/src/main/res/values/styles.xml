@@ -27,7 +27,7 @@
 
     <!-- Style for circular touch animation. -->
     <style name="SelectableItemCircularBG">
-        <item name="android:colorControlHighlight">@color/light3</item>
+        <item name="android:colorControlHighlight">@color/test</item>
     </style>
 
     <!-- Style for selectable items. -->

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="transparent">#0000</color>
+    <color name="test">#CF1C1C</color>
 
     <color name="statusBarBG">#28292e</color> <!--for status bar-->
     <color name="toolbarBG">#32343a</color> <!--for toolbar-->

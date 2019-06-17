@@ -1,5 +1,8 @@
 package com.ordolabs.clipit.ui.home;
 
+import android.support.v7.widget.Toolbar;
+
+import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.ui.base.BasePresenter;
 
 /**
@@ -7,6 +10,8 @@ import com.ordolabs.clipit.ui.base.BasePresenter;
  **/
 
 class HomePresenter<V extends HomeActivity> extends BasePresenter<V> implements HomeMvpContract.Presenter<V> {
+
+    private Toolbar toolbar;
 
     HomePresenter(V mvpView) {
         attachView(mvpView);
@@ -16,12 +21,12 @@ class HomePresenter<V extends HomeActivity> extends BasePresenter<V> implements 
 
     @Override
     protected void initViews() {
-
+        toolbar = mvpView.findViewById(R.id.toolbar);
     }
 
     @Override
     protected void prepareViews() {
-
+        toolbar.setTitle(R.string.homeToolbarTitle);
     }
 
     @Override
