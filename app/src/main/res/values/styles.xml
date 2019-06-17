@@ -1,25 +1,26 @@
-
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="ActionBarStyle" parent="@style/Widget.AppCompat.ActionBar.Solid">
+    <!-- Style for toolbar. -->
+    <style name="ToolbarStyle" parent="@style/Widget.AppCompat.ActionBar.Solid">
         <item name="android:background">@color/primary</item>
         <item name="colorPrimary">@color/primary</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
         <item name="android:gravity">center_vertical</item>
     </style>
 
-    <!-- Base application theme. -->
+    <!-- Base style for application. -->
     <style name="AppTheme" parent="@style/Theme.AppCompat.NoActionBar">
         <item name="android:colorPrimaryDark">@color/primaryDark</item>
         <item name="colorPrimary">@color/primary</item>
         <item name="android:windowBackground">@color/windowBackground</item>
         <item name="android:navigationBarColor">@color/navigationBar</item>
 
-        <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+        <item name="android:actionBarStyle">@style/ToolbarStyle</item>
 
         <item name="android:textColor">@color/primaryText</item>
     </style>
 
+    <!-- Style for splash screen. -->
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
