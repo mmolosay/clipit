@@ -11,4 +11,6 @@
     <color name="light1">#f0f8ff</color>
     <color name="light2">#a8aaab</color>
     <color name="light3">#777879</color>
+
+    <color name="accent">#7B9197</color>
 </resources>

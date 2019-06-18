@@ -3,9 +3,11 @@ package com.ordolabs.clipit.data.models;
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
 import com.ordolabs.clipit.data.utils.rv.ClipRaw;
+import com.ordolabs.clipit.data.utils.rv.RecyclerViewAdapter;
 import com.ordolabs.clipit.ui.home.HomePresenter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import io.realm.RealmResults;
 
@@ -37,6 +39,13 @@ public class HomeModel {
             );
         }
 
+        Collections.reverse(list);
         return list;
+    }
+
+    public void updateClipsList(RecyclerViewAdapter adapter) {
+        adapter.getClipsList().clear();
+        adapter.getClipsList().addAll(getRawClipsList());
+        adapter.notifyDataSetChanged();
     }
 }

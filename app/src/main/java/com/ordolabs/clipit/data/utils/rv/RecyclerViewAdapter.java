@@ -22,6 +22,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
         this.clipsList = clipsList;
     }
 
+    public ArrayList<ClipRaw> getClipsList() {
+        return clipsList;
+    }
+
     @NonNull
     @Override
     public ClipItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {

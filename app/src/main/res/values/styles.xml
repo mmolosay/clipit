@@ -9,6 +9,8 @@
         <item name="android:windowBackground">@color/windowBG</item>
         <item name="android:navigationBarColor">@color/navBarBG</item>
         <item name="android:actionBarStyle">@style/ToolbarStyle</item>
+
+        <item name="android:colorEdgeEffect">@color/accent</item>
     </style>
 
     <!--==================== FRAGMENTS ====================-->
@@ -24,17 +26,6 @@
     <!-- Splash screen -->
     <style name="SplashScreenTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splash</item>
-    </style>
-
-    <!-- Circular touch animation -->
-    <style name="SelectableItemCircularBG">
-        <item name="android:colorControlHighlight">@color/test</item>
-    </style>
-
-    <!-- Selectable items -->
-    <style name="SelectableItemStyle" parent="@style/AppTheme">
-        <item name="android:theme">@style/SelectableItemCircularBG</item>
-        <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
     <!--==================== TEXT STYLES ====================-->

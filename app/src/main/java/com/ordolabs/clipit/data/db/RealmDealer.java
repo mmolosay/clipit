@@ -21,6 +21,7 @@ public class RealmDealer {
                 ClipObject.class,
                 getIdForNewObject(ClipObject.class)
         );
+
         clip.setTitle(title);
         clip.setBody(body);
 
