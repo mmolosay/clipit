@@ -28,6 +28,6 @@ public class HomeActivity extends BaseActivity implements HomeMvpContract.View {
     protected void onResume() {
         super.onResume();
 
-        mvpPresenter.toggleNoClipsContainer();
+        mvpPresenter.updateViews();
     }
 }

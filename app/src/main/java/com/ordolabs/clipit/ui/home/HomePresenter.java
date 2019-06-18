@@ -33,7 +33,6 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
 
         attachView(mvpView);
         initViews();
-        prepareViews();
     }
 
     @Override
@@ -51,7 +50,12 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
         clipsRV.setAdapter(new RecyclerViewAdapter(mvpModel.getRawClipsList()));
     }
 
-    void toggleNoClipsContainer() {
+    @Override
+    protected void updateViews() {
+        toggleNoClipsContainer();
+    }
+
+    private void toggleNoClipsContainer() {
         if (RealmDealer.getObjectsNumber(ClipObject.class) == 0) {
             noClipsContainer.setVisibility(View.VISIBLE);
         }
