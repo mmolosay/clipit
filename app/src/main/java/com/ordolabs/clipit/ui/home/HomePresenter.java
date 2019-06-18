@@ -41,7 +41,9 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
     @Override
     protected void prepareViews() {
         toolbar.setTitle(R.string.homeToolbarTitle);
+    }
 
+    void toggleNoClipsContainer() {
         if (RealmDealer.getObjectsNumber(ClipObject.class) == 0) {
             noClipsContainer.setVisibility(View.VISIBLE);
         }

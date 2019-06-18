@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.widget.Toast;
 
+import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.utils.ServiceAwakenerBR;
 
 import java.util.Objects;
@@ -24,7 +25,9 @@ public class ClipboardListenerService extends Service {
                     String clipText = Objects.requireNonNull(clipboardManager.getPrimaryClip())
                             .getItemAt(0)
                             .getText().toString();
-                    if (clipText.length() > 25) clipText = clipText.substring(0, 20) + "…";
+                    RealmDealer.createClipObject(null, clipText);
+
+                    if (clipText.length() > 25) clipText = clipText.substring(0, 25) + "…";
                     Toast.makeText(getApplicationContext(), "\"" + clipText + "\" is clipped!" , Toast.LENGTH_SHORT).show();
                 }
             };

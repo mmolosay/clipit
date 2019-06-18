@@ -30,11 +30,11 @@ public class ClipObject extends RealmObject {
         return body;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(@Nullable String title) {
         this.title = title;
     }
 
-    public void setBody(String body) {
+    public void setBody(@NonNull String body) {
         this.body = body;
     }
 }

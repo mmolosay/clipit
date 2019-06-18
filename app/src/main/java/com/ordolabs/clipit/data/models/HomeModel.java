@@ -1,5 +1,7 @@
 package com.ordolabs.clipit.data.models;
 
+import com.ordolabs.clipit.data.db.RealmDealer;
+import com.ordolabs.clipit.data.db.objects.ClipObject;
 import com.ordolabs.clipit.ui.home.HomePresenter;
 
 /**
@@ -12,5 +14,7 @@ public class HomeModel {
 
     public HomeModel(HomePresenter mvpPresenter) {
         this.mvpPresenter = mvpPresenter;
+
+        RealmDealer.dropAllObjects(ClipObject.class);
     }
 }

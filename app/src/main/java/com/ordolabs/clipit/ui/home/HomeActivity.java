@@ -23,4 +23,11 @@ public class HomeActivity extends BaseActivity implements HomeMvpContract.View {
     public static Intent getStartingIntent(@NonNull Context callingContext) {
         return new Intent(callingContext, HomeActivity.class);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mvpPresenter.toggleNoClipsContainer();
+    }
 }
