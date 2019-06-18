@@ -3,7 +3,7 @@ package com.ordolabs.clipit.data.db;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.ordolabs.clipit.data.db.objects.ClipObject;
+import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
 
 import io.realm.RealmResults;
 
@@ -34,6 +34,14 @@ public class RealmDealer {
 
     public static int getObjectsNumber(@NonNull Class obj) {
         return RealmHolder.getInstance().realm.where(obj).findAll().size();
+    }
+
+    public static ClipObject getClipWithId(int id) {
+        return RealmHolder.getInstance().realm.where(ClipObject.class).equalTo("id", id).findFirst();
+    }
+
+    public static RealmResults<ClipObject> getAllClips() {
+        return RealmHolder.getInstance().realm.where(ClipObject.class).findAll();
     }
 
     public static void dropAllObjects(@NonNull Class obj) {

@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data.db.objects;
+package com.ordolabs.clipit.data.db.realm_objects;
 
 import android.support.annotation.NonNull;
 

@@ -1,15 +1,18 @@
 package com.ordolabs.clipit.ui.home;
 
 import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.ordolabs.clipit.R;
-import com.ordolabs.clipit.data.db.objects.ClipObject;
+import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
 import com.ordolabs.clipit.data.service.ClipboardListenerService;
 import com.ordolabs.clipit.data.models.HomeModel;
 import com.ordolabs.clipit.data.db.RealmDealer;
+import com.ordolabs.clipit.data.utils.rv.RecyclerViewAdapter;
 import com.ordolabs.clipit.ui.base.BasePresenter;
 
 /**
@@ -22,6 +25,7 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
 
     private Toolbar toolbar;
     private LinearLayout noClipsContainer;
+    private RecyclerView clipsRV;
 
     HomePresenter(V mvpView) {
         mvpModel = new HomeModel(this);
@@ -36,11 +40,15 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
     protected void initViews() {
         toolbar = mvpView.findViewById(R.id.homeToolbar);
         noClipsContainer = mvpView.findViewById(R.id.homeNoClipsContainer);
+        clipsRV = mvpView.findViewById(R.id.homeClipsRV);
     }
 
     @Override
     protected void prepareViews() {
         toolbar.setTitle(R.string.homeToolbarTitle);
+
+        clipsRV.setLayoutManager(new LinearLayoutManager(mvpView));
+        clipsRV.setAdapter(new RecyclerViewAdapter(mvpModel.getRawClipsList()));
     }
 
     void toggleNoClipsContainer() {
