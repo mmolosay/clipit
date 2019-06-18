@@ -16,12 +16,12 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"> <!-- TODO: delete before release -->
 
         <service
-            android:name=".data.ClipboardListenerService"
+            android:name=".data.service.ClipboardListenerService"
             android:enabled="true"
             android:process=":ClipboardListenerServiceProcess"/>
 
         <receiver
-            android:name=".data.ServiceAwakener"
+            android:name=".data.utils.ServiceAwakenerBR"
             android:enabled="true"
             android:exported="true"
             android:label="RestartServiceWhenStopped"

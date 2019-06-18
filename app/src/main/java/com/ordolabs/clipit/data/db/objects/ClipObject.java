@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data;
+package com.ordolabs.clipit.data.db.objects;
 
 import android.support.annotation.NonNull;
 

@@ -1,10 +1,12 @@
-package com.ordolabs.clipit.data;
+package com.ordolabs.clipit.data.service;
 
 import android.app.Service;
 import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.IBinder;
 import android.widget.Toast;
+
+import com.ordolabs.clipit.data.utils.ServiceAwakenerBR;
 
 import java.util.Objects;
 
@@ -43,7 +45,7 @@ public class ClipboardListenerService extends Service {
 
     @Override
     public void onTaskRemoved(Intent rootIntent) {
-        Intent intent = new Intent().setAction("android.intent.action.REAWAKE_SERVICE").setClass(this, ServiceAwakener.class);
+        Intent intent = new Intent().setAction("android.intent.action.REAWAKE_SERVICE").setClass(this, ServiceAwakenerBR.class);
         this.sendBroadcast(intent);
     }
 

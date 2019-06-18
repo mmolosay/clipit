@@ -6,10 +6,10 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.ordolabs.clipit.R;
-import com.ordolabs.clipit.data.ClipObject;
-import com.ordolabs.clipit.data.ClipboardListenerService;
-import com.ordolabs.clipit.data.HomeModel;
-import com.ordolabs.clipit.data.RealmDealer;
+import com.ordolabs.clipit.data.db.objects.ClipObject;
+import com.ordolabs.clipit.data.service.ClipboardListenerService;
+import com.ordolabs.clipit.data.models.HomeModel;
+import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.ui.base.BasePresenter;
 
 /**

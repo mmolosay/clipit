@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data;
+package com.ordolabs.clipit.data.models;
 
 import com.ordolabs.clipit.ui.home.HomePresenter;
 
