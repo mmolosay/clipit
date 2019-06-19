@@ -27,8 +27,6 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
     private LinearLayout noClipsContainer;
     private RecyclerView clipsRV;
 
-    private RecyclerViewAdapter clipsRVadapter;
-
     HomePresenter(V mvpView) {
         mvpModel = new HomeModel(this);
         mvpView.startService(new Intent(mvpView, ClipboardListenerService.class));
@@ -50,14 +48,14 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
         toolbar.setTitle(R.string.homeToolbarTitle);
 
         clipsRV.setLayoutManager(new LinearLayoutManager(mvpView));
-        clipsRVadapter = new RecyclerViewAdapter(mvpModel.getRawClipsList());
-        clipsRV.setAdapter(clipsRVadapter);
+        clipsRV.setAdapter(mvpModel.getClipsRVadapter());
     }
 
     @Override
-    protected void updateViews() {
+    protected void updateStates() {
+        mvpModel.updateData();
+
         toggleNoClipsContainer();
-        mvpModel.updateClipsList(clipsRVadapter);
     }
 
     private void toggleNoClipsContainer() {

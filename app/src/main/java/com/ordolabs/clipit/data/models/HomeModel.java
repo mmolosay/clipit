@@ -15,17 +15,24 @@ import io.realm.RealmResults;
  * Created by ordogod on 17.06.19.
  **/
 
-public class HomeModel {
+public class HomeModel implements BaseMvpModel {
 
     private HomePresenter mvpPresenter;
+    private RecyclerViewAdapter clipsRVadapter;
 
     public HomeModel(HomePresenter mvpPresenter) {
         this.mvpPresenter = mvpPresenter;
 
+        clipsRVadapter = new RecyclerViewAdapter(getRawClipsList());
 //        RealmDealer.dropAllObjects(ClipObject.class);
     }
 
-    public ArrayList<ClipRaw> getRawClipsList() {
+    @Override
+    public void updateData() {
+        clipsRVadapter.setClipsList(getRawClipsList());
+    }
+
+    private ArrayList<ClipRaw> getRawClipsList() {
         int clipsCount = RealmDealer.getObjectsNumber(ClipObject.class);
         if (clipsCount == 0) return new ArrayList<>();
 
@@ -43,7 +50,7 @@ public class HomeModel {
         return list;
     }
 
-    public void updateClipsList(RecyclerViewAdapter adapter) {
-        adapter.setClipsList(getRawClipsList());
+    public RecyclerViewAdapter getClipsRVadapter() {
+        return clipsRVadapter;
     }
 }
