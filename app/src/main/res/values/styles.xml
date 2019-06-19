@@ -4,10 +4,10 @@
 
     <!-- Base theme for application -->
     <style name="AppTheme" parent="@style/Theme.AppCompat.NoActionBar">
-        <item name="android:colorPrimaryDark">@color/statusBarBG</item>
-        <item name="colorPrimary">@color/toolbarBG</item>
-        <item name="android:windowBackground">@color/windowBG</item>
-        <item name="android:navigationBarColor">@color/navBarBG</item>
+        <item name="android:colorPrimaryDark">@color/status_bar</item>
+        <item name="colorPrimary">@color/content_active</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:navigationBarColor">@color/nav_bar</item>
         <item name="android:actionBarStyle">@style/ToolbarStyle</item>
 
         <item name="android:colorEdgeEffect">@color/accent</item>
@@ -17,8 +17,8 @@
 
     <!-- Toolbar -->
     <style name="ToolbarStyle" parent="@style/Widget.AppCompat.ActionBar.Solid">
-        <item name="android:background">@color/toolbarBG</item>
-        <item name="colorPrimary">@color/toolbarBG</item>
+        <item name="android:background">@color/toolbar</item>
+        <item name="colorPrimary">@color/content_active</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:gravity">center_vertical</item>
     </style>

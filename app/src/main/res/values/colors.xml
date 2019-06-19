@@ -3,14 +3,17 @@
     <color name="transparent">#0000</color>
     <color name="test">#CF1C1C</color>
 
-    <color name="statusBarBG">#28292e</color> <!--for status bar-->
-    <color name="toolbarBG">#32343a</color> <!--for toolbar-->
-    <color name="windowBG">#282a2e</color> <!--for activity background-->
-    <color name="navBarBG">#28282C</color> <!--for navigation bar (if it presents)-->
+    <color name="status_bar">#28292e</color> <!--for status bar-->
+    <color name="toolbar">#32343a</color> <!--for toolbar-->
+    <color name="background">#282a2e</color> <!--for activity background-->
+    <color name="nav_bar">#28282C</color> <!--for navigation bar (if it presents)-->
 
     <color name="light1">#f0f8ff</color>
     <color name="light2">#a8aaab</color>
     <color name="light3">#777879</color>
 
     <color name="accent">#7B9197</color>
+    <color name="content_active">#32343a</color>
+
+    <color name="opac_filler">#6567717C</color>
 </resources>

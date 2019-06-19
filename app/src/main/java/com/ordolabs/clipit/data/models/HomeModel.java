@@ -44,8 +44,6 @@ public class HomeModel {
     }
 
     public void updateClipsList(RecyclerViewAdapter adapter) {
-        adapter.getClipsList().clear();
-        adapter.getClipsList().addAll(getRawClipsList());
-        adapter.notifyDataSetChanged();
+        adapter.setClipsList(getRawClipsList());
     }
 }
