@@ -19,7 +19,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
     private ArrayList<ClipRaw> clipsList;
 
     public RecyclerViewAdapter(ArrayList<ClipRaw> clipsList) {
-        setClipsList(clipsList);
+        this.clipsList = clipsList;
     }
 
     public void setClipsList(ArrayList<ClipRaw> clipsList) {
