@@ -15,16 +15,15 @@ import io.realm.RealmResults;
  * Created by ordogod on 17.06.19.
  **/
 
-public class HomeModel implements BaseMvpModel {
+public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements HomeModelContract<P> {
 
-    private HomePresenter mvpPresenter;
     private RecyclerViewAdapter clipsRVadapter;
 
-    public HomeModel(HomePresenter mvpPresenter) {
-        this.mvpPresenter = mvpPresenter;
+    public HomeModel(P mvpPresenter) {
+        attachPresenter(mvpPresenter);
 
         clipsRVadapter = new RecyclerViewAdapter(getRawClipsList());
-//        RealmDealer.dropAllObjects(ClipObject.class);
+        //RealmDealer.dropAllObjects(ClipObject.class);
     }
 
     @Override
@@ -34,6 +33,7 @@ public class HomeModel implements BaseMvpModel {
 
     private ArrayList<ClipRaw> getRawClipsList() {
         int clipsCount = RealmDealer.getObjectsNumber(ClipObject.class);
+
         if (clipsCount == 0) return new ArrayList<>();
 
         ArrayList<ClipRaw> list = new ArrayList<>();
@@ -52,5 +52,25 @@ public class HomeModel implements BaseMvpModel {
 
     public RecyclerViewAdapter getClipsRVadapter() {
         return clipsRVadapter;
+    }
+
+    @Override
+    public void attachPresenter(P mvpPresenter) {
+        super.attachPresenter(mvpPresenter);
+    }
+
+    @Override
+    public void detachPresenter() {
+        super.detachPresenter();
+    }
+
+    @Override
+    public boolean isPresenterAttached() {
+        return super.isPresenterAttached();
+    }
+
+    @Override
+    public P getAttachedPresenter() {
+        return super.getAttachedPresenter();
     }
 }
