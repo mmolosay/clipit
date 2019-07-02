@@ -37,8 +37,7 @@ public class ClipActivity extends BaseActivity implements ClipMvpContract.View {
     @Override
     protected void onResume() {
         super.onResume();
-        mvpPresenter.updateStates();
 
-        Toast.makeText(this, mvpPresenter.clipNumber + " passed", Toast.LENGTH_SHORT).show();
+        mvpPresenter.updateStates();
     }
 }

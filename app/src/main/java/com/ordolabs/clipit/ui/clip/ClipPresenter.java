@@ -3,6 +3,7 @@ package com.ordolabs.clipit.ui.clip;
 import android.support.v7.widget.Toolbar;
 
 import com.ordolabs.clipit.R;
+import com.ordolabs.clipit.data.models.clip.ClipModel;
 import com.ordolabs.clipit.ui.base.BasePresenter;
 
 /**
@@ -11,15 +12,18 @@ import com.ordolabs.clipit.ui.base.BasePresenter;
 
 public class ClipPresenter<V extends ClipActivity> extends BasePresenter<V> implements ClipMvpContract.Presenter<V> {
 
-    int clipNumber;
+    private ClipModel<ClipPresenter> mvpModel;
+    private int clipPos;
+
     private Toolbar toolbar;
 
-    ClipPresenter(V mvpView, int clipNumber) {
-        this.clipNumber = clipNumber;
+    ClipPresenter(V mvpView, int clipPos) {
+        this.clipPos = clipPos;
 
         attachView(mvpView);
 
         initViews();
+        mvpModel = new ClipModel<ClipPresenter>(this);
         prepareViews();
     }
 
@@ -30,7 +34,7 @@ public class ClipPresenter<V extends ClipActivity> extends BasePresenter<V> impl
 
     @Override
     protected void prepareViews() {
-        toolbar.setTitle("Clip first words");
+        toolbar.setTitle(mvpModel.makeTitle(clipPos));
     }
 
     @Override

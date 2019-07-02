@@ -1,9 +1,10 @@
-package com.ordolabs.clipit.data.models;
+package com.ordolabs.clipit.data.models.home;
 
 import android.support.v7.widget.RecyclerView;
 
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
+import com.ordolabs.clipit.data.models.base.BaseModel;
 import com.ordolabs.clipit.data.utils.rv.ClipRaw;
 import com.ordolabs.clipit.data.utils.rv.RecyclerViewAdapter;
 import com.ordolabs.clipit.ui.home.HomePresenter;

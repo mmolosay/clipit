@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data.models;
+package com.ordolabs.clipit.data.models.base;
 
 import com.ordolabs.clipit.ui.base.BasePresenter;
 
@@ -6,7 +6,7 @@ import com.ordolabs.clipit.ui.base.BasePresenter;
  * Created by ordogod on 028 28.06.19.
  **/
 
-abstract class BaseModel<P extends BasePresenter> implements BaseMvpModel<P> {
+public abstract class BaseModel<P extends BasePresenter> implements BaseMvpModel<P> {
 
     private P mvpPresenter;
 
