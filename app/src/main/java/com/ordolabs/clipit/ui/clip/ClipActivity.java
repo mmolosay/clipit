@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.ui.base.BaseActivity;
 
 /**
@@ -14,11 +15,14 @@ import com.ordolabs.clipit.ui.base.BaseActivity;
 
 public class ClipActivity extends BaseActivity implements ClipMvpContract.View {
 
-
+    private ClipPresenter<ClipActivity> mvpPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.acrivity_clip);
+
+        mvpPresenter = new ClipPresenter<>(this);
     }
 
     public static Intent getStartingIntent(@NonNull Context callingContext) {
@@ -28,5 +32,6 @@ public class ClipActivity extends BaseActivity implements ClipMvpContract.View {
     @Override
     protected void onResume() {
         super.onResume();
+        mvpPresenter.updateStates();
     }
 }
