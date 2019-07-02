@@ -1,6 +1,6 @@
 package com.ordolabs.clipit.ui.clip;
 
-import android.widget.Toolbar;
+import android.support.v7.widget.Toolbar;
 
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.ui.base.BasePresenter;
@@ -11,13 +11,16 @@ import com.ordolabs.clipit.ui.base.BasePresenter;
 
 public class ClipPresenter<V extends ClipActivity> extends BasePresenter<V> implements ClipMvpContract.Presenter<V> {
 
+    int clipNumber;
     private Toolbar toolbar;
 
-    ClipPresenter(V mvpView) {
+    ClipPresenter(V mvpView, int clipNumber) {
+        this.clipNumber = clipNumber;
+
         attachView(mvpView);
+
         initViews();
         prepareViews();
-        updateStates();
     }
 
     @Override

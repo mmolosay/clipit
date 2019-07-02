@@ -1,5 +1,7 @@
 package com.ordolabs.clipit.data.models;
 
+import android.support.v7.widget.RecyclerView;
+
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
 import com.ordolabs.clipit.data.utils.rv.ClipRaw;
@@ -19,10 +21,14 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements 
 
     private RecyclerViewAdapter clipsRVadapter;
 
-    public HomeModel(P mvpPresenter) {
+    public HomeModel(P mvpPresenter, RecyclerView rv) {
         attachPresenter(mvpPresenter);
 
-        clipsRVadapter = new RecyclerViewAdapter(getRawClipsList());
+        clipsRVadapter = new RecyclerViewAdapter(
+                getRawClipsList(),
+                mvpPresenter.getAttachedView(),
+                rv
+        );
         //RealmDealer.dropAllObjects(ClipObject.class);
     }
 

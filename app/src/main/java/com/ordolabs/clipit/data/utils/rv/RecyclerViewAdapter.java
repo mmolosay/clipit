@@ -2,19 +2,17 @@ package com.ordolabs.clipit.data.utils.rv;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ordolabs.clipit.ClipItApplication;
 import com.ordolabs.clipit.R;
-import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.ui.clip.ClipActivity;
 
 import java.util.ArrayList;
 
-import static com.ordolabs.clipit.ClipItApplication.getAppContext;
 
 /**
  * Created by ordogod on 18.06.19.
@@ -23,9 +21,15 @@ import static com.ordolabs.clipit.ClipItApplication.getAppContext;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder> {
 
     private ArrayList<ClipRaw> clipsList;
+    private AppCompatActivity callingActivity;
+    private RecyclerView recyclerView;
 
-    public RecyclerViewAdapter(ArrayList<ClipRaw> clipsList) {
+    private int clipNumber = 0;
+
+    public RecyclerViewAdapter(ArrayList<ClipRaw> clipsList, AppCompatActivity callingActivity, RecyclerView rv) {
         this.clipsList = clipsList;
+        this.callingActivity = callingActivity;
+        this.recyclerView = rv;
     }
 
     public void setClipsList(ArrayList<ClipRaw> clipsList) {
@@ -41,23 +45,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
     @NonNull
     @Override
     public ClipItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-        View v = LayoutInflater.from(parent.getContext())
+        View view = LayoutInflater.from(parent.getContext())
                 .inflate(
                         R.layout.clips_list_item,
                         parent,
                         false
                 );
-        v.setOnClickListener(makeOnClickListener(i));
-        return new ClipItemViewHolder(v);
+        view.setOnClickListener(makeOnClickListener(view));
+        return new ClipItemViewHolder(view);
     }
 
-    private View.OnClickListener makeOnClickListener(final int number) {
+    private View.OnClickListener makeOnClickListener(final View view) {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = ClipActivity.getStartingIntent(null);
-                i.putExtra("EXTRA_CLICKED_CLIP_ID", number);
-                ClipItApplication.getAppContext().startActivity(i);
+                int itemPos = recyclerView.getChildLayoutPosition(view);
+                Intent i = ClipActivity
+                        .getStartingIntent(callingActivity)
+                        .putExtra(callingActivity.getResources().getString(R.string.EXTRA_CLICKED_CLIP_POSITION), itemPos);
+                callingActivity.startActivity(i);
             }
         };
     }

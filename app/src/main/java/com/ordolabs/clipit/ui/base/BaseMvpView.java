@@ -5,5 +5,4 @@ package com.ordolabs.clipit.ui.base;
  **/
 
 public interface BaseMvpView {
-
 }

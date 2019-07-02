@@ -27,11 +27,12 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
     private RecyclerView clipsRV;
 
     HomePresenter(V mvpView) {
-        mvpModel = new HomeModel(this);
         mvpView.startService(new Intent(mvpView, ClipboardListenerService.class));
 
         attachView(mvpView);
+
         initViews();
+        mvpModel = new HomeModel(this, clipsRV);
         prepareViews();
     }
 

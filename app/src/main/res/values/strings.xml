@@ -9,5 +9,7 @@
     <string name="homeNoClipsImgDescription">Empty folder image.</string>
     <string name="clipDeleteImgDescription">Delete clip action.</string>
 
-    <string name="autorunRequiredToast">Please, turn ON autorun for "ClipIt!" to keep it working even if app is closed.</string>>
+    <string name="autorunRequiredToast">Please, turn ON autorun for "ClipIt!" to keep it working even if app is closed.</string>
+
+    <string name="EXTRA_CLICKED_CLIP_POSITION">EXTRA_CLICKED_CLIP_POSITION</string>
 </resources>

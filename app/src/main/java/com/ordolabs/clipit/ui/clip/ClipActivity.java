@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.widget.Toast;
 
 import com.ordolabs.clipit.ClipItApplication;
 import com.ordolabs.clipit.R;
@@ -22,7 +23,10 @@ public class ClipActivity extends BaseActivity implements ClipMvpContract.View {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acrivity_clip);
 
-        mvpPresenter = new ClipPresenter<>(this);
+        mvpPresenter = new ClipPresenter<>(
+                this,
+                getIntent().getIntExtra(getString(R.string.EXTRA_CLICKED_CLIP_POSITION), -1)
+        );
     }
 
     public static Intent getStartingIntent(Context callingContext) {
@@ -34,5 +38,7 @@ public class ClipActivity extends BaseActivity implements ClipMvpContract.View {
     protected void onResume() {
         super.onResume();
         mvpPresenter.updateStates();
+
+        Toast.makeText(this, mvpPresenter.clipNumber + " passed", Toast.LENGTH_SHORT).show();
     }
 }
