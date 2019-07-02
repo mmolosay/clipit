@@ -31,9 +31,4 @@ public class HomeActivity extends BaseActivity implements HomeMvpContract.View {
 
         mvpPresenter.updateStates();
     }
-
-    @Override
-    public void startActivityForResult(Intent intent, int requestCode) {
-        super.startActivityForResult(intent, requestCode);
-    }
 }
