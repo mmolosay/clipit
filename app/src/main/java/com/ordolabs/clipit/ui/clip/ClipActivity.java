@@ -3,9 +3,9 @@ package com.ordolabs.clipit.ui.clip;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.ordolabs.clipit.ClipItApplication;
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.ui.base.BaseActivity;
 
@@ -25,7 +25,8 @@ public class ClipActivity extends BaseActivity implements ClipMvpContract.View {
         mvpPresenter = new ClipPresenter<>(this);
     }
 
-    public static Intent getStartingIntent(@NonNull Context callingContext) {
+    public static Intent getStartingIntent(Context callingContext) {
+        if (callingContext == null) callingContext = ClipItApplication.getAppContext();
         return new Intent(callingContext, ClipActivity.class);
     }
 

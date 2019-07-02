@@ -3,8 +3,8 @@ package com.ordolabs.clipit.ui.home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
+import com.ordolabs.clipit.ClipItApplication;
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.ui.base.BaseActivity;
 
@@ -20,7 +20,8 @@ public class HomeActivity extends BaseActivity implements HomeMvpContract.View {
         mvpPresenter = new HomePresenter<>(this);
     }
 
-    public static Intent getStartingIntent(@NonNull Context callingContext) {
+    public static Intent getStartingIntent(Context callingContext) {
+        if (callingContext == null) callingContext = ClipItApplication.getAppContext();
         return new Intent(callingContext, HomeActivity.class);
     }
 
