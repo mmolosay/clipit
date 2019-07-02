@@ -20,7 +20,7 @@ import com.ordolabs.clipit.ui.base.BasePresenter;
 
 public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> implements HomeMvpContract.Presenter<V> {
 
-    private HomeModel mvpModel;
+    private HomeModel<HomePresenter> mvpModel;
 
     private Toolbar toolbar;
     private LinearLayout noClipsContainer;
@@ -32,7 +32,7 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
         attachView(mvpView);
 
         initViews();
-        mvpModel = new HomeModel(this, clipsRV);
+        mvpModel = new HomeModel<HomePresenter>(this, clipsRV);
         prepareViews();
     }
 

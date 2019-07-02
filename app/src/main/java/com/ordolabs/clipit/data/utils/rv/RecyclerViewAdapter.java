@@ -13,7 +13,6 @@ import com.ordolabs.clipit.ui.clip.ClipActivity;
 
 import java.util.ArrayList;
 
-
 /**
  * Created by ordogod on 18.06.19.
  **/
@@ -23,8 +22,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
     private ArrayList<ClipRaw> clipsList;
     private AppCompatActivity callingActivity;
     private RecyclerView recyclerView;
-
-    private int clipNumber = 0;
 
     public RecyclerViewAdapter(ArrayList<ClipRaw> clipsList, AppCompatActivity callingActivity, RecyclerView rv) {
         this.clipsList = clipsList;
@@ -51,18 +48,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
                         parent,
                         false
                 );
-        view.setOnClickListener(makeOnClickListener(view));
+        view.setOnClickListener(newOnClickListener(view));
         return new ClipItemViewHolder(view);
     }
 
-    private View.OnClickListener makeOnClickListener(final View view) {
+    private View.OnClickListener newOnClickListener(final View view) {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int itemPos = recyclerView.getChildLayoutPosition(view);
                 Intent i = ClipActivity
                         .getStartingIntent(callingActivity)
-                        .putExtra(callingActivity.getResources().getString(R.string.EXTRA_CLICKED_CLIP_POSITION), itemPos);
+                        .putExtra( callingActivity.getResources().getString(R.string.EXTRA_CLICKED_CLIP_POSITION), itemPos );
                 callingActivity.startActivity(i);
             }
         };
