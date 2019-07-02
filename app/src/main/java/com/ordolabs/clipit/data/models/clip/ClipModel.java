@@ -11,20 +11,25 @@ import com.ordolabs.clipit.ui.clip.ClipPresenter;
 
 public class ClipModel<P extends ClipPresenter> extends BaseModel<P> implements ClipModelContract<P> {
 
-    public ClipModel(P mvpPresenter) {
+    private int clipPos;
+    private ClipObject clip;
+
+    public ClipModel(P mvpPresenter, int clipPos) {
         attachPresenter(mvpPresenter);
+
+        this.clip = RealmDealer.getClipAtPosReversed(clipPos);
+        this.clipPos = clipPos;
     }
 
-    public String makeTitle(final int itemPos) {
-        ClipObject clip = RealmDealer.getClipAtPosReversed(itemPos);
-        String title;
-
+    public String makeActivityTitle() {
         if (clip.getTitle() == null)
-            title = clip.getBody();
+            return clip.getBody();
         else
-            title = clip.getTitle();
+            return clip.getTitle();
+    }
 
-        return title;
+    public ClipObject getClip() {
+        return clip;
     }
 
     @Override

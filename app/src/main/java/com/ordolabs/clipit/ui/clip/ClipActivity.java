@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.Toast;
 
 import com.ordolabs.clipit.ClipItApplication;
 import com.ordolabs.clipit.R;
@@ -21,7 +20,7 @@ public class ClipActivity extends BaseActivity implements ClipMvpContract.View {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acrivity_clip);
+        setContentView(R.layout.activity_clip);
 
         mvpPresenter = new ClipPresenter<>(
                 this,
