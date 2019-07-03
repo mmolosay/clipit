@@ -5,7 +5,7 @@
 
     <color name="status_bar">#28292e</color> <!--for status bar-->
     <color name="toolbar">#32343a</color> <!--for toolbar-->
-    <color name="background">#282a2e</color> <!--for activity background-->
+    <color name="background">#222429</color> <!--for activity background-->
     <color name="nav_bar">#28282C</color> <!--for navigation bar (if it presents)-->
 
     <color name="light1">#f0f8ff</color>

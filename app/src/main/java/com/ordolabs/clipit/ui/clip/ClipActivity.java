@@ -41,7 +41,7 @@ public class ClipActivity extends BaseActivity implements ClipMvpContract.View {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_favorite) {
+        if (id == R.id.menuMenuDropdown) {
             Toast.makeText(this, "nice", Toast.LENGTH_SHORT).show();
             return true;
         }

@@ -1,6 +1,7 @@
 package com.ordolabs.clipit.ui.clip;
 
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.TextView;
 
 import com.ordolabs.clipit.R;
@@ -38,6 +39,13 @@ public class ClipPresenter<V extends ClipActivity> extends BasePresenter<V> impl
     protected void prepareViews() {
         mvpView.setSupportActionBar(toolbar);
         mvpView.getSupportActionBar().setTitle(mvpModel.makeActivityTitle());
+        toolbar.setNavigationIcon(mvpView.getResources().getDrawable(R.drawable.ic_arrow_back_light_24dp));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mvpView.finish();
+            }
+        });
 
         titleTextView.setText(mvpModel.getClip().getTitle());
         bodyTextView.setText(mvpModel.getClip().getBody());

@@ -5,10 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.db.realm_objects.ClipObject;

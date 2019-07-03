@@ -5,10 +5,10 @@
     tools:context=".ui.clip.ClipActivity">
 
     <item
-        android:id="@+id/action_favorite"
+        android:id="@+id/menuMenuDropdown"
         android:orderInCategory="300"
-        android:title="User"
+        android:title="MenuDropdown"
         android:icon="@drawable/ic_more_vert_light_24dp"
-        app:showAsAction="ifRoom"></item>
+        app:showAsAction="ifRoom"/>
 
 </menu>
