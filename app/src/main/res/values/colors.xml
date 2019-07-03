@@ -16,4 +16,5 @@
     <color name="content_active">#32343a</color>
 
     <color name="opac_filler">#4067717C</color>
+    <color name="list_driver">#4D5255</color>
 </resources>

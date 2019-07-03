@@ -15,6 +15,7 @@ public class ClipObject extends RealmObject {
     @PrimaryKey private int id;
     @Nullable private String title;
     @NonNull private String body;
+    @NonNull private String datetime;
 
     public int getId() {
         return id;
@@ -30,11 +31,20 @@ public class ClipObject extends RealmObject {
         return body;
     }
 
+    @NonNull
+    public String getDateTime() {
+        return datetime;
+    }
+
     public void setTitle(@Nullable String title) {
         this.title = title;
     }
 
     public void setBody(@NonNull String body) {
         this.body = body;
+    }
+
+    public void setDateTime(@NonNull String date) {
+        this.datetime = date;
     }
 }

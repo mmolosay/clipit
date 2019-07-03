@@ -49,7 +49,8 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements 
         for (int i = 0; i < clipsCount; i++) {
             list.add(new ClipRaw(
                     null,
-                    results.get(i).getBody())
+                    results.get(i).getBody(),
+                    results.get(i).getDateTime())
             );
         }
 

@@ -1,14 +1,16 @@
 package com.ordolabs.clipit.data.service;
 
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.IBinder;
-import android.widget.Toast;
 
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.utils.ServiceAwakenerBR;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -20,15 +22,18 @@ public class ClipboardListenerService extends Service {
     private ClipboardManager clipboardManager;
     private ClipboardManager.OnPrimaryClipChangedListener onPrimaryClipChangedListener =
             new ClipboardManager.OnPrimaryClipChangedListener() {
+                @SuppressLint("SimpleDateFormat")
                 @Override
                 public void onPrimaryClipChanged() {
                     String clipText = Objects.requireNonNull(clipboardManager.getPrimaryClip())
                             .getItemAt(0)
                             .getText().toString();
-                    RealmDealer.createClipObject(null, clipText);
 
-                    if (clipText.length() > 25) clipText = clipText.substring(0, 25) + "…";
-                    Toast.makeText(getApplicationContext(), "\"" + clipText + "\" is clipped!" , Toast.LENGTH_SHORT).show();
+                    RealmDealer.createClipObject(
+                            null,
+                            clipText,
+                            new SimpleDateFormat("dd MMM HH:mm").format(new Date())
+                    );
                 }
             };
 

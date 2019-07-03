@@ -13,7 +13,7 @@ import io.realm.RealmResults;
 
 public class RealmDealer {
 
-    public static void createClipObject(@Nullable String title, @NonNull String body) {
+    public static void createClipObject(@Nullable String title, @NonNull String body, @NonNull String datetime) {
 
         RealmHolder.getInstance().realm.beginTransaction();
 
@@ -24,6 +24,7 @@ public class RealmDealer {
 
         clip.setTitle(title);
         clip.setBody(body);
+        clip.setDateTime(datetime);
 
         RealmHolder.getInstance().realm.commitTransaction();
     }

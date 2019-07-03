@@ -13,9 +13,11 @@ import com.ordolabs.clipit.R;
 class ClipItemViewHolder extends RecyclerView.ViewHolder {
 
     TextView bodyTextView;
+    TextView infoTextView;
 
     ClipItemViewHolder(View view) {
         super(view);
         bodyTextView = view.findViewById(R.id.RVclipsItemBody);
+        infoTextView = view.findViewById(R.id.RVclipsItemInfo);
     }
 }

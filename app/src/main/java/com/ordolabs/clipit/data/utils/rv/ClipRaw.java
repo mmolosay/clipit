@@ -10,10 +10,12 @@ public class ClipRaw {
 
     String title;
     String body;
+    String datetime;
 
-    public ClipRaw(String title, String body) {
+    public ClipRaw(String title, String body, String datetime) {
         this.title = title;
         this.body = body;
+        this.datetime = datetime;
     }
 
     @Override

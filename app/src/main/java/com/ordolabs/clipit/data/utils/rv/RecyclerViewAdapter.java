@@ -70,6 +70,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
         ClipRaw clip = clipsList.get(i);
 
         holder.bodyTextView.setText(clip.body);
+        holder.infoTextView.setText(clip.datetime);
     }
 
     @Override
