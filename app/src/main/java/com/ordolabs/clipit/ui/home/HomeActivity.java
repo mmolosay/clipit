@@ -31,4 +31,9 @@ public class HomeActivity extends BaseActivity implements HomeMvpContract.View {
 
         mvpPresenter.updateStates();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 }

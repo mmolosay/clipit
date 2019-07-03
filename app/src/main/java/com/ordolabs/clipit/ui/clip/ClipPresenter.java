@@ -36,13 +36,25 @@ public class ClipPresenter<V extends ClipActivity> extends BasePresenter<V> impl
 
     @Override
     protected void prepareViews() {
-        toolbar.setTitle(mvpModel.makeActivityTitle());
+        mvpView.setSupportActionBar(toolbar);
+        mvpView.getSupportActionBar().setTitle(mvpModel.makeActivityTitle());
+
         titleTextView.setText(mvpModel.getClip().getTitle());
         bodyTextView.setText(mvpModel.getClip().getBody());
     }
 
     @Override
     protected void updateStates() {
+
+    }
+
+    @Override
+    protected void animateActivityHiding() {
+
+    }
+
+    @Override
+    protected void animateActivityShowing() {
 
     }
 }

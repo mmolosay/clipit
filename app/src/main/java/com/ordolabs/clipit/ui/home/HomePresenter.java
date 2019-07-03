@@ -5,7 +5,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
@@ -45,7 +48,8 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
 
     @Override
     protected void prepareViews() {
-        toolbar.setTitle(R.string.homeToolbarTitle);
+        mvpView.setSupportActionBar(toolbar);
+        mvpView.getSupportActionBar().setTitle(R.string.homeToolbarTitle);
 
         clipsRV.setLayoutManager(new LinearLayoutManager(mvpView));
         clipsRV.setAdapter(mvpModel.getClipsRVadapter());
@@ -58,6 +62,16 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
         toggleNoClipsContainer();
     }
 
+    @Override
+    protected void animateActivityHiding() {
+
+    }
+
+    @Override
+    protected void animateActivityShowing() {
+
+    }
+
     private void toggleNoClipsContainer() {
         if (RealmDealer.getObjectsNumber(ClipObject.class) == 0) {
             noClipsContainer.setVisibility(View.VISIBLE);
@@ -65,25 +79,5 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
         else {
             noClipsContainer.setVisibility(View.GONE);
         }
-    }
-
-    @Override
-    public void attachView(V mvpView) {
-        super.attachView(mvpView);
-    }
-
-    @Override
-    public void detachView() {
-        super.detachView();
-    }
-
-    @Override
-    public boolean isViewAttached() {
-        return super.isViewAttached();
-    }
-
-    @Override
-    public V getAttachedView() {
-        return super.getAttachedView();
     }
 }
