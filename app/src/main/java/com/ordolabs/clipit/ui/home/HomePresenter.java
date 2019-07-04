@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.ordolabs.clipit.R;
-import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
 import com.ordolabs.clipit.data.service.ClipboardListenerService;
 import com.ordolabs.clipit.data.models.home.HomeModel;
 import com.ordolabs.clipit.data.db.RealmDealer;
@@ -57,10 +56,6 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
         mvpModel.updateData();
 
         toggleNoClipsContainer();
-    }
-
-    private void setClipsAsViewed() {
-
     }
 
     @Override

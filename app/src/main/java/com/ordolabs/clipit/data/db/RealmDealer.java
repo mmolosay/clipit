@@ -20,10 +20,10 @@ public class RealmDealer {
 
         RealmHolder.getInstance().realm.executeTransaction(new Realm.Transaction() {
             @Override
-            public void execute(Realm realm) {
+            public void execute(@NonNull Realm realm) {
                 ClipObject clip = RealmHolder.getInstance().realm.createObject(
                         ClipObject.class,
-                        getIdForNewObject(ClipObject.class)
+                        getIdForNewClip()
                 );
 
                 clip.setTitle(title);
@@ -34,9 +34,9 @@ public class RealmDealer {
         });
     }
 
-    private static int getIdForNewObject(@NonNull Class obj) {
+    private static int getIdForNewClip() {
         Number maxId = RealmHolder.getInstance().realm
-                .where(obj)
+                .where(ClipObject.class)
                 .max("id");
         return (maxId == null) ? 1 : maxId.intValue() + 1;
     }
@@ -69,7 +69,7 @@ public class RealmDealer {
     public static void setClipAsViewed(final int clipPos) {
         RealmHolder.getInstance().realm.executeTransaction(new Realm.Transaction() {
             @Override
-            public void execute(Realm realm) {
+            public void execute(@NonNull Realm realm) {
                 getClipAtPosReversed(clipPos).setViewed(true);
             }
         });
@@ -78,7 +78,7 @@ public class RealmDealer {
     public static void dropAllObjects(@NonNull final Class obj) {
         RealmHolder.getInstance().realm.executeTransaction(new Realm.Transaction() {
             @Override
-            public void execute(Realm realm) {
+            public void execute(@NonNull Realm realm) {
                 RealmHolder.getInstance().realm.where(obj).findAll().deleteAllFromRealm();
             }
         });

@@ -38,10 +38,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
         this.notifyDataSetChanged();
     }
 
-    public ArrayList<ClipRaw> getClipsList() {
-        return clipsList;
-    }
-
     @NonNull
     @Override
     public ClipItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
@@ -76,6 +72,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
         holder.bodyTextView.setText(clip.body);
         holder.infoTextView.setText(clip.datetime);
 
+        // in cause of only RVadapter has an ability to act with RV items,
+        // all visuals with them should be performed here :(
         if (clip.isViewed == false) {
             holder.newDriverMark.setVisibility(View.VISIBLE);
 
