@@ -28,12 +28,12 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        prefs = getSharedPreferences("com.mycompany.myAppName", MODE_PRIVATE);
+        prefs = getSharedPreferences("com.ordolabs.clipit", MODE_PRIVATE);
 
         // if it's the first launch and device requires an autorun to be turned on manually
-        if (prefs.getBoolean("firstrun", true)) {
+        if (prefs.getBoolean("FIRST_RUN", true)) {
 
-            prefs.edit().putBoolean("firstrun", false).apply();
+            prefs.edit().putBoolean("FIRST_RUN", false).apply();
 
             try {
                 Intent intent = new Intent();
@@ -73,6 +73,7 @@ public class SplashActivity extends BaseActivity {
                 List<ResolveInfo> list = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
                 if  (list.size() > 0) {
                     startActivity(intent);
+                    //TODO: change toast to message at first run user guide
                     Toast.makeText(getApplicationContext(), R.string.autorunRequiredToast, Toast.LENGTH_LONG).show();
                 }
             } catch (Exception e) {
