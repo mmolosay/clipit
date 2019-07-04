@@ -59,6 +59,10 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
         toggleNoClipsContainer();
     }
 
+    private void setClipsAsViewed() {
+
+    }
+
     @Override
     protected void animateActivityHiding() {
 
@@ -70,7 +74,7 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
     }
 
     private void toggleNoClipsContainer() {
-        if (RealmDealer.getObjectsNumber(ClipObject.class) == 0) {
+        if (RealmDealer.getClipsCount() == 0) {
             noClipsContainer.setVisibility(View.VISIBLE);
         }
         else {

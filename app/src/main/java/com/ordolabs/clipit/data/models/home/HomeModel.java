@@ -26,7 +26,7 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements 
         attachPresenter(mvpPresenter);
 
         clipsRVadapter = new RecyclerViewAdapter(
-                getRawClipsList(),
+                getRawClipsListReversed(),
                 mvpPresenter.getAttachedView(),
                 rv
         );
@@ -35,11 +35,11 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements 
 
     @Override
     public void updateData() {
-        clipsRVadapter.setClipsList(getRawClipsList());
+        clipsRVadapter.setClipsList(getRawClipsListReversed());
     }
 
-    private ArrayList<ClipRaw> getRawClipsList() {
-        int clipsCount = RealmDealer.getObjectsNumber(ClipObject.class);
+    private ArrayList<ClipRaw> getRawClipsListReversed() {
+        int clipsCount = RealmDealer.getClipsCount();
 
         if (clipsCount == 0) return new ArrayList<>();
 

@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
 
+import io.realm.Realm;
 import io.realm.RealmResults;
 
 /**
@@ -13,23 +14,24 @@ import io.realm.RealmResults;
 
 public class RealmDealer {
 
-    public static void createClipObject(@Nullable String title,
-                                        @NonNull String body,
-                                        @NonNull String datetime) {
+    public static void createClipObject(@Nullable final String title,
+                                        @NonNull final String body,
+                                        @NonNull final String datetime) {
 
-        RealmHolder.getInstance().realm.beginTransaction();
+        RealmHolder.getInstance().realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                ClipObject clip = RealmHolder.getInstance().realm.createObject(
+                        ClipObject.class,
+                        getIdForNewObject(ClipObject.class)
+                );
 
-        ClipObject clip = RealmHolder.getInstance().realm.createObject(
-                ClipObject.class,
-                getIdForNewObject(ClipObject.class)
-        );
-
-        clip.setTitle(title);
-        clip.setBody(body);
-        clip.setDateTime(datetime);
-        clip.setViewed(false);
-
-        RealmHolder.getInstance().realm.commitTransaction();
+                clip.setTitle(title);
+                clip.setBody(body);
+                clip.setDateTime(datetime);
+                clip.setViewed(false);
+            }
+        });
     }
 
     private static int getIdForNewObject(@NonNull Class obj) {
@@ -39,20 +41,6 @@ public class RealmDealer {
         return (maxId == null) ? 1 : maxId.intValue() + 1;
     }
 
-    public static int getObjectsNumber(@NonNull Class obj) {
-        return RealmHolder.getInstance().realm
-                .where(obj)
-                .findAll()
-                .size();
-    }
-
-    public static ClipObject getClipWithId(int id) {
-        return RealmHolder.getInstance().realm
-                .where(ClipObject.class)
-                .equalTo("id", id)
-                .findFirst();
-    }
-
     public static RealmResults<ClipObject> getAllClips() {
         return RealmHolder.getInstance().realm
                 .where(ClipObject.class)
@@ -60,7 +48,7 @@ public class RealmDealer {
     }
 
     public static ClipObject getClipAtPosReversed(int pos) {
-        int clipsSize = getObjectsNumber(ClipObject.class);
+        int clipsSize = getClipsCount();
         if (pos >= clipsSize)
             throw new IllegalArgumentException(
                     "Position number is invalid. pos: " + pos + ", size: " + clipsSize + "."
@@ -78,20 +66,21 @@ public class RealmDealer {
         return getAllClips().size();
     }
 
-    public static void setAllClipsAsViewed() {
-        int size = getClipsCount();
-        RealmHolder.getInstance().realm.beginTransaction();
-
-        for (int i = 0; i < size; i++) {
-            getAllClips().get(i).setViewed(true);
-        }
-
-        RealmHolder.getInstance().realm.commitTransaction();
+    public static void setClipAsViewed(final int clipPos) {
+        RealmHolder.getInstance().realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                getClipAtPosReversed(clipPos).setViewed(true);
+            }
+        });
     }
 
-    public static void dropAllObjects(@NonNull Class obj) {
-        RealmHolder.getInstance().realm.beginTransaction();
-        RealmHolder.getInstance().realm.where(obj).findAll().deleteAllFromRealm();
-        RealmHolder.getInstance().realm.commitTransaction();
+    public static void dropAllObjects(@NonNull final Class obj) {
+        RealmHolder.getInstance().realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                RealmHolder.getInstance().realm.where(obj).findAll().deleteAllFromRealm();
+            }
+        });
     }
 }

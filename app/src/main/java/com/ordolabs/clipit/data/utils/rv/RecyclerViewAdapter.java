@@ -53,9 +53,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
                 );
         view.setOnClickListener(newOnClickListener(view));
 
-        Animation anim = AnimationUtils.loadAnimation(callingActivity, R.anim.rv_item_driver_mark_scale_hide_left_anim);
-        view.findViewById(R.id.RVclipsItemNewDriverMark).startAnimation(anim);
-
         return new ClipItemViewHolder(view);
     }
 
@@ -73,7 +70,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ClipItemViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull final ClipItemViewHolder holder, int i) {
         ClipRaw clip = clipsList.get(i);
 
         holder.bodyTextView.setText(clip.body);
@@ -81,10 +78,26 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
 
         if (clip.isViewed == false) {
             holder.newDriverMark.setVisibility(View.VISIBLE);
-        }
 
-        if (i == getItemCount() - 1) {
-            RealmDealer.setAllClipsAsViewed();
+            // doesn't work from xml file (android:layoutAnimation="...")
+            Animation anim = AnimationUtils.loadAnimation(
+                    callingActivity,
+                    R.anim.rv_item_driver_mark_scale_hide_left_anim
+            );
+            // hide driver mark at the end of animation
+            anim.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {}
+                @Override
+                public void onAnimationRepeat(Animation animation) {}
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    holder.newDriverMark.setVisibility(View.INVISIBLE);
+                }
+            });
+            holder.newDriverMark.startAnimation(anim);
+
+            RealmDealer.setClipAsViewed(i);
         }
     }
 
