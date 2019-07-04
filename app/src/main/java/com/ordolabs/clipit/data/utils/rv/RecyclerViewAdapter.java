@@ -11,6 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.ordolabs.clipit.R;
+import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.ui.clip.ClipActivity;
 
@@ -69,11 +70,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
     public void onBindViewHolder(@NonNull final ClipItemViewHolder holder, int i) {
         ClipRaw clip = clipsList.get(i);
 
-        holder.bodyTextView.setText(clip.body);
-        holder.infoTextView.setText(clip.datetime);
-
         // in cause of only RVadapter has an ability to act with RV items,
         // all visuals with them should be performed here :(
+
+        holder.bodyTextView.setText(clip.body);
+        holder.infoTextView.setText( getDateTimePretty(clip.datetime) );
+
         if (clip.isViewed == false) {
             holder.newDriverMark.setVisibility(View.VISIBLE);
 
@@ -85,9 +87,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
             // hide driver mark at the end of animation
             anim.setAnimationListener(new Animation.AnimationListener() {
                 @Override
-                public void onAnimationStart(Animation animation) {}
+                public void onAnimationStart(Animation animation) {
+                }
+
                 @Override
-                public void onAnimationRepeat(Animation animation) {}
+                public void onAnimationRepeat(Animation animation) {
+                }
+
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     holder.newDriverMark.setVisibility(View.INVISIBLE);
@@ -97,6 +103,35 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
 
             RealmDealer.setClipAsViewed(i);
         }
+    }
+
+    private String getDateTimePretty(String datetime) {
+        // [ day, month, time, year ] from pattern "d MMM HH:mm yyyy"
+        String[] given = datetime.split(" ");
+        String[] now = C.CURRENT_DATETIME.split(" ");
+
+        if (given[3].equals(now[3])) {
+            if (given[1].equals(now[1])) {
+                if (given[0].equals(now[0])) {
+                    return callingActivity.getResources().getString(R.string.prettyDayTime_Today) + ", " + given[2];
+                }
+                // if given was yesterday (yeah, shitcode. if u know,
+                // how to do it better, create an issue at repo, please)
+                if (Integer.parseInt(now[0]) - Integer.parseInt(given[0]) == 1 ||
+                        (now[0].equals("1") &&
+                                (
+                                    given[0].equals("28") ||
+                                    given[0].equals("30") ||
+                                    given[0].equals("31")
+                                )
+                        )
+                ) {
+                    return callingActivity.getResources().getString(R.string.prettyDayTime_Yesterday) + ", " + given[2];
+                }
+            }
+            return given[0] + " " + given[1] + ", " + given[2];
+        }
+        return given[0] + " " + given[1] + ", " + given[2] + ", " + given[3];
     }
 
     @Override

@@ -32,7 +32,7 @@ public class ClipboardListenerService extends Service {
                     RealmDealer.createClipObject(
                             null,
                             clipText,
-                            new SimpleDateFormat("dd MMM HH:mm").format(new Date())
+                            new SimpleDateFormat("d MMM HH:mm yyyy").format(new Date())
                     );
                 }
             };

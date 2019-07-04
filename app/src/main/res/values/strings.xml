@@ -12,4 +12,7 @@
     <string name="autorunRequiredToast">Please, turn ON autorun for "ClipIt!" to keep it working even if app is closed.</string>
 
     <string name="EXTRA_CLICKED_CLIP_POSITION">EXTRA_CLICKED_CLIP_POSITION</string>
+
+    <string name="prettyDayTime_Today">today</string>
+    <string name="prettyDayTime_Yesterday">yesterday</string>
 </resources>
