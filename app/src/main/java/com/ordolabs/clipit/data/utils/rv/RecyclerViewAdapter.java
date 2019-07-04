@@ -110,13 +110,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
         String[] given = datetime.split(" ");
         String[] now = C.CURRENT_DATETIME.split(" ");
 
+        // if given was yesterday (yeah, shitcode. if u know,
+        // how to do it better, create an issue at repo, please)
         if (given[3].equals(now[3])) {
             if (given[1].equals(now[1])) {
                 if (given[0].equals(now[0])) {
-                    return callingActivity.getResources().getString(R.string.prettyDayTime_Today) + ", " + given[2];
+                    int deltaMinutes = Math.abs(
+                            (Integer.parseInt(now[2].split(":")[0]) * 60 + Integer.parseInt(now[2].split(":")[1])) -
+                            (Integer.parseInt(given[2].split(":")[0]) * 60 + Integer.parseInt(given[2].split(":")[1]))
+                    );
+                    if (deltaMinutes <= 9)
+                        return deltaMinutes + " " + callingActivity.getResources().getString(R.string.prettyDayTime_MinutesAgo);
+                    else
+                        return callingActivity.getResources().getString(R.string.prettyDayTime_Today) + ", " + given[2];
                 }
-                // if given was yesterday (yeah, shitcode. if u know,
-                // how to do it better, create an issue at repo, please)
+
                 if (Integer.parseInt(now[0]) - Integer.parseInt(given[0]) == 1 ||
                         (now[0].equals("1") &&
                                 (

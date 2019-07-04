@@ -15,4 +15,5 @@
 
     <string name="prettyDayTime_Today">today</string>
     <string name="prettyDayTime_Yesterday">yesterday</string>
+    <string name="prettyDayTime_MinutesAgo">minutes ago</string>
 </resources>
