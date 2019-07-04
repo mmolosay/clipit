@@ -50,8 +50,9 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements 
             list.add(new ClipRaw(
                     null,
                     results.get(i).getBody(),
-                    results.get(i).getDateTime())
-            );
+                    results.get(i).getDateTime(),
+                    results.get(i).isViewed()
+            ));
         }
 
         Collections.reverse(list);

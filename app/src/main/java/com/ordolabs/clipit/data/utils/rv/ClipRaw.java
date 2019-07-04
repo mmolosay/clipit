@@ -10,12 +10,16 @@ public class ClipRaw {
 
     String title;
     String body;
+
     String datetime;
 
-    public ClipRaw(String title, String body, String datetime) {
+    boolean isViewed;
+
+    public ClipRaw(String title, String body, String datetime, boolean isViewed) {
         this.title = title;
         this.body = body;
         this.datetime = datetime;
+        this.isViewed = isViewed;
     }
 
     @Override

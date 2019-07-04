@@ -7,8 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.ordolabs.clipit.R;
+import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.ui.clip.ClipActivity;
 
 import java.util.ArrayList;
@@ -49,6 +52,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
                         false
                 );
         view.setOnClickListener(newOnClickListener(view));
+
+        Animation anim = AnimationUtils.loadAnimation(callingActivity, R.anim.rv_item_driver_mark_scale_hide_left_anim);
+        view.findViewById(R.id.RVclipsItemNewDriverMark).startAnimation(anim);
+
         return new ClipItemViewHolder(view);
     }
 
@@ -59,7 +66,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
                 int itemPos = recyclerView.getChildLayoutPosition(view);
                 Intent i = ClipActivity
                         .getStartingIntent(callingActivity)
-                        .putExtra( callingActivity.getResources().getString(R.string.EXTRA_CLICKED_CLIP_POSITION), itemPos );
+                        .putExtra(callingActivity.getResources().getString(R.string.EXTRA_CLICKED_CLIP_POSITION), itemPos);
                 callingActivity.startActivity(i);
             }
         };
@@ -71,6 +78,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
 
         holder.bodyTextView.setText(clip.body);
         holder.infoTextView.setText(clip.datetime);
+
+        if (clip.isViewed == false) {
+            holder.newDriverMark.setVisibility(View.VISIBLE);
+        }
+
+        if (i == getItemCount() - 1) {
+            RealmDealer.setAllClipsAsViewed();
+        }
     }
 
     @Override

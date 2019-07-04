@@ -12,10 +12,12 @@ import io.realm.annotations.PrimaryKey;
  **/
 
 public class ClipObject extends RealmObject {
+
     @PrimaryKey private int id;
     @Nullable private String title;
     @NonNull private String body;
     @NonNull private String datetime;
+    @NonNull private boolean isViewed;
 
     public int getId() {
         return id;
@@ -36,6 +38,10 @@ public class ClipObject extends RealmObject {
         return datetime;
     }
 
+    public boolean isViewed() {
+        return isViewed;
+    }
+
     public void setTitle(@Nullable String title) {
         this.title = title;
     }
@@ -46,5 +52,9 @@ public class ClipObject extends RealmObject {
 
     public void setDateTime(@NonNull String date) {
         this.datetime = date;
+    }
+
+    public void setViewed(boolean viewed) {
+        isViewed = viewed;
     }
 }

@@ -12,6 +12,13 @@
     android:foreground="?android:attr/selectableItemBackground"
     android:orientation="horizontal">
 
+    <View
+        android:id="@+id/RVclipsItemNewDriverMark"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/rv_item_driver_mark_rounded"
+        android:visibility="gone"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

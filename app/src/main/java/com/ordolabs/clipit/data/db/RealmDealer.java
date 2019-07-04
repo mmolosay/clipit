@@ -13,7 +13,9 @@ import io.realm.RealmResults;
 
 public class RealmDealer {
 
-    public static void createClipObject(@Nullable String title, @NonNull String body, @NonNull String datetime) {
+    public static void createClipObject(@Nullable String title,
+                                        @NonNull String body,
+                                        @NonNull String datetime) {
 
         RealmHolder.getInstance().realm.beginTransaction();
 
@@ -25,6 +27,7 @@ public class RealmDealer {
         clip.setTitle(title);
         clip.setBody(body);
         clip.setDateTime(datetime);
+        clip.setViewed(false);
 
         RealmHolder.getInstance().realm.commitTransaction();
     }
@@ -69,6 +72,21 @@ public class RealmDealer {
                 .where(ClipObject.class)
                 .findAll()
                 .get(pos);
+    }
+
+    public static int getClipsCount() {
+        return getAllClips().size();
+    }
+
+    public static void setAllClipsAsViewed() {
+        int size = getClipsCount();
+        RealmHolder.getInstance().realm.beginTransaction();
+
+        for (int i = 0; i < size; i++) {
+            getAllClips().get(i).setViewed(true);
+        }
+
+        RealmHolder.getInstance().realm.commitTransaction();
     }
 
     public static void dropAllObjects(@NonNull Class obj) {
