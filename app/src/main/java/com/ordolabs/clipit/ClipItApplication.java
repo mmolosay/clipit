@@ -23,7 +23,7 @@ public class ClipItApplication extends Application {
         super.onCreate();
         appContext = getApplicationContext();
 
-        C.CURRENT_DATETIME = new SimpleDateFormat("d MMM HH:mm yyyy").format(new Date());
+        C.current_datetime = new SimpleDateFormat("d MMM HH:mm yyyy").format(new Date());
     }
 
     public static Context getAppContext() {

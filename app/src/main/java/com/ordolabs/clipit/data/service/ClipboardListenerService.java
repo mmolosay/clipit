@@ -6,6 +6,7 @@ import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.IBinder;
 
+import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.utils.ServiceAwakenerBR;
 
@@ -32,7 +33,7 @@ public class ClipboardListenerService extends Service {
                     RealmDealer.createClipObject(
                             null,
                             clipText,
-                            new SimpleDateFormat("d MMM HH:mm yyyy").format(new Date())
+                            new SimpleDateFormat(C.DATETIME_FORMAT).format(new Date())
                     );
                 }
             };

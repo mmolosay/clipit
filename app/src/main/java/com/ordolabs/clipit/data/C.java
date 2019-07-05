@@ -5,5 +5,7 @@ package com.ordolabs.clipit.data;
  **/
 
 public final class C {
-    public static String CURRENT_DATETIME = "";
+    public static final String DATETIME_FORMAT = "d MMM HH:mm yyyy";
+
+    public static String current_datetime = "";
 }

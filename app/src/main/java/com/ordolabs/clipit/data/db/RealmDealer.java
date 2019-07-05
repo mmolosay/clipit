@@ -70,7 +70,8 @@ public class RealmDealer {
         RealmHolder.getInstance().realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(@NonNull Realm realm) {
-                getClipAtPosReversed(clipPos).setViewed(true);
+                ClipObject a = getClipAtPosReversed(clipPos);
+                a.setViewed(true);
             }
         });
     }
