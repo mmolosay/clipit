@@ -102,13 +102,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
             holder.newDriverMark.startAnimation(anim);
 
             RealmDealer.setClipAsViewed(i);
+            clip.isViewed = true;
         }
     }
 
     private String getDateTimePretty(String datetime) {
         // [ day, month, time, year ] from pattern "d MMM HH:mm yyyy"
         String[] given = datetime.split(" ");
-        String[] now = C.CURRENT_DATETIME.split(" ");
+        String[] now = C.current_datetime.split(" ");
 
         // if given was yesterday (yeah, shitcode. if u know,
         // how to do it better, create an issue at repo, please)
@@ -119,10 +120,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder
                             (Integer.parseInt(now[2].split(":")[0]) * 60 + Integer.parseInt(now[2].split(":")[1])) -
                             (Integer.parseInt(given[2].split(":")[0]) * 60 + Integer.parseInt(given[2].split(":")[1]))
                     );
-                    if (deltaMinutes <= 9)
+
+                    if (deltaMinutes == 0)
+                        return callingActivity.getResources().getString(R.string.prettyDayTime_LessThanMinuteAgo);
+                    if (deltaMinutes == 1)
+                        return callingActivity.getResources().getString(R.string.prettyDayTime_MinuteAgo);
+                    if (deltaMinutes > 1 && deltaMinutes < 10)
                         return deltaMinutes + " " + callingActivity.getResources().getString(R.string.prettyDayTime_MinutesAgo);
-                    else
-                        return callingActivity.getResources().getString(R.string.prettyDayTime_Today) + ", " + given[2];
+
+                    return callingActivity.getResources().getString(R.string.prettyDayTime_Today) + ", " + given[2];
                 }
 
                 if (Integer.parseInt(now[0]) - Integer.parseInt(given[0]) == 1 ||
