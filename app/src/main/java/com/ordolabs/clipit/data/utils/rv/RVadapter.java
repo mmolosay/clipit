@@ -13,7 +13,6 @@ import android.view.animation.AnimationUtils;
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.db.RealmDealer;
-import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
 import com.ordolabs.clipit.ui.clip.ClipActivity;
 
 import java.util.ArrayList;
@@ -38,10 +37,6 @@ public class RVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
         this.clipsList.clear();
         this.clipsList.addAll(clipsList);
         this.notifyDataSetChanged();
-    }
-
-    public ArrayList<ClipRaw> getClipsList() {
-        return clipsList;
     }
 
     @NonNull
@@ -157,7 +152,7 @@ public class RVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
         return given[0] + " " + given[1] + ", " + given[2] + ", " + given[3];
     }
 
-    public ClipRaw deleteItem(int position) {
+    ClipRaw deleteItem(int position) {
         ClipRaw clip = clipsList.get(position);
 
         clipsList.remove(position);
@@ -168,7 +163,7 @@ public class RVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
         return clip;
     }
 
-    public void restoreItem(int position, ClipRaw clip) {
+    void restoreItem(int position, ClipRaw clip) {
         this.clipsList.add(position, clip);
         notifyItemInserted(position);
     }
