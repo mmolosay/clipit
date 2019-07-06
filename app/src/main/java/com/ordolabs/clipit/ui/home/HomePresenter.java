@@ -31,7 +31,6 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
         attachView(mvpView);
 
         initViews();
-        mvpModel = new HomeModel<HomePresenter>(this, clipsRV);
         prepareViews();
     }
 
@@ -40,6 +39,8 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
         toolbar = mvpView.findViewById(R.id.homeToolbar);
         noClipsContainer = mvpView.findViewById(R.id.homeNoClipsContainer);
         clipsRV = mvpView.findViewById(R.id.homeClipsRV);
+
+        mvpModel = new HomeModel<HomePresenter>(this, clipsRV);
     }
 
     @Override

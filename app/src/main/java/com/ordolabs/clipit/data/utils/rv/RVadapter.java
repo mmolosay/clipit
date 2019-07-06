@@ -21,13 +21,13 @@ import java.util.ArrayList;
  * Created by ordogod on 18.06.19.
  **/
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<ClipItemViewHolder> {
+public class RVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
 
     private ArrayList<ClipRaw> clipsList;
     private AppCompatActivity callingActivity;
     private RecyclerView recyclerView;
 
-    public RecyclerViewAdapter(ArrayList<ClipRaw> clipsList, AppCompatActivity callingActivity, RecyclerView rv) {
+    public RVadapter(ArrayList<ClipRaw> clipsList, AppCompatActivity callingActivity, RecyclerView rv) {
         this.clipsList = clipsList;
         this.callingActivity = callingActivity;
         this.recyclerView = rv;

@@ -1,13 +1,15 @@
 package com.ordolabs.clipit.data.models.home;
 
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 
 import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
 import com.ordolabs.clipit.data.models.base.BaseModel;
 import com.ordolabs.clipit.data.utils.rv.ClipRaw;
-import com.ordolabs.clipit.data.utils.rv.RecyclerViewAdapter;
+import com.ordolabs.clipit.data.utils.rv.RVadapter;
+import com.ordolabs.clipit.data.utils.rv.RVswipeController;
 import com.ordolabs.clipit.ui.home.HomePresenter;
 
 import java.util.ArrayList;
@@ -21,16 +23,21 @@ import io.realm.RealmResults;
 
 public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements HomeModelContract<P> {
 
-    private RecyclerViewAdapter clipsRVadapter;
+    private RVadapter clipsRVadapter;
+    private ItemTouchHelper itemTouchHelper;
 
     public HomeModel(P mvpPresenter, RecyclerView rv) {
         attachPresenter(mvpPresenter);
 
-        clipsRVadapter = new RecyclerViewAdapter(
+        clipsRVadapter = new RVadapter(
                 getRawClipsListReversed(),
                 mvpPresenter.getAttachedView(),
                 rv
         );
+
+        this.itemTouchHelper = new ItemTouchHelper(new RVswipeController());
+        this.itemTouchHelper.attachToRecyclerView(rv);
+
         //RealmDealer.dropAllObjects(ClipObject.class);
     }
 
@@ -60,7 +67,7 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements 
         return list;
     }
 
-    public RecyclerViewAdapter getClipsRVadapter() {
+    public RVadapter getClipsRVadapter() {
         return clipsRVadapter;
     }
 
