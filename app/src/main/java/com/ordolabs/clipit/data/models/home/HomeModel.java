@@ -1,6 +1,5 @@
 package com.ordolabs.clipit.data.models.home;
 
-import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
 
 import com.ordolabs.clipit.data.C;
@@ -11,10 +10,8 @@ import com.ordolabs.clipit.data.utils.rv.ClipRaw;
 import com.ordolabs.clipit.data.utils.rv.RecyclerViewAdapter;
 import com.ordolabs.clipit.ui.home.HomePresenter;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 
 import io.realm.RealmResults;
 
@@ -37,16 +34,14 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements 
         //RealmDealer.dropAllObjects(ClipObject.class);
     }
 
-    @SuppressLint("SimpleDateFormat")
     @Override
     public void updateData() {
+        C.updateData();
         clipsRVadapter.setClipsList(getRawClipsListReversed());
-        C.current_datetime = new SimpleDateFormat(C.DATETIME_FORMAT).format(new Date());
     }
 
     private ArrayList<ClipRaw> getRawClipsListReversed() {
         int clipsCount = RealmDealer.getClipsCount();
-
         if (clipsCount == 0) return new ArrayList<>();
 
         ArrayList<ClipRaw> list = new ArrayList<>();
