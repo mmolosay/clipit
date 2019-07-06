@@ -76,6 +76,15 @@ public class RealmDealer {
         });
     }
 
+    public static void deleteClipAtPosition(final int position) {
+        RealmHolder.getInstance().realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                getClipAtPosReversed(position).deleteFromRealm();
+            }
+        });
+    }
+
     public static void dropAllObjects(@NonNull final Class obj) {
         RealmHolder.getInstance().realm.executeTransaction(new Realm.Transaction() {
             @Override

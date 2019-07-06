@@ -4,10 +4,7 @@
     <string name="homeToolbarTitle">Your clips</string>
     <string name="homeNoClipsInfo">Seems like there is no clips yet. Copy something into your clipboard and find it here!</string>
 
-
-
     <string name="homeNoClipsImgDescription">Empty folder image.</string>
-    <string name="clipDeleteImgDescription">Delete clip action.</string>
 
     <string name="autorunRequiredToast">Please, turn ON autorun for "ClipIt!" to keep it working even if app is closed.</string>
 
@@ -18,4 +15,8 @@
     <string name="prettyDayTime_LessThanMinuteAgo">less than minute ago</string>
     <string name="prettyDayTime_MinuteAgo">1 minute ago</string>
     <string name="prettyDayTime_MinutesAgo">minutes ago</string>
+
+
+    <string name="clipDeleteSnackbarNotification">Clip deleted.</string>
+    <string name="clipDeleteSnackbarAction">UNDO</string>
 </resources>

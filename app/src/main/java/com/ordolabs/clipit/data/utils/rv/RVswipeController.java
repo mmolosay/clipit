@@ -1,8 +1,13 @@
 package com.ordolabs.clipit.data.utils.rv;
 
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper.Callback;
+import android.view.View;
+
+import com.ordolabs.clipit.R;
+import com.ordolabs.clipit.data.db.RealmDealer;
 
 import static android.support.v7.widget.helper.ItemTouchHelper.*;
 
@@ -13,6 +18,9 @@ import static android.support.v7.widget.helper.ItemTouchHelper.*;
 public class RVswipeController extends Callback {
 
     private RVadapter adapter;
+
+    private ClipRaw clipRemoved;
+    private int clipPosition;
 
     public RVswipeController(RVadapter adapter) {
         this.adapter = adapter;
@@ -39,6 +47,31 @@ public class RVswipeController extends Callback {
             @NonNull RecyclerView.ViewHolder viewHolder,
             int direction)
     {
-        adapter.deleteItem(viewHolder.getAdapterPosition());
+        clipPosition = viewHolder.getAdapterPosition();
+        clipRemoved = adapter.deleteItem(clipPosition);
+
+        Snackbar
+        .make(
+                viewHolder.itemView,
+                R.string.clipDeleteSnackbarNotification,
+                Snackbar.LENGTH_LONG
+        ).setAction(
+                R.string.clipDeleteSnackbarAction,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        adapter.restoreItem(clipPosition, clipRemoved);
+                    }
+                }
+        ).addCallback(
+                new Snackbar.Callback() {
+                    @Override
+                    public void onDismissed(Snackbar transientBottomBar, int event) {
+                        if (event == Snackbar.Callback.DISMISS_EVENT_TIMEOUT) {
+                            RealmDealer.deleteClipAtPosition(clipPosition);
+                        }
+                    }
+                }
+        ).show();
     }
 }
