@@ -49,7 +49,7 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
         mvpView.getSupportActionBar().setTitle(R.string.homeToolbarTitle);
 
         clipsRV.setLayoutManager(new LinearLayoutManager(mvpView));
-        clipsRV.setAdapter(mvpModel.getClipsRVadapter());
+        clipsRV.setAdapter(mvpModel.getRVadapter());
     }
 
     @Override

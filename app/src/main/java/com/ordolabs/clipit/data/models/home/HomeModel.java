@@ -23,20 +23,20 @@ import io.realm.RealmResults;
 
 public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements HomeModelContract<P> {
 
-    private RVadapter clipsRVadapter;
-    private ItemTouchHelper itemTouchHelper;
+    private RVadapter adapter;
+    private RVswipeController swipeController;
 
     public HomeModel(P mvpPresenter, RecyclerView rv) {
         attachPresenter(mvpPresenter);
 
-        clipsRVadapter = new RVadapter(
+        this.adapter = new RVadapter(
                 getRawClipsListReversed(),
                 mvpPresenter.getAttachedView(),
                 rv
         );
+        this.swipeController = new RVswipeController(adapter);
 
-        this.itemTouchHelper = new ItemTouchHelper(new RVswipeController());
-        this.itemTouchHelper.attachToRecyclerView(rv);
+        new ItemTouchHelper(swipeController).attachToRecyclerView(rv);
 
         //RealmDealer.dropAllObjects(ClipObject.class);
     }
@@ -44,7 +44,7 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements 
     @Override
     public void updateData() {
         C.updateData();
-        clipsRVadapter.setClipsList(getRawClipsListReversed());
+        adapter.setClipsList(getRawClipsListReversed());
     }
 
     private ArrayList<ClipRaw> getRawClipsListReversed() {
@@ -67,8 +67,8 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements 
         return list;
     }
 
-    public RVadapter getClipsRVadapter() {
-        return clipsRVadapter;
+    public RVadapter getRVadapter() {
+        return adapter;
     }
 
     @Override

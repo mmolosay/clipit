@@ -39,6 +39,10 @@ public class RVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
         this.notifyDataSetChanged();
     }
 
+    public ArrayList<ClipRaw> getClipsList() {
+        return clipsList;
+    }
+
     @NonNull
     @Override
     public ClipItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
@@ -150,6 +154,13 @@ public class RVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
             return given[0] + " " + given[1] + ", " + given[2];
         }
         return given[0] + " " + given[1] + ", " + given[2] + ", " + given[3];
+    }
+
+    public void deleteItem(int position) {
+        this.clipsList.remove(position);
+        //TODO: add removement from DB
+        this.notifyItemRemoved(position);
+        this.notifyItemRangeChanged(position, getItemCount());
     }
 
     @Override
