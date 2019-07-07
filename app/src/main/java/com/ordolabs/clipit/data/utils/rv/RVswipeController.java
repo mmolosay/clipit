@@ -1,11 +1,17 @@
 package com.ordolabs.clipit.data.utils.rv;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper.Callback;
 import android.view.View;
 
+import com.ordolabs.clipit.ClipItApplication;
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.db.RealmDealer;
 
@@ -18,12 +24,16 @@ import static android.support.v7.widget.helper.ItemTouchHelper.*;
 public class RVswipeController extends Callback {
 
     private RVadapter adapter;
+    private ColorDrawable swipeBG;
+    private Drawable deleteIcon;
 
     private ClipRaw clipRemoved;
     private int clipPosition;
 
     public RVswipeController(RVadapter adapter) {
         this.adapter = adapter;
+        this.swipeBG = new ColorDrawable(Color.parseColor("#ff0000"));
+        this.deleteIcon = ContextCompat.getDrawable(ClipItApplication.getAppContext(), R.drawable.ic_delete_light_24dp);
     }
 
     @Override
@@ -73,5 +83,31 @@ public class RVswipeController extends Callback {
                     }
                 }
         ).show();
+    }
+
+    @Override
+    public void onChildDraw(@NonNull Canvas c,
+                            @NonNull RecyclerView recyclerView,
+                            @NonNull RecyclerView.ViewHolder viewHolder,
+                            float dX,
+                            float dY,
+                            int actionState,
+                            boolean isCurrentlyActive)
+    {
+        View itemView = viewHolder.itemView;
+        if (dX > 0) {
+            swipeBG.setBounds(
+                    itemView.getLeft() - ((RecyclerView.LayoutParams) itemView.getLayoutParams()).leftMargin,
+                    itemView.getTop(),
+                    (int) dX, itemView.getBottom()
+            );
+        }
+        else {
+
+        }
+
+        swipeBG.draw(c);
+
+        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
     }
 }
