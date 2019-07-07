@@ -156,20 +156,20 @@ public class RVswipeController extends Callback {
         }
         else {
             deleteIcon.setBounds(
-                    itemView.getRight() + (int) dX + deleteIconCenteringOffset,
+                    itemView.getRight() - deleteIconMargin - deleteIconWidth - deleteIconCenteringOffset,
                     itemView.getTop() + deleteIconMargin,
-                    itemView.getLeft() + deleteIconMargin + deleteIconWidth + deleteIconCenteringOffset,
+                    itemView.getRight() - deleteIconMargin - deleteIconCenteringOffset,
                     itemView.getBottom() - deleteIconMargin
             );
             c.clipRect(
-                    itemView.getLeft(),
+                    itemView.getRight() + (int) dX + itemView.getLeft(),
                     itemView.getTop(),
-                    (int) dX,
+                    itemView.getRight(),
                     itemView.getBottom()
             );
 
             c.drawRoundRect(new RectF(
-                    (int) dX < itemView.getRight() ? (int) dX : itemView.getRight(),
+                    (int) -dX < itemView.getRight() ? itemView.getRight() + (int) dX + itemView.getLeft() : itemView.getLeft(),
                     itemView.getTop(),
                     itemView.getRight(),
                     itemView.getBottom()
