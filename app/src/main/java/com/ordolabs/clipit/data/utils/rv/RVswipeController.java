@@ -28,6 +28,7 @@ public class RVswipeController extends Callback {
     private RVadapter adapter;
     private View itemView;
     private Drawable deleteIcon;
+    private RectF swipeBG;
     private Paint paint;
 
     private ClipRaw clipRemoved;
@@ -39,6 +40,7 @@ public class RVswipeController extends Callback {
     private int deleteIconCenteringOffset;
     private int deleteIconMargin;
     private float swipeBGroundness;
+    private int alphaBG;
 
     public RVswipeController(RVadapter adapter) {
         this.adapter = adapter;
@@ -55,6 +57,8 @@ public class RVswipeController extends Callback {
                 deleteIconWidth,
                 deleteIconHeight
         ).getDrawable();
+
+        this.swipeBG = new RectF();
 
         this.paint = new Paint();
         this.paint.setColor(ContextCompat.getColor(ClipItApplication.getAppContext(), R.color.delete_item_bg));
@@ -147,12 +151,12 @@ public class RVswipeController extends Callback {
                     itemView.getBottom()
             );
 
-            c.drawRoundRect(new RectF(
+            this.swipeBG.set(
                     itemView.getLeft(),
                     itemView.getTop(),
                     (int) dX < itemView.getRight() ? (int) dX : itemView.getRight(),
                     itemView.getBottom()
-            ), swipeBGroundness, swipeBGroundness, paint);
+            );
         }
         else {
             deleteIcon.setBounds(
@@ -168,14 +172,29 @@ public class RVswipeController extends Callback {
                     itemView.getBottom()
             );
 
-            c.drawRoundRect(new RectF(
+            this.swipeBG.set(
                     (int) -dX < itemView.getRight() ? itemView.getRight() + (int) dX + itemView.getLeft() : itemView.getLeft(),
                     itemView.getTop(),
                     itemView.getRight(),
                     itemView.getBottom()
-            ), swipeBGroundness, swipeBGroundness, paint);
+            );
         }
 
+        if (Math.abs(dX) < (itemView.getRight() - itemView.getLeft()) / 2) {
+            this.alphaBG = Math.round(Math.abs(dX) / ((itemView.getRight() - itemView.getLeft()) / 2) * 255);
+        }
+        else {
+            this.alphaBG = 255;
+            deleteIcon.setAlpha(255);
+            paint.setAlpha(255);
+        }
+
+        if (alphaBG != 255) {
+            deleteIcon.setAlpha(alphaBG);
+            paint.setAlpha(alphaBG);
+        }
+
+        c.drawRoundRect(swipeBG, swipeBGroundness, swipeBGroundness, paint);
         deleteIcon.draw(c);
 
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
