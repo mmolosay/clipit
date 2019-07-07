@@ -108,28 +108,28 @@ public class RVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
     }
 
     private String getDateTimePretty(String datetime) {
-        // [ day, month, time, year ] from pattern "d MMM HH:mm yyyy"
+        // [ day, month, time, year ] from C.DATETIME_FORMAT pattern
         String[] given = datetime.split(" ");
         String[] now = C.current_datetime.split(" ");
 
-        // if given was yesterday (yeah, shitcode. if u know,
-        // how to do it better, create an issue at repo, please)
+        // (yeah, shitcode. if u know, how to
+        // do it better, create an issue at repo, please)
 
         if (given[3].equals(now[3])) { // if this year
             if (given[1].equals(now[1])) { // if this month
                 if (given[0].equals(now[0])) { // if this day
                     // then print just minutes difference
-                    int deltaMinutes = Math.abs(
+                    int dMinutes = Math.abs(
                             (Integer.parseInt(now[2].split(":")[0]) * 60 + Integer.parseInt(now[2].split(":")[1])) -
                             (Integer.parseInt(given[2].split(":")[0]) * 60 + Integer.parseInt(given[2].split(":")[1]))
                     );
 
-                    if (deltaMinutes == 0)
+                    if (dMinutes == 0)
                         return callingActivity.getResources().getString(R.string.prettyDayTime_LessThanMinuteAgo);
-                    if (deltaMinutes == 1)
+                    if (dMinutes == 1)
                         return callingActivity.getResources().getString(R.string.prettyDayTime_MinuteAgo);
-                    if (deltaMinutes > 1 && deltaMinutes < 10)
-                        return deltaMinutes + " " + callingActivity.getResources().getString(R.string.prettyDayTime_MinutesAgo);
+                    if (dMinutes > 1 && dMinutes < 10)
+                        return dMinutes + " " + callingActivity.getResources().getString(R.string.prettyDayTime_MinutesAgo);
 
                     return callingActivity.getResources().getString(R.string.prettyDayTime_Today) + ", " + given[2];
                 }
@@ -143,9 +143,7 @@ public class RVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
                                     given[0].equals("31")
                                 )
                         )
-                ) {
-                    return callingActivity.getResources().getString(R.string.prettyDayTime_Yesterday) + ", " + given[2];
-                }
+                ) return callingActivity.getResources().getString(R.string.prettyDayTime_Yesterday) + ", " + given[2];
             }
             return given[0] + " " + given[1] + ", " + given[2];
         }
@@ -156,7 +154,6 @@ public class RVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
         ClipRaw clip = clipsList.get(position);
 
         clipsList.remove(position);
-        //TODO: add removement from DB
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, getItemCount());
 
