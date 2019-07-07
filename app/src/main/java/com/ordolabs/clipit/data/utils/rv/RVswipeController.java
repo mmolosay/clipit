@@ -67,7 +67,7 @@ public class RVswipeController extends Callback {
                 new Snackbar.Callback() {
                     @Override
                     public void onDismissed(Snackbar transientBottomBar, int event) {
-                        if (event == Snackbar.Callback.DISMISS_EVENT_TIMEOUT) {
+                        if (event != Snackbar.Callback.DISMISS_EVENT_ACTION) {
                             RealmDealer.deleteClipAtPosition(clipPosition);
                         }
                     }
