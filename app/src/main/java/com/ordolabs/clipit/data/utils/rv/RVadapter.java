@@ -160,9 +160,16 @@ public class RVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
         return clip;
     }
 
-    void restoreItem(int position, ClipRaw clip) {
+    void restoreItem(final int position, ClipRaw clip) {
         this.clipsList.add(position, clip);
         notifyItemInserted(position);
+
+        recyclerView.post(new Runnable() {
+            @Override
+            public void run() {
+                recyclerView.smoothScrollToPosition(position);
+            }
+        });
     }
 
     @Override
