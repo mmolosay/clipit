@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="transparent">#0000</color>
     <color name="test">#CF1C1C</color>
 
     <color name="status_bar">#28292e</color> <!--for status bar-->
@@ -12,11 +11,12 @@
     <color name="light2">#a8aaab</color>
     <color name="light3">#777879</color>
 
-    <color name="accent">#7B9197</color>
-    <color name="content_active">#32343a</color>
+    <color name="accent_blue">#7B9197</color>
+    <color name="content_clickable">#32343a</color>
 
     <color name="delete_item_bg">#AF3A3A</color>
 
     <color name="opac_filler">#4067717C</color>
     <color name="list_driver">#4D5255</color>
+    <color name="menu_filler">#28282B</color>
 </resources>

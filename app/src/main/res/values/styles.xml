@@ -5,12 +5,13 @@
     <!-- Base theme for application -->
     <style name="AppTheme" parent="@style/Theme.AppCompat.NoActionBar">
         <item name="android:colorPrimaryDark">@color/status_bar</item>
-        <item name="colorPrimary">@color/content_active</item>
+        <item name="colorPrimary">@color/content_clickable</item>
         <item name="android:windowBackground">@color/background</item>
         <item name="android:navigationBarColor">@color/nav_bar</item>
         <item name="android:actionBarStyle">@style/ToolbarStyle</item>
 
-        <item name="android:colorEdgeEffect">@color/accent</item>
+        <item name="android:colorEdgeEffect">@color/accent_blue</item>
+        <item name="android:textColorSecondary">@color/light1</item>
     </style>
 
     <!--==================== FRAGMENTS ====================-->
@@ -18,7 +19,7 @@
     <!-- Toolbar -->
     <style name="ToolbarStyle" parent="@style/Widget.AppCompat.ActionBar.Solid">
         <item name="android:background">@color/toolbar</item>
-        <item name="colorPrimary">@color/content_active</item>
+        <item name="colorPrimary">@color/content_clickable</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:gravity">center_vertical</item>
     </style>
@@ -52,6 +53,13 @@
         <item name="android:textColor">@color/light3</item>
         <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!--==================== STUFF ====================-->
+
+    <style name="CustomPopupTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:background">@color/menu_filler</item>
+        <item name="android:overlapAnchor">false</item>
     </style>
 
 </resources>

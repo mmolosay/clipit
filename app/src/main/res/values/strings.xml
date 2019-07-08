@@ -1,22 +1,29 @@
 <resources>
     <string name="app_name">ClipIt!</string>
 
+    <!--==================== ACTIVITIES ====================-->
     <string name="homeToolbarTitle">Your clips</string>
     <string name="homeNoClipsInfo">Seems like there is no clips yet. Copy something into your clipboard and find it here!</string>
 
+    <!--==================== IMAGE DESCRIPTIONS ====================-->
     <string name="homeNoClipsImgDescription">Empty folder image.</string>
 
+    <!--==================== TOASTS ====================-->
     <string name="autorunRequiredToast">Please, turn ON autorun for "ClipIt!" to keep it working even if app is closed.</string>
 
-    <string name="EXTRA_CLICKED_CLIP_POSITION">EXTRA_CLICKED_CLIP_POSITION</string>
+    <!--==================== MENU ====================-->
+    <string name="menuEdit">Edit</string>
+    <string name="menuCopy">Copy</string>
+    <string name="menuDelete">Delete</string>
 
+    <!--==================== DATETIME ====================-->
     <string name="prettyDayTime_Today">today</string>
     <string name="prettyDayTime_Yesterday">yesterday</string>
     <string name="prettyDayTime_LessThanMinuteAgo">less than minute ago</string>
     <string name="prettyDayTime_MinuteAgo">1 minute ago</string>
     <string name="prettyDayTime_MinutesAgo">minutes ago</string>
 
-
+    <!--==================== SNACKBAR ====================-->
     <string name="clipDeleteSnackbarNotification">Clip deleted.</string>
     <string name="clipDeleteSnackbarAction">UNDO</string>
 </resources>

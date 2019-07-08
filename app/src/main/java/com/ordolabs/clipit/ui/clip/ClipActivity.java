@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.ordolabs.clipit.ClipItApplication;
 import com.ordolabs.clipit.R;
+import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.ui.base.BaseActivity;
 
 /**
@@ -27,7 +27,7 @@ public class ClipActivity extends BaseActivity implements ClipMvpContract.View {
 
         mvpPresenter = new ClipPresenter<>(
                 this,
-                getIntent().getIntExtra(getString(R.string.EXTRA_CLICKED_CLIP_POSITION), -1)
+                getIntent().getIntExtra(C.EXTRA_CLICKED_CLIP_POSITION, -1)
         );
     }
 
@@ -41,8 +41,7 @@ public class ClipActivity extends BaseActivity implements ClipMvpContract.View {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.menuMenuDropdown) {
-            Toast.makeText(this, "nice", Toast.LENGTH_SHORT).show();
+        if (id == R.id.menuEdit) {
             return true;
         }
 
