@@ -85,6 +85,14 @@ public class RealmDealer {
         });
     }
 
+    public static boolean isSameBodyClipExist(String body) {
+        RealmResults<ClipObject> clips = getAllClips();
+        for (ClipObject clip : clips) {
+            if (clip.getBody().equals(body)) return true;
+        }
+        return false;
+    }
+
     public static void dropAllObjects(@NonNull final Class obj) {
         RealmHolder.getInstance().realm.executeTransaction(new Realm.Transaction() {
             @Override

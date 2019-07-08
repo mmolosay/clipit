@@ -30,11 +30,13 @@ public class ClipboardListenerService extends Service {
                             .getItemAt(0)
                             .getText().toString();
 
-                    RealmDealer.createClipObject(
-                            null,
-                            clipText,
-                            new SimpleDateFormat(C.DATETIME_FORMAT).format(new Date())
-                    );
+                    if (RealmDealer.isSameBodyClipExist(clipText) == false) {
+                        RealmDealer.createClipObject(
+                                null,
+                                clipText,
+                                new SimpleDateFormat(C.DATETIME_FORMAT).format(new Date())
+                        );
+                    }
                 }
             };
 

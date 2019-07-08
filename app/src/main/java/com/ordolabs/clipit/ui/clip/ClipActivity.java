@@ -41,8 +41,18 @@ public class ClipActivity extends BaseActivity implements ClipMvpContract.View {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.menuEdit) {
-            return true;
+        switch (id) {
+            case R.id.menuEdit: {
+                break;
+            }
+            case R.id.menuCopy: {
+                mvpPresenter.menuOnCopy(this);
+                break;
+            }
+            case R.id.menuDelete: {
+                mvpPresenter.menuOnDelete(this);
+                break;
+            }
         }
 
         return super.onOptionsItemSelected(item);

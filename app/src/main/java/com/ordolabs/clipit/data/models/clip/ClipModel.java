@@ -37,6 +37,10 @@ public class ClipModel<P extends ClipPresenter> extends BaseModel<P> implements 
 
     }
 
+    public int getClipPos() {
+        return clipPos;
+    }
+
     @Override
     public void attachPresenter(P mvpPresenter) {
         super.attachPresenter(mvpPresenter);
