@@ -32,7 +32,7 @@ public class EditActivity extends BaseActivity implements EditMvpContract.View {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.clip_menu, menu);
+        getMenuInflater().inflate(R.menu.edit_menu, menu);
         return true;
     }
 
