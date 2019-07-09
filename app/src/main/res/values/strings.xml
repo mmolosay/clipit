@@ -34,10 +34,15 @@
     <string name="clipDeleteSnackbarAction">UNDO</string>
 
     <!--==================== ALERTDIALOG ====================-->
-    <string name="alertDioalogTitle">Delete clip</string>
-    <string name="alertDioalogMessage">Are you sure you want to delete this clip?</string>
-    <string name="alertDialogPositive">Yes</string>
-    <string name="alertDialogNegative">No</string>
+    <string name="alertDialogDeleteTitle">Delete clip</string>
+    <string name="alertDialogDeleteMessage">Are you sure you want to delete this clip?</string>
+    <string name="alertDialogDeletePositive">Yes</string>
+    <string name="alertDialogDeleteNegative">No</string>
+
+    <string name="alertDialogEditTitle">Save clip</string>
+    <string name="alertDialogEditMessage">Clip was changed. Are you sure you want to exit without saving?</string>
+    <string name="alertDialogEditPositive">Yes</string>
+    <string name="alertDialogEditNegative">No</string>
 
     <!--==================== EDITTEXTS ====================-->
     <string name="editTitleLabelText">Clip title</string>

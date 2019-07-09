@@ -93,16 +93,16 @@ public class ClipPresenter<V extends ClipActivity> extends BasePresenter<V> impl
 
     void menuOnDelete(Context callingContext) {
         new AlertDialog.Builder(callingContext)
-                .setTitle(R.string.alertDioalogTitle)
-                .setMessage(R.string.alertDioalogMessage)
-                .setPositiveButton(R.string.alertDialogPositive, new DialogInterface.OnClickListener() {
+                .setTitle(R.string.alertDialogDeleteTitle)
+                .setMessage(R.string.alertDialogDeleteMessage)
+                .setPositiveButton(R.string.alertDialogDeletePositive, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         RealmDealer.deleteClipAtPosition(mvpModel.getClipPos());
                         mvpView.finish();
                     }
                 })
-                .setNegativeButton(R.string.alertDialogNegative, null)
+                .setNegativeButton(R.string.alertDialogDeleteNegative, null)
                 .show();
     }
 }

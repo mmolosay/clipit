@@ -1,6 +1,9 @@
 package com.ordolabs.clipit.ui.edit;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -11,8 +14,10 @@ import android.widget.TextView;
 
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.C;
+import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.models.edit.EditModel;
 import com.ordolabs.clipit.ui.base.BasePresenter;
+import com.ordolabs.clipit.ui.home.HomeActivity;
 
 /**
  * Created by ordogod on 09.07.19.
@@ -64,8 +69,7 @@ public class EditPresenter<V extends EditActivity> extends BasePresenter<V> impl
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: add "exit without save" dialog
-                mvpView.finish();
+                onMenuBack();
             }
         });
 
@@ -135,6 +139,26 @@ public class EditPresenter<V extends EditActivity> extends BasePresenter<V> impl
 
     @Override
     protected void animateActivityShowing() {
+
+    }
+
+    private void onMenuBack() {
+        new AlertDialog.Builder(mvpView)
+                .setTitle(R.string.alertDialogEditTitle)
+                .setMessage(R.string.alertDialogEditMessage)
+                .setPositiveButton(R.string.alertDialogEditPositive, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent i = HomeActivity.getStartingIntent(mvpView);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        mvpView.startActivity(i);
+                    }
+                })
+                .setNegativeButton(R.string.alertDialogEditNegative, null)
+                .show();
+    }
+
+    protected void onMenuDone() {
 
     }
 }
