@@ -38,6 +38,8 @@ public class EditPresenter<V extends EditActivity> extends BasePresenter<V> impl
     private int accentBlue;
     private int accentRed;
 
+    private boolean isEdited = false;
+
     EditPresenter(V mvpView, int clipPos) {
         attachView(mvpView);
 
@@ -99,6 +101,7 @@ public class EditPresenter<V extends EditActivity> extends BasePresenter<V> impl
                 }
 
                 titleSymbolsCount.setText(titleEdit.getText().length() + "/" + C.EDIT_MAX_TITLE_SYMBOLS);
+                isEdited = true;
             }
 
             @Override
@@ -120,6 +123,7 @@ public class EditPresenter<V extends EditActivity> extends BasePresenter<V> impl
                 }
 
                 bodySymbolsCount.setText(bodyEdit.getText().length() + "/" + C.EDIT_MAX_BODY_SYMBOLS);
+                isEdited = true;
             }
 
             @Override
@@ -143,22 +147,27 @@ public class EditPresenter<V extends EditActivity> extends BasePresenter<V> impl
     }
 
     private void onMenuBack() {
-        new AlertDialog.Builder(mvpView)
-                .setTitle(R.string.alertDialogEditTitle)
-                .setMessage(R.string.alertDialogEditMessage)
-                .setPositiveButton(R.string.alertDialogEditPositive, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent i = HomeActivity.getStartingIntent(mvpView);
-                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        mvpView.startActivity(i);
-                    }
-                })
-                .setNegativeButton(R.string.alertDialogEditNegative, null)
-                .show();
+        if (isEdited == false) mvpView.finish();
+        else new AlertDialog.Builder(mvpView)
+                    .setTitle(R.string.alertDialogEditTitle)
+                    .setMessage(R.string.alertDialogEditMessage)
+                    .setPositiveButton(R.string.alertDialogEditPositive, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent i = HomeActivity.getStartingIntent(mvpView);
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            mvpView.startActivity(i);
+                        }
+                    })
+                    .setNegativeButton(R.string.alertDialogEditNegative, null)
+                    .show();
     }
 
     protected void onMenuDone() {
-
+        if (isEdited == false) mvpView.finish();
+        else mvpModel.rewriteClip(
+                titleEdit.getText().toString(),
+                bodyEdit.getText().toString()
+        );
     }
 }

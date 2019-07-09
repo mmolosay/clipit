@@ -93,6 +93,17 @@ public class RealmDealer {
         return false;
     }
 
+    public static void rewriteClip(final int clipPos, final String newTitle, final String newBody) {
+        RealmHolder.getInstance().realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                ClipObject clip = getClipAtPos(clipPos, true);
+                clip.setBody(newBody);
+                clip.setTitle(newTitle.length() == 0 ? null : newTitle);
+            }
+        });
+    }
+
     public static void dropAllObjects(@NonNull final Class obj) {
         RealmHolder.getInstance().realm.executeTransaction(new Realm.Transaction() {
             @Override

@@ -34,6 +34,10 @@ public class EditModel<P extends EditPresenter> extends BaseModel<P> implements 
         return clipPos;
     }
 
+    public void rewriteClip(String title, String body) {
+        RealmDealer.rewriteClip(clipPos, title, body);
+    }
+
     @Override
     public void attachPresenter(P mvpPresenter) {
         super.attachPresenter(mvpPresenter);
