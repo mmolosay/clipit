@@ -2,8 +2,11 @@
     <string name="app_name">ClipIt!</string>
 
     <!--==================== ACTIVITIES ====================-->
-    <string name="homeToolbarTitle">Your clips</string>
     <string name="homeNoClipsInfo">Seems like there is no clips yet. Copy something into your clipboard and find it here!</string>
+
+    <!--==================== TITLES ====================-->
+    <string name="homeToolbarTitle">Your clips</string>
+    <string name="editToolbarTitle">Clip editing</string>
 
     <!--==================== IMAGE DESCRIPTIONS ====================-->
     <string name="homeNoClipsImgDescription">Empty folder image.</string>

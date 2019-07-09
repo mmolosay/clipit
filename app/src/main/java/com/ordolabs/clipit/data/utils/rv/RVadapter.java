@@ -60,7 +60,7 @@ public class RVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
                 int itemPos = recyclerView.getChildLayoutPosition(view);
                 Intent i = ClipActivity
                         .getStartingIntent(callingActivity)
-                        .putExtra(C.EXTRA_CLICKED_CLIP_POSITION, itemPos);
+                        .putExtra(C.EXTRA_CLIP_POSITION, itemPos);
                 callingActivity.startActivity(i);
             }
         };

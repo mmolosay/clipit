@@ -11,7 +11,7 @@ import java.util.Date;
 
 public final class C {
     public static final String DATETIME_FORMAT = "d MMM HH:mm yyyy";
-    public static final String EXTRA_CLICKED_CLIP_POSITION = "EXTRA_CLICKED_CLIP_POSITION";
+    public static final String EXTRA_CLIP_POSITION = "EXTRA_CLIP_POSITION";
 
     public static String current_datetime = "";
 

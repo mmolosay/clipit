@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -11,9 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ordolabs.clipit.R;
+import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.models.clip.ClipModel;
 import com.ordolabs.clipit.ui.base.BasePresenter;
+import com.ordolabs.clipit.ui.edit.EditActivity;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 
@@ -73,6 +76,13 @@ public class ClipPresenter<V extends ClipActivity> extends BasePresenter<V> impl
     @Override
     protected void animateActivityShowing() {
 
+    }
+
+    void menuOnEdit(Context callingContext) {
+        Intent i = EditActivity
+                .getStartingIntent(mvpView)
+                .putExtra(C.EXTRA_CLIP_POSITION, mvpModel.getClipPos());
+        mvpView.startActivity(i);
     }
 
     void menuOnCopy(Context callingContext) {

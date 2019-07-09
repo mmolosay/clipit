@@ -44,9 +44,12 @@
             android:name=".ui.home.HomeActivity">
         </activity>
 
-
         <activity
             android:name=".ui.clip.ClipActivity">
+        </activity>
+
+        <activity
+            android:name=".ui.edit.EditActivity">
         </activity>
 
 

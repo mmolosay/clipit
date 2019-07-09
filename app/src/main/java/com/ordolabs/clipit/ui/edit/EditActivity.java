@@ -1,11 +1,10 @@
-package com.ordolabs.clipit.ui.clip;
+package com.ordolabs.clipit.ui.edit;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Menu;
-import android.view.MenuItem;
 
 import com.ordolabs.clipit.ClipItApplication;
 import com.ordolabs.clipit.R;
@@ -13,19 +12,19 @@ import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.ui.base.BaseActivity;
 
 /**
- * Created by ordogod on 28.06.19.
+ * Created by ordogod on 09.07.19.
  **/
 
-public class ClipActivity extends BaseActivity implements ClipMvpContract.View {
+public class EditActivity extends BaseActivity implements EditMvpContract.View {
 
-    private ClipPresenter<ClipActivity> mvpPresenter;
+    private EditPresenter<EditActivity> mvpPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_clip);
+        setContentView(R.layout.activity_edit);
 
-        mvpPresenter = new ClipPresenter<>(
+        mvpPresenter = new EditPresenter<>(
                 this,
                 getIntent().getIntExtra(C.EXTRA_CLIP_POSITION, -1)
         );
@@ -37,31 +36,30 @@ public class ClipActivity extends BaseActivity implements ClipMvpContract.View {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        switch (id) {
-            case R.id.menuEdit: {
-                mvpPresenter.menuOnEdit(this);
-                break;
-            }
-            case R.id.menuCopy: {
-                mvpPresenter.menuOnCopy(this);
-                break;
-            }
-            case R.id.menuDelete: {
-                mvpPresenter.menuOnDelete(this);
-                break;
-            }
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//
+//        switch (id) {
+//            case R.id.menuEdit: {
+//                break;
+//            }
+//            case R.id.menuCopy: {
+//                mvpPresenter.menuOnCopy(this);
+//                break;
+//            }
+//            case R.id.menuDelete: {
+//                mvpPresenter.menuOnDelete(this);
+//                break;
+//            }
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     public static Intent getStartingIntent(Context callingContext) {
         if (callingContext == null) callingContext = ClipItApplication.getAppContext();
-        return new Intent(callingContext, ClipActivity.class);
+        return new Intent(callingContext, EditActivity.class);
     }
 
     @Override
