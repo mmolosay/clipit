@@ -20,6 +20,8 @@
     <string name="menuCopy">Copy</string>
     <string name="menuDelete">Delete</string>
 
+    <string name="menuDone">Done</string>
+
     <!--==================== DATETIME ====================-->
     <string name="prettyDayTime_Today">today</string>
     <string name="prettyDayTime_Yesterday">yesterday</string>
