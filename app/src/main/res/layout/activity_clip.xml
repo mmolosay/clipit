@@ -34,10 +34,10 @@
 
                 <TextView
                     android:id="@+id/clipBodyText"
-                    style="@style/SecondaryTextStyle"
+                    style="@style/PrimaryTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 

@@ -41,11 +41,22 @@
                 android:id="@+id/editTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autofillHints="@string/editTitleHint"
                 android:hint="@string/editTitleHint"
                 android:inputType="textAutoCorrect|textCapSentences"
-                android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/accent_blue"/>
+                android:backgroundTint="@color/accent_blue"
+                style="@style/PrimaryTextStyle" />
+
+            <TextView
+                android:id="@+id/editTitleSymbolsCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|end"
+                android:text=""
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="1dp"
+                android:textColor="@color/accent_blue"
+                style="@style/AccentTextStyle"
+                android:fontFamily="sans-serif-light" />
 
             <TextView
                 android:id="@+id/editBodyLabel"
@@ -61,11 +72,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:autofillHints="@string/editBodyHint"
                 android:hint="@string/editBodyHint"
                 android:inputType="textAutoCorrect|textCapSentences|textMultiLine"
-                android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/accent_blue" />
+                android:backgroundTint="@color/accent_blue"
+                style="@style/PrimaryTextStyle"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/editBodySymbolsCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|end"
+                android:text=""
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="1dp"
+                android:textColor="@color/accent_blue"
+                style="@style/AccentTextStyle"
+                android:fontFamily="sans-serif-light"/>
 
         </LinearLayout>
 

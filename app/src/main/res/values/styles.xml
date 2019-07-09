@@ -57,7 +57,7 @@
 
     <style name="AccentTextStyle" parent="android:Widget.TextView">
         <item name="android:textColor">@color/accent_blue</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
 

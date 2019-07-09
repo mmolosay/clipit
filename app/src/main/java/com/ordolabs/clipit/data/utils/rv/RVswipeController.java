@@ -61,7 +61,7 @@ public class RVswipeController extends Callback {
         this.swipeBG = new RectF();
 
         this.paint = new Paint();
-        this.paint.setColor(ContextCompat.getColor(ClipItApplication.getAppContext(), R.color.delete_item_bg));
+        this.paint.setColor(ContextCompat.getColor(ClipItApplication.getAppContext(), R.color.accent_red));
 
         this.swipeBGroundness = TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,

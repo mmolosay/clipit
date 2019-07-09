@@ -12,6 +12,8 @@ import java.util.Date;
 public final class C {
     public static final String DATETIME_FORMAT = "d MMM HH:mm yyyy";
     public static final String EXTRA_CLIP_POSITION = "EXTRA_CLIP_POSITION";
+    public static final int EDIT_MAX_TITLE_SYMBOLS = 30;
+    public static final int EDIT_MAX_BODY_SYMBOLS = 3000;
 
     public static String current_datetime = "";
 

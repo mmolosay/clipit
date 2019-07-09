@@ -13,9 +13,9 @@
 
     <color name="accent_bluish">#7B9197</color>
     <color name="accent_blue">#8BC1CF</color>
-    <color name="content_clickable">#32343a</color>
+    <color name="accent_red">#AF3A3A</color>
 
-    <color name="delete_item_bg">#AF3A3A</color>
+    <color name="content_clickable">#32343a</color>
 
     <color name="opac_filler">#4067717C</color>
     <color name="list_driver">#4D5255</color>
