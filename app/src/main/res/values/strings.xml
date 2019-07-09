@@ -39,4 +39,11 @@
     <string name="alertDialogPositive">Yes</string>
     <string name="alertDialogNegative">No</string>
 
+    <!--==================== EDITTEXTS ====================-->
+    <string name="editTitleLabelText">Clip title</string>
+    <string name="editTitleHint">Enter title (not necessary)</string>
+
+    <string name="editBodyLabelText">Clip text</string>
+    <string name="editBodyHint">Enter some text</string>
+
 </resources>
