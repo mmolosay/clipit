@@ -11,7 +11,8 @@
     <color name="light2">#a8aaab</color>
     <color name="light3">#777879</color>
 
-    <color name="accent_blue">#7B9197</color>
+    <color name="accent_bluish">#7B9197</color>
+    <color name="accent_blue">#8BC1CF</color>
     <color name="content_clickable">#32343a</color>
 
     <color name="delete_item_bg">#AF3A3A</color>

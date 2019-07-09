@@ -23,35 +23,49 @@
             android:paddingTop="8dp"
             android:paddingEnd="8dp"
             android:paddingBottom="8dp"
-            android:baselineAligned="false">
+            android:baselineAligned="false"
+            android:focusable="true"
+            android:descendantFocusability="afterDescendants"
+            android:focusableInTouchMode="true">
 
             <TextView
                 android:id="@+id/editTitleLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/editTitleLabelText"
-                android:labelFor="@id/editTitle"/>
+                android:labelFor="@id/editTitle"
+                android:layout_marginStart="2dp"
+                style="@style/AccentTextStyle"/>
 
             <EditText
                 android:id="@+id/editTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/editTitleHint"
-                android:inputType="textAutoCorrect|textCapSentences" />
+                android:hint="@string/editTitleHint"
+                android:inputType="textAutoCorrect|textCapSentences"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/accent_blue"/>
 
             <TextView
                 android:id="@+id/editBodyLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/editBodyLabelText"
-                android:labelFor="@id/editBody"/>
+                android:labelFor="@id/editBody"
+                android:layout_marginStart="2dp"
+                style="@style/AccentTextStyle"/>
 
             <EditText
                 android:id="@+id/editBody"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:autofillHints="@string/editBodyHint"
-                android:inputType="textAutoCorrect|textCapSentences" />
+                android:hint="@string/editBodyHint"
+                android:inputType="textAutoCorrect|textCapSentences|textMultiLine"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/accent_blue" />
 
         </LinearLayout>
 

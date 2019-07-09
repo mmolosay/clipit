@@ -17,7 +17,7 @@ public class ClipModel<P extends ClipPresenter> extends BaseModel<P> implements 
     public ClipModel(P mvpPresenter, int clipPos) {
         attachPresenter(mvpPresenter);
 
-        this.clip = RealmDealer.getClipAtPosReversed(clipPos);
+        this.clip = RealmDealer.getClipAtPos(clipPos, true);
         this.clipPos = clipPos;
     }
 

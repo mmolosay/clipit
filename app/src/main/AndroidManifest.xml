@@ -49,7 +49,8 @@
         </activity>
 
         <activity
-            android:name=".ui.edit.EditActivity">
+            android:name=".ui.edit.EditActivity"
+            android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
 
 

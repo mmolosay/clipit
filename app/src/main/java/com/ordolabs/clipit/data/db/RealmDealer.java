@@ -47,14 +47,14 @@ public class RealmDealer {
                 .findAll();
     }
 
-    public static ClipObject getClipAtPosReversed(int pos) {
+    public static ClipObject getClipAtPos(int pos, boolean reversed) {
         int clipsSize = getClipsCount();
         if (pos >= clipsSize)
             throw new IllegalArgumentException(
                     "Position number is invalid. pos: " + pos + ", size: " + clipsSize + "."
             );
 
-        pos = clipsSize - 1 - pos;
+        if (reversed == true) pos = clipsSize - 1 - pos;
 
         return RealmHolder.getInstance().realm
                 .where(ClipObject.class)
@@ -70,7 +70,7 @@ public class RealmDealer {
         RealmHolder.getInstance().realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(@NonNull Realm realm) {
-                ClipObject a = getClipAtPosReversed(clipPos);
+                ClipObject a = getClipAtPos(clipPos, true);
                 a.setViewed(true);
             }
         });
@@ -80,7 +80,7 @@ public class RealmDealer {
         RealmHolder.getInstance().realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                getClipAtPosReversed(position).deleteFromRealm();
+                getClipAtPos(position, true).deleteFromRealm();
             }
         });
     }

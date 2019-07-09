@@ -17,7 +17,7 @@ public class EditModel<P extends EditPresenter> extends BaseModel<P> implements 
     public EditModel(P mvpPresenter, int clipPos) {
         attachPresenter(mvpPresenter);
 
-        this.clip = RealmDealer.getClipAtPosReversed(clipPos);
+        this.clip = RealmDealer.getClipAtPos(clipPos, true);
         this.clipPos = clipPos;
     }
 

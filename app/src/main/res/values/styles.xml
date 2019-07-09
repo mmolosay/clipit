@@ -10,7 +10,7 @@
         <item name="android:navigationBarColor">@color/nav_bar</item>
         <item name="android:actionBarStyle">@style/ToolbarStyle</item>
 
-        <item name="android:colorEdgeEffect">@color/accent_blue</item>
+        <item name="android:colorEdgeEffect">@color/accent_bluish</item>
         <item name="android:textColorSecondary">@color/light1</item>
     </style>
 
@@ -52,6 +52,12 @@
     <style name="SubInfoTextStyle" parent="android:Widget.TextView">
         <item name="android:textColor">@color/light3</item>
         <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="AccentTextStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/accent_blue</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
 

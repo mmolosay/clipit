@@ -2,6 +2,7 @@ package com.ordolabs.clipit.ui.edit;
 
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.models.edit.EditModel;
@@ -16,6 +17,8 @@ public class EditPresenter<V extends EditActivity> extends BasePresenter<V> impl
     private EditModel<EditPresenter> mvpModel;
 
     private Toolbar toolbar;
+    private EditText titleEdit;
+    private EditText bodyEdit;
 
     EditPresenter(V mvpView, int clipPos) {
         attachView(mvpView);
@@ -28,6 +31,9 @@ public class EditPresenter<V extends EditActivity> extends BasePresenter<V> impl
     @Override
     protected void initViews() {
         toolbar = mvpView.findViewById(R.id.editToolbar);
+
+        titleEdit = mvpView.findViewById(R.id.editTitle);
+        bodyEdit = mvpView.findViewById(R.id.editBody);
     }
 
     @Override
@@ -42,6 +48,9 @@ public class EditPresenter<V extends EditActivity> extends BasePresenter<V> impl
                 mvpView.finish();
             }
         });
+
+        titleEdit.setText(mvpModel.getClip().getTitle() != null ? mvpModel.getClip().getTitle() : "");
+        bodyEdit.setText(mvpModel.getClip().getBody());
 
 //        titleTextView.setText(mvpModel.getClip().getTitle());
 //        bodyTextView.setText(mvpModel.getClip().getBody());
