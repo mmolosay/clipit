@@ -34,7 +34,7 @@ public class ClipModel<P extends ClipPresenter> extends BaseModel<P> implements 
 
     @Override
     public void updateData() {
-
+        this.clip = RealmDealer.getClipAtPos(clipPos, true);
     }
 
     public int getClipPos() {

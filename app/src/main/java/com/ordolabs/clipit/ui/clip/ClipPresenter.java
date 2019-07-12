@@ -58,14 +58,13 @@ public class ClipPresenter<V extends ClipActivity> extends BasePresenter<V> impl
                 mvpView.finish();
             }
         });
-
-        titleTextView.setText(mvpModel.getClip().getTitle());
-        bodyTextView.setText(mvpModel.getClip().getBody());
     }
 
     @Override
     protected void updateStates() {
-
+        mvpModel.updateData();
+        toggleTitleOnEmpty();
+        updateAllText();
     }
 
     @Override
@@ -78,9 +77,23 @@ public class ClipPresenter<V extends ClipActivity> extends BasePresenter<V> impl
 
     }
 
+    private void updateAllText() {
+        titleTextView.setText(mvpModel.getClip().getTitle());
+        bodyTextView.setText(mvpModel.getClip().getBody());
+    }
+
+    private void toggleTitleOnEmpty() {
+        if (mvpModel.getClip().getTitle() != null) {
+            titleTextView.setVisibility(View.VISIBLE);
+        }
+        else {
+            titleTextView.setVisibility(View.GONE);
+        }
+    }
+
     void menuOnEdit(Context callingContext) {
         Intent i = EditActivity
-                .getStartingIntent(mvpView)
+                .getStartingIntent(callingContext)
                 .putExtra(C.EXTRA_CLIP_POSITION, mvpModel.getClipPos());
         mvpView.startActivity(i);
     }

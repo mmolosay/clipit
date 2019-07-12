@@ -61,6 +61,12 @@
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
+    <style name="TitleTextStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/light1</item>
+        <item name="android:textSize">21sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
     <!--==================== STUFF ====================-->
 
     <style name="CustomPopupTheme" parent="Theme.AppCompat.NoActionBar">
