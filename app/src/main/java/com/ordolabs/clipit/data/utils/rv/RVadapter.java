@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.C;
@@ -73,8 +74,11 @@ public class RVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
         // in cause of only RVadapter has an ability to interact with RV items,
         // all VFX with them should be performed here :(
 
+        holder.titleTextView.setText(clip.title != null ? clip.title : "");
         holder.bodyTextView.setText(clip.body);
         holder.infoTextView.setText( getDateTimePretty(clip.datetime) );
+
+        toggleTitleOnEmpty(holder.titleTextView);
 
         if (clip.isViewed == false) {
             holder.newDriverMark.setVisibility(View.VISIBLE);
@@ -170,6 +174,14 @@ public class RVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
                 recyclerView.smoothScrollToPosition(position);
             }
         });
+    }
+
+    private void toggleTitleOnEmpty(TextView title) {
+        if (title.getText() != null && title.getText().equals("") == false) {
+            title.setVisibility(View.VISIBLE);
+        } else {
+            title.setVisibility(View.GONE);
+        }
     }
 
     @Override
