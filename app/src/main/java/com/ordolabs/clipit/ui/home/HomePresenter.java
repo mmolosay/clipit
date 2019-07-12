@@ -46,6 +46,7 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
     @Override
     protected void prepareViews() {
         mvpView.setSupportActionBar(toolbar);
+        assert mvpView.getSupportActionBar() != null;
         mvpView.getSupportActionBar().setTitle(R.string.homeToolbarTitle);
 
         clipsRV.setLayoutManager(new LinearLayoutManager(mvpView));

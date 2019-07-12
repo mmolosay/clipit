@@ -34,12 +34,12 @@ public class RVswipeController extends Callback {
     private ClipRaw clipRemoved;
     private int clipPosition;
 
-    private float deleteIconScale = 1.5f;
+    private final float DELETE_ICON_SCALE = 1.75f;
     private int deleteIconWidth;
     private int deleteIconHeight;
     private int deleteIconCenteringOffset;
     private int deleteIconMargin;
-    private float swipeBGroundness;
+    private float swipeBGradius;
     private int alphaBG;
 
     public RVswipeController(RVadapter adapter) {
@@ -48,8 +48,8 @@ public class RVswipeController extends Callback {
         Drawable deleteIcon = ContextCompat.getDrawable(ClipItApplication.getAppContext(), R.drawable.ic_delete_light_24dp);
         assert deleteIcon != null;
 
-        this.deleteIconWidth = Math.round(deleteIcon.getIntrinsicWidth() * deleteIconScale);
-        this.deleteIconHeight = Math.round(deleteIcon.getIntrinsicHeight() * deleteIconScale);
+        this.deleteIconWidth = Math.round(deleteIcon.getIntrinsicWidth() * DELETE_ICON_SCALE);
+        this.deleteIconHeight = Math.round(deleteIcon.getIntrinsicHeight() * DELETE_ICON_SCALE);
 
         this.deleteIcon = new ScaleDrawable(
                 deleteIcon,
@@ -63,7 +63,7 @@ public class RVswipeController extends Callback {
         this.paint = new Paint();
         this.paint.setColor(ContextCompat.getColor(ClipItApplication.getAppContext(), R.color.accent_red));
 
-        this.swipeBGroundness = TypedValue.applyDimension(
+        this.swipeBGradius = TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 2,
                 ClipItApplication.getAppContext().getResources().getDisplayMetrics()
@@ -128,14 +128,20 @@ public class RVswipeController extends Callback {
                             int actionState,
                             boolean isCurrentlyActive)
     {
-        if (dX == 0) super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+
+        if (dX == 0) {
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+        }
 
         this.itemView = viewHolder.itemView;
         this.deleteIconMargin = (itemView.getHeight() - deleteIconHeight) / 2;
-        this.deleteIconCenteringOffset =
-                Math.abs(dX) > deleteIconWidth + deleteIconMargin * 2 ?
-                Math.round(Math.abs(dX) - deleteIconWidth - deleteIconMargin * 2) / 2 :
-                0;
+
+        if (Math.abs(dX) > deleteIconWidth + deleteIconMargin * 2) {
+            this.deleteIconCenteringOffset = Math.round(Math.abs(dX) - deleteIconWidth - deleteIconMargin * 2) / 2;
+        }
+        else {
+            this.deleteIconCenteringOffset = 0;
+        }
 
         if (dX > 0) {
             deleteIcon.setBounds(
@@ -151,7 +157,7 @@ public class RVswipeController extends Callback {
                     itemView.getBottom()
             );
 
-            this.swipeBG.set(
+            swipeBG.set(
                     itemView.getLeft(),
                     itemView.getTop(),
                     (int) dX < itemView.getRight() ? (int) dX : itemView.getRight(),
@@ -172,7 +178,7 @@ public class RVswipeController extends Callback {
                     itemView.getBottom()
             );
 
-            this.swipeBG.set(
+            swipeBG.set(
                     (int) -dX < itemView.getRight() ? itemView.getRight() + (int) dX + itemView.getLeft() : itemView.getLeft(),
                     itemView.getTop(),
                     itemView.getRight(),
@@ -181,10 +187,10 @@ public class RVswipeController extends Callback {
         }
 
         if (Math.abs(dX) < (itemView.getRight() - itemView.getLeft()) / 2) {
-            this.alphaBG = Math.round(Math.abs(dX) / ((itemView.getRight() - itemView.getLeft()) / 2) * 255);
+            alphaBG = Math.round(Math.abs(dX) / ((itemView.getRight() - itemView.getLeft()) / 2) * 255);
         }
         else {
-            this.alphaBG = 255;
+            alphaBG = 255;
             deleteIcon.setAlpha(255);
             paint.setAlpha(255);
         }
@@ -194,7 +200,7 @@ public class RVswipeController extends Callback {
             paint.setAlpha(alphaBG);
         }
 
-        c.drawRoundRect(swipeBG, swipeBGroundness, swipeBGroundness, paint);
+        c.drawRoundRect(swipeBG, swipeBGradius, swipeBGradius, paint);
         deleteIcon.draw(c);
 
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
