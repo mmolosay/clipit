@@ -5,6 +5,10 @@ import android.support.annotation.Nullable;
 
 import com.ordolabs.clipit.data.db.realm_objects.CategoryObject;
 import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
+import com.ordolabs.clipit.data.util.categoryRV.CategoryRaw;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -134,14 +138,45 @@ public class RealmDealer {
         return (maxId == null) ? 1 : maxId.intValue() + 1;
     }
 
-    public static RealmResults<CategoryObject> getAllCategories() {
+    public static ArrayList<CategoryRaw> getDefaultCategories() {
+        ArrayList<CategoryRaw> list = new ArrayList<>();
+        CategoryObject defaultCategory;
+
+        defaultCategory = getCategoryWithId(1);
+        list.add(new CategoryRaw(
+                defaultCategory.getName(),
+                defaultCategory.isRemovable(),
+                defaultCategory.isActive()
+        ));
+        defaultCategory = getCategoryWithId(2);
+        list.add(new CategoryRaw(
+                defaultCategory.getName(),
+                defaultCategory.isRemovable(),
+                defaultCategory.isActive()
+        ));
+
+        return list;
+    }
+
+    public static RealmResults<CategoryObject> getCustomCategories() {
         return RealmHolder.getInstance().realm
                 .where(CategoryObject.class)
+                .and()
+                .equalTo("id", 1)
+                .and()
+                .equalTo("id", 2)
                 .findAll();
     }
 
-    public static int getCategoriesCount() {
-        return getAllCategories().size();
+    public static int getCustomCategoriesCount() {
+        return getCustomCategories().size();
+    }
+
+    public static CategoryObject getCategoryWithId(int id) {
+        return RealmHolder.getInstance().realm
+                .where(CategoryObject.class)
+                .equalTo("id", id)
+                .findFirst();
     }
 
     public static void dropAllObjects(@NonNull final Class obj) {

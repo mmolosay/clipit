@@ -2,6 +2,7 @@ package com.ordolabs.clipit.data.model.category;
 
 import android.support.v7.widget.RecyclerView;
 
+import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.db.realm_objects.CategoryObject;
 import com.ordolabs.clipit.data.model.base.BaseModel;
@@ -28,22 +29,22 @@ public class CategoryModel<P extends CategoryPresenter> extends BaseModel<P> imp
 
         this.adapter = new CategoryRVadapter(
                 getRawCategoryListReversed(),
-                mvpPresenter.getAttachedView(),
                 rv
         );
     }
 
     @Override
     public void updateData() {
-
+        C.updateData();
+        adapter.setCategoryList(getRawCategoryListReversed());
     }
 
     private ArrayList<CategoryRaw> getRawCategoryListReversed() {
-        int categoriesCount = RealmDealer.getCategoriesCount();
-        if (categoriesCount == 0) return new ArrayList<>();
-
+        int categoriesCount = RealmDealer.getCustomCategoriesCount();
         ArrayList<CategoryRaw> list = new ArrayList<>();
-        RealmResults<CategoryObject> results = RealmDealer.getAllCategories();
+        ArrayList<CategoryRaw> defaults = new ArrayList<>(RealmDealer.getDefaultCategories());
+
+        RealmResults<CategoryObject> results = RealmDealer.getCustomCategories();
 
         for (int i = 0; i < categoriesCount; i++) {
             list.add(new CategoryRaw(
@@ -54,7 +55,9 @@ public class CategoryModel<P extends CategoryPresenter> extends BaseModel<P> imp
         }
 
         Collections.reverse(list);
-        return list;
+        defaults.addAll(list);
+
+        return defaults;
     }
 
     public CategoryRVadapter getRVadapter() {

@@ -1,7 +1,6 @@
 package com.ordolabs.clipit.data.util.categoryRV;
 
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +17,10 @@ import java.util.ArrayList;
 public class CategoryRVadapter extends RecyclerView.Adapter<CategoryItemViewHolder> {
 
     private ArrayList<CategoryRaw> categoryList;
-    private AppCompatActivity callingActivity;
     private RecyclerView recyclerView;
 
-    public CategoryRVadapter(ArrayList<CategoryRaw> categoryList, AppCompatActivity callingActivity, RecyclerView rv) {
+    public CategoryRVadapter(ArrayList<CategoryRaw> categoryList, RecyclerView rv) {
         this.categoryList = categoryList;
-        this.callingActivity = callingActivity;
         this.recyclerView = rv;
     }
 

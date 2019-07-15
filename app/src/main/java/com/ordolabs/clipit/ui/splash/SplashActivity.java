@@ -103,7 +103,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void setDefaultCategories() {
-        if (RealmDealer.getCategoriesCount() == 0) {
+        if (RealmDealer.getCategoryWithId(2) == null) {
             RealmDealer.createCategoryObject(
                     ClipItApplication.getAppContext().getResources().getString(R.string.categoryDefaultClipboardName),
                     false,
