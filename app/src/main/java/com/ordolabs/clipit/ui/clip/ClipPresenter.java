@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ public class ClipPresenter<V extends ClipActivity> extends BasePresenter<V> impl
     private Toolbar toolbar;
     private TextView titleTextView;
     private TextView bodyTextView;
+    private ScrollView scrollView;
 
     ClipPresenter(V mvpView, int clipPos) {
         attachView(mvpView);
@@ -45,11 +47,13 @@ public class ClipPresenter<V extends ClipActivity> extends BasePresenter<V> impl
         toolbar = mvpView.findViewById(R.id.clipToolbar);
         titleTextView = mvpView.findViewById(R.id.clipTitleText);
         bodyTextView = mvpView.findViewById(R.id.clipBodyText);
+        scrollView = mvpView.findViewById(R.id.clipScrollView);
     }
 
     @Override
     protected void prepareViews() {
         mvpView.setSupportActionBar(toolbar);
+        assert (mvpView.getSupportActionBar() != null);
         mvpView.getSupportActionBar().setTitle(mvpModel.makeActivityTitle());
         toolbar.setNavigationIcon(mvpView.getResources().getDrawable(R.drawable.ic_arrow_back_light_24dp));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -63,8 +67,10 @@ public class ClipPresenter<V extends ClipActivity> extends BasePresenter<V> impl
     @Override
     public void updateView() {
         mvpModel.updateData();
+
         toggleTitleOnEmpty();
         updateAllText();
+        scrollToTop();
     }
 
     @Override
@@ -77,11 +83,6 @@ public class ClipPresenter<V extends ClipActivity> extends BasePresenter<V> impl
 
     }
 
-    private void updateAllText() {
-        titleTextView.setText(mvpModel.getClip().getTitle());
-        bodyTextView.setText(mvpModel.getClip().getBody());
-    }
-
     private void toggleTitleOnEmpty() {
         if (mvpModel.getClip().getTitle() != null) {
             titleTextView.setVisibility(View.VISIBLE);
@@ -89,6 +90,17 @@ public class ClipPresenter<V extends ClipActivity> extends BasePresenter<V> impl
         else {
             titleTextView.setVisibility(View.GONE);
         }
+    }
+
+    private void updateAllText() {
+        titleTextView.setText(mvpModel.getClip().getTitle());
+        bodyTextView.setText(mvpModel.getClip().getBody());
+        assert (mvpView.getSupportActionBar() != null);
+        mvpView.getSupportActionBar().setTitle(mvpModel.makeActivityTitle());
+    }
+
+    private void scrollToTop() {
+        scrollView.smoothScrollTo(0, 0);
     }
 
     void menuOnEdit(Context callingContext) {
