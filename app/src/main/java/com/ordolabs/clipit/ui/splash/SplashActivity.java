@@ -10,11 +10,15 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.ordolabs.clipit.ClipItApplication;
 import com.ordolabs.clipit.R;
+import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.ui.base.BaseActivity;
 import com.ordolabs.clipit.ui.home.HomeActivity;
 
 import java.util.List;
+
+import io.realm.RealmObject;
 
 /**
  * Created by ordogod on 23.05.19.
@@ -30,6 +34,17 @@ public class SplashActivity extends BaseActivity {
 
         prefs = getSharedPreferences("com.ordolabs.clipit", MODE_PRIVATE);
 
+        checkIfNeedsAutorun();
+        setDefaultCategories();
+
+        try { //TODO: remove sleep and set all kinds of time consuming preparations
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void checkIfNeedsAutorun() {
         // if it's the first launch and device requires an autorun to be turned on manually
         if (prefs.getBoolean("FIRST_RUN", true)) {
 
@@ -85,11 +100,20 @@ public class SplashActivity extends BaseActivity {
             startActivity(HomeActivity.getStartingIntent(this));
             finish();
         }
+    }
 
-        try { //TODO: remove sleep and set all kinds of time consuming preparations
-            Thread.sleep(1500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    private void setDefaultCategories() {
+        if (RealmDealer.getCategoriesCount() == 0) {
+            RealmDealer.createCategoryObject(
+                    ClipItApplication.getAppContext().getResources().getString(R.string.categoryDefaultClipboardName),
+                    false,
+                    true
+            );
+            RealmDealer.createCategoryObject(
+                    ClipItApplication.getAppContext().getResources().getString(R.string.categoryDefaultFavoriteName),
+                    false,
+                    false
+            );
         }
     }
 }

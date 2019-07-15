@@ -33,7 +33,7 @@
                 android:layout_height="100dp"
                 android:contentDescription="@string/homeNoClipsImgDescription"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/ic_folder_light_24dp" />
+                app:srcCompat="@drawable/ic_folder_gray_24dp" />
 
             <TextView
                 android:id="@+id/homeNoCLipsInfo"

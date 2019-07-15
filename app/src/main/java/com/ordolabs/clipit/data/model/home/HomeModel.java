@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data.models.home;
+package com.ordolabs.clipit.data.model.home;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -6,10 +6,10 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
-import com.ordolabs.clipit.data.models.base.BaseModel;
-import com.ordolabs.clipit.data.utils.rv.ClipRaw;
-import com.ordolabs.clipit.data.utils.rv.RVadapter;
-import com.ordolabs.clipit.data.utils.rv.RVswipeController;
+import com.ordolabs.clipit.data.model.base.BaseModel;
+import com.ordolabs.clipit.data.util.clipRV.ClipRaw;
+import com.ordolabs.clipit.data.util.clipRV.ClipRVadapter;
+import com.ordolabs.clipit.data.util.clipRV.ClipRVswipeController;
 import com.ordolabs.clipit.ui.home.HomePresenter;
 
 import java.util.ArrayList;
@@ -23,20 +23,20 @@ import io.realm.RealmResults;
 
 public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements HomeModelContract<P> {
 
-    private RVadapter adapter;
-    private RVswipeController swipeController;
+    private ClipRVadapter adapter;
+    private ClipRVswipeController swipeController;
     private int clipsVisible;
 
     public HomeModel(P mvpPresenter, RecyclerView rv) {
         attachPresenter(mvpPresenter);
 
         this.clipsVisible = RealmDealer.getClipsCount();
-        this.adapter = new RVadapter(
+        this.adapter = new ClipRVadapter(
                 getRawClipsListReversed(),
                 mvpPresenter.getAttachedView(),
                 rv
         );
-        this.swipeController = new RVswipeController(adapter, this);
+        this.swipeController = new ClipRVswipeController(adapter, this);
 
         new ItemTouchHelper(swipeController).attachToRecyclerView(rv);
     }
@@ -68,7 +68,7 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements 
         return list;
     }
 
-    public RVadapter getRVadapter() {
+    public ClipRVadapter getRVadapter() {
         return adapter;
     }
 
@@ -82,25 +82,5 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements 
 
         this.clipsVisible += increment;
         getAttachedPresenter().toggleNoClipsContainer();
-    }
-
-    @Override
-    public void attachPresenter(P mvpPresenter) {
-        super.attachPresenter(mvpPresenter);
-    }
-
-    @Override
-    public void detachPresenter() {
-        super.detachPresenter();
-    }
-
-    @Override
-    public boolean isPresenterAttached() {
-        return super.isPresenterAttached();
-    }
-
-    @Override
-    public P getAttachedPresenter() {
-        return super.getAttachedPresenter();
     }
 }

@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data.models.base;
+package com.ordolabs.clipit.data.model.base;
 
 import com.ordolabs.clipit.ui.base.BasePresenter;
 

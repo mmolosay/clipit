@@ -1,24 +1,31 @@
-package com.ordolabs.clipit.data.models.edit;
+package com.ordolabs.clipit.data.model.clip;
 
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
-import com.ordolabs.clipit.data.models.base.BaseModel;
-import com.ordolabs.clipit.ui.edit.EditPresenter;
+import com.ordolabs.clipit.data.model.base.BaseModel;
+import com.ordolabs.clipit.ui.clip.ClipPresenter;
 
 /**
- * Created by ordogod on 09.07.19.
+ * Created by ordogod on 03.07.19.
  **/
 
-public class EditModel<P extends EditPresenter> extends BaseModel<P> implements EditModelContract<P> {
+public class ClipModel<P extends ClipPresenter> extends BaseModel<P> implements ClipModelContract<P> {
 
     private int clipPos;
     private ClipObject clip;
 
-    public EditModel(P mvpPresenter, int clipPos) {
+    public ClipModel(P mvpPresenter, int clipPos) {
         attachPresenter(mvpPresenter);
 
         this.clip = RealmDealer.getClipAtPos(clipPos, true);
         this.clipPos = clipPos;
+    }
+
+    public String makeActivityTitle() {
+        if (clip.getTitle() == null)
+            return clip.getBody();
+        else
+            return clip.getTitle();
     }
 
     public ClipObject getClip() {
@@ -27,15 +34,11 @@ public class EditModel<P extends EditPresenter> extends BaseModel<P> implements 
 
     @Override
     public void updateData() {
-
+        this.clip = RealmDealer.getClipAtPos(clipPos, true);
     }
 
     public int getClipPos() {
         return clipPos;
-    }
-
-    public void rewriteClip(String title, String body) {
-        RealmDealer.rewriteClip(clipPos, title, body);
     }
 
     @Override

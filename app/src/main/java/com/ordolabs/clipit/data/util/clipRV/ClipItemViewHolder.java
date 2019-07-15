@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data.utils.rv;
+package com.ordolabs.clipit.data.util.clipRV;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

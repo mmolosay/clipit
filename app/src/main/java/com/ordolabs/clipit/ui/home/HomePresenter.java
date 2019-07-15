@@ -9,9 +9,9 @@ import android.widget.LinearLayout;
 
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.service.ClipboardListenerService;
-import com.ordolabs.clipit.data.models.home.HomeModel;
-import com.ordolabs.clipit.data.db.RealmDealer;
+import com.ordolabs.clipit.data.model.home.HomeModel;
 import com.ordolabs.clipit.ui.base.BasePresenter;
+import com.ordolabs.clipit.ui.category.CategoryActivity;
 
 /**
  * Created by ordogod on 23.05.19.
@@ -78,5 +78,9 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
         else {
             noClipsContainer.setVisibility(View.GONE);
         }
+    }
+
+    void menuOnCategory() {
+        mvpView.startActivity(CategoryActivity.getStartingIntent(mvpView));
     }
 }

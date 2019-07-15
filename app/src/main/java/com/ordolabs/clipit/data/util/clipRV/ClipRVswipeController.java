@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data.utils.rv;
+package com.ordolabs.clipit.data.util.clipRV;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -16,9 +16,7 @@ import android.view.View;
 import com.ordolabs.clipit.ClipItApplication;
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.db.RealmDealer;
-import com.ordolabs.clipit.data.models.base.BaseModel;
-import com.ordolabs.clipit.data.models.home.HomeModel;
-import com.ordolabs.clipit.ui.base.BasePresenter;
+import com.ordolabs.clipit.data.model.home.HomeModel;
 import com.ordolabs.clipit.ui.home.HomePresenter;
 
 import static android.support.v7.widget.helper.ItemTouchHelper.*;
@@ -27,11 +25,11 @@ import static android.support.v7.widget.helper.ItemTouchHelper.*;
  * Created by ordogod on 06.07.19.
  **/
 
-public class RVswipeController extends Callback {
+public class ClipRVswipeController extends Callback {
 
     private HomeModel attachedModel;
 
-    private RVadapter adapter;
+    private ClipRVadapter adapter;
     private View itemView;
     private Drawable deleteIcon;
     private RectF swipeBG;
@@ -48,7 +46,7 @@ public class RVswipeController extends Callback {
     private float swipeBGradius;
     private int alphaBG;
 
-    public RVswipeController(RVadapter adapter, HomeModel attachedModel) {
+    public ClipRVswipeController(ClipRVadapter adapter, HomeModel attachedModel) {
         this.attachedModel = attachedModel;
         this.adapter = adapter;
 
@@ -125,7 +123,7 @@ public class RVswipeController extends Callback {
                         }
                         else {
                             attachedModel.increaseClipsVisibleBy(1);
-                            attachedModel.getAttachedPresenter().toggleNoClipsContainer();
+                            ((HomePresenter) attachedModel.getAttachedPresenter()).toggleNoClipsContainer();
                         }
                     }
                 }

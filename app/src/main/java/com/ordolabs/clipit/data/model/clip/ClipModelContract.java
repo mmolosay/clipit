@@ -1,6 +1,6 @@
-package com.ordolabs.clipit.data.models.clip;
+package com.ordolabs.clipit.data.model.clip;
 
-import com.ordolabs.clipit.data.models.base.BaseMvpModel;
+import com.ordolabs.clipit.data.model.base.BaseMvpModel;
 import com.ordolabs.clipit.ui.clip.ClipMvpContract;
 
 /**

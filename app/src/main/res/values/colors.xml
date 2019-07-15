@@ -10,6 +10,7 @@
     <color name="light1">#f0f8ff</color>
     <color name="light2">#B9BBBD</color>
     <color name="light3">#777879</color>
+    <color name="middle_gray">#424242</color>
 
     <color name="accent_bluish">#7B9197</color>
     <color name="accent_blue">#8BC1CF</color>

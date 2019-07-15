@@ -8,7 +8,7 @@ import android.os.IBinder;
 
 import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.db.RealmDealer;
-import com.ordolabs.clipit.data.utils.ServiceAwakenerBR;
+import com.ordolabs.clipit.data.util.ServiceAwakenerBR;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

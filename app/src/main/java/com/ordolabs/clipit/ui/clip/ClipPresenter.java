@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.db.RealmDealer;
-import com.ordolabs.clipit.data.models.clip.ClipModel;
+import com.ordolabs.clipit.data.model.clip.ClipModel;
 import com.ordolabs.clipit.ui.base.BasePresenter;
 import com.ordolabs.clipit.ui.edit.EditActivity;
 

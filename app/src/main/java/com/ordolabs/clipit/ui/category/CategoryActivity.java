@@ -1,8 +1,9 @@
-package com.ordolabs.clipit.ui.home;
+package com.ordolabs.clipit.ui.category;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -10,21 +11,25 @@ import com.ordolabs.clipit.ClipItApplication;
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.ui.base.BaseActivity;
 
-public class HomeActivity extends BaseActivity implements HomeMvpContract.View {
+/**
+ * Created by ordogod on 15.07.19.
+ **/
 
-    private HomePresenter<HomeActivity> mvpPresenter;
+public class CategoryActivity extends BaseActivity implements CategoryMvpContract.View  {
+
+    private CategoryPresenter<CategoryActivity> mvpPresenter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_category);
 
-        mvpPresenter = new HomePresenter<>(this);
+        mvpPresenter = new CategoryPresenter<>(this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home_menu, menu);
+        getMenuInflater().inflate(R.menu.category_menu, menu);
         return true;
     }
 
@@ -33,8 +38,8 @@ public class HomeActivity extends BaseActivity implements HomeMvpContract.View {
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.menuCategory: {
-                mvpPresenter.menuOnCategory();
+            case R.id.menuCategoryAdd: {
+                mvpPresenter.menuOnCategoryAdd();
                 break;
             }
         }
@@ -44,18 +49,13 @@ public class HomeActivity extends BaseActivity implements HomeMvpContract.View {
 
     public static Intent getStartingIntent(Context callingContext) {
         if (callingContext == null) callingContext = ClipItApplication.getAppContext();
-        return new Intent(callingContext, HomeActivity.class);
+        return new Intent(callingContext, CategoryActivity.class);
     }
 
     @Override
     protected void onResume() {
-        super.onResume();
-
         mvpPresenter.updateView();
-    }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
+        super.onResume();
     }
 }

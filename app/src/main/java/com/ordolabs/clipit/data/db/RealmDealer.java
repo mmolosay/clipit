@@ -3,6 +3,7 @@ package com.ordolabs.clipit.data.db;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.ordolabs.clipit.data.db.realm_objects.CategoryObject;
 import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
 
 import io.realm.Realm;
@@ -13,6 +14,8 @@ import io.realm.RealmResults;
  **/
 
 public class RealmDealer {
+
+    //============================== CLIPS ==============================//
 
     public static void createClipObject(@Nullable final String title,
                                         @NonNull final String body,
@@ -102,6 +105,43 @@ public class RealmDealer {
                 clip.setTitle(newTitle.length() == 0 ? null : newTitle);
             }
         });
+    }
+
+    //============================== CATEGORIES ==============================//
+
+    public static void createCategoryObject(@NonNull final String name,
+                                            final boolean isRemovable,
+                                            final boolean isActvie) {
+        RealmHolder.getInstance().realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(@NonNull Realm realm) {
+                CategoryObject category = RealmHolder.getInstance().realm.createObject(
+                        CategoryObject.class,
+                        getIdForNewCategory()
+                );
+
+                category.setName(name);
+                category.setRemovable(isRemovable);
+                category.setActive(isActvie);
+            }
+        });
+    }
+
+    private static int getIdForNewCategory() {
+        Number maxId = RealmHolder.getInstance().realm
+                .where(CategoryObject.class)
+                .max("id");
+        return (maxId == null) ? 1 : maxId.intValue() + 1;
+    }
+
+    public static RealmResults<CategoryObject> getAllCategories() {
+        return RealmHolder.getInstance().realm
+                .where(CategoryObject.class)
+                .findAll();
+    }
+
+    public static int getCategoriesCount() {
+        return getAllCategories().size();
     }
 
     public static void dropAllObjects(@NonNull final Class obj) {

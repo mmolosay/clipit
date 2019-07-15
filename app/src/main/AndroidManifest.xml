@@ -20,7 +20,7 @@
             android:process=":ClipboardListenerServiceProcess"/>
 
         <receiver
-            android:name=".data.utils.ServiceAwakenerBR"
+            android:name=".data.util.ServiceAwakenerBR"
             android:enabled="true"
             android:exported="true"
             android:label="RestartServiceWhenStopped"
@@ -51,6 +51,10 @@
         <activity
             android:name=".ui.edit.EditActivity"
             android:windowSoftInputMode="stateAlwaysHidden">
+        </activity>
+
+        <activity
+            android:name=".ui.category.CategoryActivity">
         </activity>
 
 

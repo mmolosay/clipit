@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.C;
-import com.ordolabs.clipit.data.models.edit.EditModel;
+import com.ordolabs.clipit.data.model.edit.EditModel;
 import com.ordolabs.clipit.ui.base.BasePresenter;
 import com.ordolabs.clipit.ui.home.HomeActivity;
 

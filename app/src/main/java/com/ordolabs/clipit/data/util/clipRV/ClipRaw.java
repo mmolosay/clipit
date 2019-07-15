@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data.utils.rv;
+package com.ordolabs.clipit.data.util.clipRV;
 
 import javax.annotation.Nullable;
 
@@ -10,9 +10,7 @@ public class ClipRaw {
 
     String title;
     String body;
-
     String datetime;
-
     boolean isViewed;
 
     public ClipRaw(String title, String body, String datetime, boolean isViewed) {

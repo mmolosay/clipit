@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data.utils.rv;
+package com.ordolabs.clipit.data.util.clipRV;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -22,13 +22,13 @@ import java.util.ArrayList;
  * Created by ordogod on 18.06.19.
  **/
 
-public class RVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
+public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
 
     private ArrayList<ClipRaw> clipsList;
     private AppCompatActivity callingActivity;
     private RecyclerView recyclerView;
 
-    public RVadapter(ArrayList<ClipRaw> clipsList, AppCompatActivity callingActivity, RecyclerView rv) {
+    public ClipRVadapter(ArrayList<ClipRaw> clipsList, AppCompatActivity callingActivity, RecyclerView rv) {
         this.clipsList = clipsList;
         this.callingActivity = callingActivity;
         this.recyclerView = rv;
@@ -45,7 +45,7 @@ public class RVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
     public ClipItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(
-                        R.layout.clips_list_item,
+                        R.layout.clip_list_item,
                         parent,
                         false
                 );
