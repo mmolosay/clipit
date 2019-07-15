@@ -16,6 +16,10 @@ import android.view.View;
 import com.ordolabs.clipit.ClipItApplication;
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.db.RealmDealer;
+import com.ordolabs.clipit.data.models.base.BaseModel;
+import com.ordolabs.clipit.data.models.home.HomeModel;
+import com.ordolabs.clipit.ui.base.BasePresenter;
+import com.ordolabs.clipit.ui.home.HomePresenter;
 
 import static android.support.v7.widget.helper.ItemTouchHelper.*;
 
@@ -24,6 +28,8 @@ import static android.support.v7.widget.helper.ItemTouchHelper.*;
  **/
 
 public class RVswipeController extends Callback {
+
+    private HomeModel attachedModel;
 
     private RVadapter adapter;
     private View itemView;
@@ -42,7 +48,8 @@ public class RVswipeController extends Callback {
     private float swipeBGradius;
     private int alphaBG;
 
-    public RVswipeController(RVadapter adapter) {
+    public RVswipeController(RVadapter adapter, HomeModel attachedModel) {
+        this.attachedModel = attachedModel;
         this.adapter = adapter;
 
         Drawable deleteIcon = ContextCompat.getDrawable(ClipItApplication.getAppContext(), R.drawable.ic_delete_light_24dp);
@@ -94,6 +101,8 @@ public class RVswipeController extends Callback {
         clipPosition = viewHolder.getAdapterPosition();
         clipRemoved = adapter.deleteItem(clipPosition);
 
+        attachedModel.increaseClipsVisibleBy(-1);
+
         Snackbar
                 .make(
                         viewHolder.itemView,
@@ -113,6 +122,10 @@ public class RVswipeController extends Callback {
                     public void onDismissed(Snackbar transientBottomBar, int event) {
                         if (event != Snackbar.Callback.DISMISS_EVENT_ACTION) {
                             RealmDealer.deleteClipAtPosition(clipPosition);
+                        }
+                        else {
+                            attachedModel.increaseClipsVisibleBy(1);
+                            attachedModel.getAttachedPresenter().toggleNoClipsContainer();
                         }
                     }
                 }

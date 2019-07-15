@@ -55,11 +55,10 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
     }
 
     @Override
-    protected void updateStates() {
+    public void updateView() {
         mvpModel.updateData();
 
         toggleNoClipsContainer();
-
     }
 
     @Override
@@ -72,8 +71,8 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> impl
 
     }
 
-    private void toggleNoClipsContainer() {
-        if (RealmDealer.getClipsCount() == 0) {
+    public void toggleNoClipsContainer() {
+        if (mvpModel.getClipsVisible() == 0) {
             noClipsContainer.setVisibility(View.VISIBLE);
         }
         else {

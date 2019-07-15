@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.C;
-import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.models.edit.EditModel;
 import com.ordolabs.clipit.ui.base.BasePresenter;
 import com.ordolabs.clipit.ui.home.HomeActivity;
@@ -132,7 +131,7 @@ public class EditPresenter<V extends EditActivity> extends BasePresenter<V> impl
     }
 
     @Override
-    protected void updateStates() {
+    public void updateView() {
 
     }
 

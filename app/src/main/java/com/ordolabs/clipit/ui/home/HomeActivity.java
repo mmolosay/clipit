@@ -29,7 +29,7 @@ public class HomeActivity extends BaseActivity implements HomeMvpContract.View {
     protected void onResume() {
         super.onResume();
 
-        mvpPresenter.updateStates();
+        mvpPresenter.updateView();
     }
 
     @Override

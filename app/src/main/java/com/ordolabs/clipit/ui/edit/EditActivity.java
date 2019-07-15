@@ -66,6 +66,6 @@ public class EditActivity extends BaseActivity implements EditMvpContract.View {
     protected void onResume() {
         super.onResume();
 
-        mvpPresenter.updateStates();
+        mvpPresenter.updateView();
     }
 }

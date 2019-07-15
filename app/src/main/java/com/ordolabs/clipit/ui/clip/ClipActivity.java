@@ -68,6 +68,6 @@ public class ClipActivity extends BaseActivity implements ClipMvpContract.View {
     protected void onResume() {
         super.onResume();
 
-        mvpPresenter.updateStates();
+        mvpPresenter.updateView();
     }
 }

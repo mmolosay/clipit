@@ -61,7 +61,7 @@ public class ClipPresenter<V extends ClipActivity> extends BasePresenter<V> impl
     }
 
     @Override
-    protected void updateStates() {
+    public void updateView() {
         mvpModel.updateData();
         toggleTitleOnEmpty();
         updateAllText();

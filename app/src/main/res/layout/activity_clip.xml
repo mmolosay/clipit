@@ -10,6 +10,8 @@
         android:id="@+id/clipToolbar"
         layout="@layout/toolbar" />
 
+    <!--TODO: possibility to select and copy text-->
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

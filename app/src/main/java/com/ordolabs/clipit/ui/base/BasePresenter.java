@@ -12,7 +12,7 @@ public abstract class BasePresenter<V extends BaseActivity> implements BaseMvpPr
 
     protected abstract void prepareViews();
 
-    protected abstract void updateStates();
+    public abstract void updateView();
 
     protected abstract void animateActivityHiding();
 

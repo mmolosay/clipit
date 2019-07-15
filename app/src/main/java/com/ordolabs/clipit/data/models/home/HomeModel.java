@@ -25,26 +25,27 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements 
 
     private RVadapter adapter;
     private RVswipeController swipeController;
+    private int clipsVisible;
 
     public HomeModel(P mvpPresenter, RecyclerView rv) {
         attachPresenter(mvpPresenter);
 
+        this.clipsVisible = RealmDealer.getClipsCount();
         this.adapter = new RVadapter(
                 getRawClipsListReversed(),
                 mvpPresenter.getAttachedView(),
                 rv
         );
-        this.swipeController = new RVswipeController(adapter);
+        this.swipeController = new RVswipeController(adapter, this);
 
         new ItemTouchHelper(swipeController).attachToRecyclerView(rv);
-
-        //RealmDealer.dropAllObjects(ClipObject.class);
     }
 
     @Override
     public void updateData() {
         C.updateData();
         adapter.setClipsList(getRawClipsListReversed());
+        this.clipsVisible = adapter.getItemCount();
     }
 
     private ArrayList<ClipRaw> getRawClipsListReversed() {
@@ -69,6 +70,18 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements 
 
     public RVadapter getRVadapter() {
         return adapter;
+    }
+
+    public int getClipsVisible() {
+        return clipsVisible;
+    }
+
+    public void increaseClipsVisibleBy(int increment) {
+        if (clipsVisible + increment < 0)
+            throw new IllegalArgumentException("Final count of visible clips can not be less than zero.");
+
+        this.clipsVisible += increment;
+        getAttachedPresenter().toggleNoClipsContainer();
     }
 
     @Override
