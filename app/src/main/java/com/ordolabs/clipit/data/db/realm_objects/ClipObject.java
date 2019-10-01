@@ -17,16 +17,19 @@ public class ClipObject extends RealmObject {
     @Nullable   private String  title;
     @NonNull    private String  body;
     @NonNull    private String  datetime;
-    @NonNull    private boolean isViewed;
+                private boolean isViewed;
+                private boolean isRemoved;
 
     public int getId() {
         return id;
     }
 
     @Nullable
-    public String getTitle() {
-        return title;
-    }
+    public String getTitle() { return title; }
+
+    public boolean isRemoved() { return isRemoved; }
+
+    public void setRemoved(boolean removed) { isRemoved = removed; }
 
     @NonNull
     public String getBody() {

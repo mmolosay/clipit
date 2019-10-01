@@ -119,7 +119,7 @@ public class ClipRVswipeController extends Callback {
                     @Override
                     public void onDismissed(Snackbar transientBottomBar, int event) {
                         if (event != Snackbar.Callback.DISMISS_EVENT_ACTION) {
-                            RealmDealer.deleteClipAtPosition(clipPosition);
+                            RealmDealer.deleteClipAtPos(clipPosition);
                         }
                         else {
                             attachedModel.increaseClipsVisibleBy(1);

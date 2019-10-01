@@ -21,7 +21,7 @@ public class EditModel<P extends EditPresenter> extends BaseModel<P> {
         this.clipPos = mvpPresenter
                 .getView().getIntent()
                 .getIntExtra(C.EXTRA_CLIP_POSITION, -1);
-        this.clip = RealmDealer.getClipAtPos(clipPos, true);
+        this.clip = RealmDealer.getClipAtPosReversed(clipPos);
     }
 
     public ClipObject getClip() {
@@ -34,7 +34,7 @@ public class EditModel<P extends EditPresenter> extends BaseModel<P> {
     }
 
     public void rewriteClip(String title, String body) {
-        RealmDealer.rewriteClip(clipPos, title, body);
+        RealmDealer.editClip(clipPos, title, body);
     }
 
     @Override

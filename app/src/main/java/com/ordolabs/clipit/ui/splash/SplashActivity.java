@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.ordolabs.clipit.App;
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.db.RealmDealer;
-import com.ordolabs.clipit.data.db.RealmHolder;
 import com.ordolabs.clipit.ui.home.HomeActivity;
 
 /**
@@ -31,10 +30,9 @@ public class SplashActivity extends AppCompatActivity {
 
         if (prefs.getBoolean(FIRST_RUN, true)) {
             checkAutorun();
-            setClipsDefaultCategories();
-            RealmHolder.i(); // will initialize realm instance
+            addDefaultCategories();
 
-            prefs.edit().putBoolean(FIRST_RUN, false);
+            prefs.edit().putBoolean(FIRST_RUN, false).apply();
         }
 
         startActivity(new Intent(this, HomeActivity.class));
@@ -83,18 +81,14 @@ public class SplashActivity extends AppCompatActivity {
         } catch (Exception e) { e.printStackTrace(); }
     }
 
-    private void setClipsDefaultCategories() { // TODO: redisign
-        if (RealmDealer.getCategoryWithId(2) == null) {
-            RealmDealer.createCategoryObject(
+    private void addDefaultCategories() { // TODO: redisign
+        RealmDealer.createCategoryObject(
                 App.getContext().getResources().getString(R.string.categoryDefaultClipboardName),
-                false,
                 true
-            );
-            RealmDealer.createCategoryObject(
+        );
+        RealmDealer.createCategoryObject(
                 App.getContext().getResources().getString(R.string.categoryDefaultFavoriteName),
-                false,
-                false
-            );
-        }
+                true
+        );
     }
 }

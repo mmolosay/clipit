@@ -3,6 +3,7 @@ package com.ordolabs.clipit.data.db;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.ordolabs.clipit.BuildConfig;
 import com.ordolabs.clipit.data.db.realm_objects.CategoryObject;
 import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
 import com.ordolabs.clipit.util.categoryRV.CategoryRaw;
@@ -44,55 +45,51 @@ public class RealmDealer {
         return (maxId == null) ? 0 : maxId.intValue() + 1;
     }
 
-    public static RealmResults<ClipObject> getAllClips() {
+    public synchronized static RealmResults<ClipObject> getClips() {
         return RealmHolder.i()
                 .where(ClipObject.class)
                 .findAll();
     }
 
-    public static ClipObject getClipAtPos(int pos, boolean reversed) {
-        int clipsSize = getClipsCount();
-        if (pos >= clipsSize)
+    public static ClipObject getClipAtPosReversed(final int pos) {
+        return getClipAtPos(getClipsCount() - pos - 1);
+    }
+
+    private static ClipObject getClipAtPos(final int pos) {
+        RealmResults<ClipObject> clips = getClips();
+        if (!BuildConfig.DEBUG && (pos >= clips.size() || pos < 0)) {
             throw new IllegalArgumentException(
-                    "Position number is invalid. pos: " + pos + ", size: " + clipsSize + "."
-            );
-
-        if (reversed == true) pos = clipsSize - 1 - pos;
-
-        return RealmHolder.i()
-                .where(ClipObject.class)
-                .findAll()
-                .get(pos);
+                    "Position can not be negative or greater than total clips count:" +
+                    " pos: " + pos +
+                    " count: " + clips.size());
+        }
+        return clips.get(pos);
     }
 
-    public static int getClipsCount() {
-        return getAllClips().size();
-    }
+    public static int getClipsCount() { return getClips().size(); }
 
-    public static void setClipAsViewed(final int clipPos) {
-        RealmHolder.i().executeTransaction(realm -> {
-            ClipObject a = getClipAtPos(clipPos, true);
-            a.setViewed(true);
-        });
-    }
-
-    public static void deleteClipAtPosition(final int position) {
+    public synchronized static void markClipViewed(final int pos) {
         RealmHolder.i().executeTransaction(realm ->
-            getClipAtPos(position, true).deleteFromRealm()
+            getClipAtPosReversed(pos).setViewed(true));
+    }
+
+    public static void deleteClipAtPos(final int pos) {
+        RealmHolder.i().executeTransaction(realm ->
+            getClipAtPosReversed(pos).deleteFromRealm()
         );
     }
 
-    public static boolean isSameBodyClipExist(String body) {
-        RealmResults<ClipObject> clips = getAllClips();
+    public static boolean isSameBodyClipExist(final String body) {
+        RealmResults<ClipObject> clips = getClips();
         for (ClipObject clip : clips) {
-            if (clip.getBody().equals(body)) return true;
+            if (clip.getBody().equalsIgnoreCase(body)) return true;
         }
         return false;
     }
 
-    public static void rewriteClip(final int clipPos, final String newTitle, final String newBody) {
+    public static void editClip(final int clipPos, final String newTitle, final String newBody) {
         RealmHolder.i().executeTransaction(realm -> {
-            ClipObject clip = getClipAtPos(clipPos, true);
+            ClipObject clip = getClipAtPosReversed(clipPos);
             clip.setBody(newBody);
             clip.setTitle(newTitle.length() == 0 ? null : newTitle);
         });
@@ -101,42 +98,41 @@ public class RealmDealer {
     //============================== CATEGORIES ==============================//
 
     public static void createCategoryObject(@NonNull final String name,
-                                            final boolean isRemovable,
-                                            final boolean isActvie) {
+                                            final boolean isDefault) {
         RealmHolder.i().executeTransaction(realm -> {
             CategoryObject category = RealmHolder.i().createObject(
                     CategoryObject.class,
-                    getIdForNewCategory()
+                    getNewCategoryID()
             );
 
             category.setName(name);
-            category.setRemovable(isRemovable);
-            category.setActive(isActvie);
+            category.setDefault(isDefault);
+            category.setSelected(false);
         });
     }
 
-    private static int getIdForNewCategory() {
+    private static int getNewCategoryID() {
         Number maxId = RealmHolder.i()
                 .where(CategoryObject.class)
                 .max("id");
-        return (maxId == null) ? 1 : maxId.intValue() + 1;
+        return (maxId == null) ? 0 : maxId.intValue() + 1;
     }
 
-    public static ArrayList<CategoryRaw> getDefaultCategories() {
+    public static ArrayList<CategoryRaw> getDefaultCategoriesRaw() {
         ArrayList<CategoryRaw> list = new ArrayList<>();
         CategoryObject defaultCategory;
 
+        defaultCategory = getCategoryWithId(0);
+        list.add(new CategoryRaw(
+                defaultCategory.getName(),
+                defaultCategory.isDefault(),
+                defaultCategory.isSelected()
+        ));
         defaultCategory = getCategoryWithId(1);
         list.add(new CategoryRaw(
                 defaultCategory.getName(),
-                defaultCategory.isRemovable(),
-                defaultCategory.isActive()
-        ));
-        defaultCategory = getCategoryWithId(2);
-        list.add(new CategoryRaw(
-                defaultCategory.getName(),
-                defaultCategory.isRemovable(),
-                defaultCategory.isActive()
+                defaultCategory.isDefault(),
+                defaultCategory.isSelected()
         ));
 
         return list;
@@ -146,9 +142,9 @@ public class RealmDealer {
         return RealmHolder.i()
                 .where(CategoryObject.class)
                 .and()
-                .equalTo("id", 1)
+                .notEqualTo("id", 0)
                 .and()
-                .equalTo("id", 2)
+                .notEqualTo("id", 1)
                 .findAll();
     }
 
@@ -156,7 +152,7 @@ public class RealmDealer {
         return getCustomCategories().size();
     }
 
-    public static CategoryObject getCategoryWithId(int id) {
+    private static CategoryObject getCategoryWithId(final int id) {
         return RealmHolder.i()
                 .where(CategoryObject.class)
                 .equalTo("id", id)

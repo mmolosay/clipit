@@ -32,7 +32,7 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> {
 
         this.clipsVisible = RealmDealer.getClipsCount();
         this.adapter = new ClipRVadapter(
-                getRawClipsListReversed(),
+                getClipsReversed(),
                 mvpPresenter.getView(),
                 rv
         );
@@ -44,25 +44,21 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> {
     @Override
     public void updateData() {
         C.getPrettyDate();
-        adapter.setClips(getRawClipsListReversed());
+        adapter.setClips(getClipsReversed());
         this.clipsVisible = adapter.getItemCount();
     }
 
-    private ArrayList<ClipRaw> getRawClipsListReversed() {
-        int clipsCount = RealmDealer.getClipsCount();
-        if (clipsCount == 0) return new ArrayList<>();
-
+    private ArrayList<ClipRaw> getClipsReversed() {
         ArrayList<ClipRaw> list = new ArrayList<>();
-        RealmResults<ClipObject> results = RealmDealer.getAllClips();
+        RealmResults<ClipObject> results = RealmDealer.getClips();
 
-        for (int i = 0; i < clipsCount; i++) {
+        for (int i = 0; i < results.size(); i++)
             list.add(new ClipRaw(
                     results.get(i).getTitle(),
                     results.get(i).getBody(),
                     results.get(i).getDateTime(),
                     results.get(i).isViewed()
             ));
-        }
 
         Collections.reverse(list);
         return list;

@@ -41,15 +41,15 @@ public class CategoryModel<P extends CategoryPresenter> extends BaseModel<P> {
     private ArrayList<CategoryRaw> getRawCategoryListReversed() {
         int categoriesCount = RealmDealer.getCustomCategoriesCount();
         ArrayList<CategoryRaw> list = new ArrayList<>();
-        ArrayList<CategoryRaw> defaults = new ArrayList<>(RealmDealer.getDefaultCategories());
+        ArrayList<CategoryRaw> defaults = new ArrayList<>(RealmDealer.getDefaultCategoriesRaw());
 
         RealmResults<CategoryObject> results = RealmDealer.getCustomCategories();
 
         for (int i = 0; i < categoriesCount; i++) {
             list.add(new CategoryRaw(
                     results.get(i).getName(),
-                    results.get(i).isRemovable(),
-                    results.get(i).isActive()
+                    results.get(i).isDefault(),
+                    results.get(i).isSelected()
             ));
         }
 

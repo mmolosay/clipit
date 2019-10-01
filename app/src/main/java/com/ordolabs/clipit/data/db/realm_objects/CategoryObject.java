@@ -13,8 +13,8 @@ public class CategoryObject extends RealmObject {
 
     @PrimaryKey private int id;
     @NonNull private String name;
-    @NonNull private boolean isRemovable;
-    @NonNull private boolean isActive;
+    @NonNull private boolean isDefault;
+    @NonNull private boolean isSelected;
 
     public int getId() {
         return id;
@@ -29,19 +29,15 @@ public class CategoryObject extends RealmObject {
         this.name = name;
     }
 
-    public boolean isRemovable() {
-        return isRemovable;
+    public boolean isDefault() { return isDefault; }
+
+    public void setDefault(boolean isDefault) { this.isDefault = isDefault; }
+
+    public boolean isSelected() {
+        return isSelected;
     }
 
-    public void setRemovable(boolean removable) {
-        isRemovable = removable;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

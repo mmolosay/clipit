@@ -25,13 +25,13 @@ import java.util.ArrayList;
 public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
 
     private ArrayList<ClipRaw> clips;
-    private AppCompatActivity callingActivity;
-    private RecyclerView recyclerView;
+    private AppCompatActivity caller;
+    private RecyclerView rv;
 
-    public ClipRVadapter(ArrayList<ClipRaw> clips, AppCompatActivity callingActivity, RecyclerView rv) {
+    public ClipRVadapter(ArrayList<ClipRaw> clips, AppCompatActivity caller, RecyclerView rv) {
         this.clips = clips;
-        this.callingActivity = callingActivity;
-        this.recyclerView = rv;
+        this.caller = caller;
+        this.rv = rv;
     }
 
     public void setClips(ArrayList<ClipRaw> clips) {
@@ -43,32 +43,31 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
     @NonNull
     @Override
     public ClipItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(
-                        R.layout.clip_list_item,
-                        parent,
-                        false
-                );
+        View view = LayoutInflater
+                .from(parent.getContext())
+                .inflate(R.layout.clip_list_item, parent, false);
         view.setOnClickListener(newOnClickListener(view));
 
         return new ClipItemViewHolder(view);
     }
 
     private View.OnClickListener newOnClickListener(final View view) {
-        return v -> {
-            int itemPos = recyclerView.getChildLayoutPosition(view);
-            Intent i = new Intent(callingActivity, ClipActivity.class);
-            i.putExtra(C.EXTRA_CLIP_POSITION, itemPos);
-            callingActivity.startActivity(i);
-        };
+        return v -> caller.startActivity(new Intent(
+                caller,
+                ClipActivity.class
+            ).putExtra(
+                C.EXTRA_CLIP_POSITION,
+                rv.getChildLayoutPosition(view)
+            )
+        );
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ClipItemViewHolder holder, int i) {
         ClipRaw clip = clips.get(i);
 
-        // in cause of only RVadapter has an ability to interact with RV items,
-        // all VFX with them should be performed here :(
+        // in cause of only RV-adapter has an ability to interact with RV items,
+        // all VFX with them should be performed here
 
         holder.titleTextView.setText(clip.title != null ? clip.title : "");
         holder.bodyTextView.setText(clip.body);
@@ -81,20 +80,16 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
 
             // doesn't work from xml file (android:layoutAnimation="...")
             Animation anim = AnimationUtils.loadAnimation(
-                    callingActivity,
+                    caller,
                     R.anim.rv_item_driver_mark_scale_hide_left_anim
             );
 
             // hide driver mark at the end of animation
             anim.setAnimationListener(new Animation.AnimationListener() {
                 @Override
-                public void onAnimationStart(Animation animation) {
-                }
-
+                public void onAnimationStart(Animation animation) {}
                 @Override
-                public void onAnimationRepeat(Animation animation) {
-                }
-
+                public void onAnimationRepeat(Animation animation) {}
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     holder.newDriverMark.setVisibility(View.INVISIBLE);
@@ -102,7 +97,7 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
             });
             holder.newDriverMark.startAnimation(anim);
 
-            RealmDealer.setClipAsViewed(i);
+            RealmDealer.markClipViewed(i);
             clip.isViewed = true;
         }
     }
@@ -125,13 +120,13 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
                     );
 
                     if (dMinutes == 0)
-                        return callingActivity.getResources().getString(R.string.prettyDayTime_JustNow);
+                        return caller.getResources().getString(R.string.prettyDayTime_JustNow);
                     if (dMinutes == 1)
-                        return callingActivity.getResources().getString(R.string.prettyDayTime_MinuteAgo);
+                        return caller.getResources().getString(R.string.prettyDayTime_MinuteAgo);
                     if (dMinutes > 1 && dMinutes < 10)
-                        return dMinutes + " " + callingActivity.getResources().getString(R.string.prettyDayTime_MinutesAgo);
+                        return dMinutes + " " + caller.getResources().getString(R.string.prettyDayTime_MinutesAgo);
 
-                    return callingActivity.getResources().getString(R.string.prettyDayTime_Today) + ", " + given[2];
+                    return caller.getResources().getString(R.string.prettyDayTime_Today) + ", " + given[2];
                 }
 
                 // if yesterday
@@ -143,7 +138,7 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
                                     given[0].equals("31")
                                 )
                         )
-                ) return callingActivity.getResources().getString(R.string.prettyDayTime_Yesterday) + ", " + given[2];
+                ) return caller.getResources().getString(R.string.prettyDayTime_Yesterday) + ", " + given[2];
             }
             return given[0] + " " + given[1] + ", " + given[2];
         }
@@ -164,7 +159,7 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
         this.clips.add(position, clip);
         notifyItemInserted(position);
 
-        recyclerView.post(() -> recyclerView.smoothScrollToPosition(position));
+        rv.post(() -> rv.smoothScrollToPosition(position));
     }
 
     private void toggleTitleOnEmpty(TextView title) {

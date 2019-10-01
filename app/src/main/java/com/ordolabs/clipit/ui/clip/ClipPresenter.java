@@ -3,7 +3,6 @@ package com.ordolabs.clipit.ui.clip;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -102,7 +101,7 @@ public class ClipPresenter<V extends ClipActivity>
             .setTitle(R.string.alertDialogDeleteTitle)
             .setMessage(R.string.alertDialogDeleteMessage)
             .setPositiveButton(R.string.alertDialogDeletePositive, (dialog, which) -> {
-                RealmDealer.deleteClipAtPosition(mvpModel.getClipPos());
+                RealmDealer.deleteClipAtPos(mvpModel.getClipPos());
                 mvpView.finish();
             })
             .setNegativeButton(R.string.alertDialogDeleteNegative, null)
