@@ -1,22 +1,18 @@
 package com.ordolabs.clipit.ui.clip;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.ordolabs.clipit.ClipItApplication;
 import com.ordolabs.clipit.R;
-import com.ordolabs.clipit.data.C;
-import com.ordolabs.clipit.ui.base.BaseActivity;
 
 /**
  * Created by ordogod on 28.06.19.
  **/
 
-public class ClipActivity extends BaseActivity implements ClipMvpContract.View {
+public class ClipActivity extends AppCompatActivity {
 
     private ClipPresenter<ClipActivity> mvpPresenter;
 
@@ -25,10 +21,7 @@ public class ClipActivity extends BaseActivity implements ClipMvpContract.View {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clip);
 
-        mvpPresenter = new ClipPresenter<>(
-                this,
-                getIntent().getIntExtra(C.EXTRA_CLIP_POSITION, -1)
-        );
+        mvpPresenter = new ClipPresenter<>(this);
     }
 
     @Override
@@ -43,25 +36,20 @@ public class ClipActivity extends BaseActivity implements ClipMvpContract.View {
 
         switch (id) {
             case R.id.menuEdit: {
-                mvpPresenter.menuOnEdit(this);
+                mvpPresenter.onMenuEdit(this);
                 break;
             }
             case R.id.menuCopy: {
-                mvpPresenter.menuOnCopy(this);
+                mvpPresenter.onMenuCopy(this);
                 break;
             }
             case R.id.menuDelete: {
-                mvpPresenter.menuOnDelete(this);
+                mvpPresenter.onMenuDelete(this);
                 break;
             }
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public static Intent getStartingIntent(Context callingContext) {
-        if (callingContext == null) callingContext = ClipItApplication.getAppContext();
-        return new Intent(callingContext, ClipActivity.class);
     }
 
     @Override

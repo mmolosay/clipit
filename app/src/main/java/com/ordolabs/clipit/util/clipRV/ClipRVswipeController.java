@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data.util.clipRV;
+package com.ordolabs.clipit.util.clipRV;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -13,10 +13,10 @@ import android.support.v7.widget.helper.ItemTouchHelper.Callback;
 import android.util.TypedValue;
 import android.view.View;
 
-import com.ordolabs.clipit.ClipItApplication;
+import com.ordolabs.clipit.App;
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.db.RealmDealer;
-import com.ordolabs.clipit.data.model.home.HomeModel;
+import com.ordolabs.clipit.data.model.HomeModel;
 import com.ordolabs.clipit.ui.home.HomePresenter;
 
 import static android.support.v7.widget.helper.ItemTouchHelper.*;
@@ -50,7 +50,7 @@ public class ClipRVswipeController extends Callback {
         this.attachedModel = attachedModel;
         this.adapter = adapter;
 
-        Drawable deleteIcon = ContextCompat.getDrawable(ClipItApplication.getAppContext(), R.drawable.ic_delete_light_24dp);
+        Drawable deleteIcon = ContextCompat.getDrawable(App.getContext(), R.drawable.ic_delete_light_24dp);
         assert deleteIcon != null;
 
         this.deleteIconWidth = Math.round(deleteIcon.getIntrinsicWidth() * DELETE_ICON_SCALE);
@@ -66,12 +66,12 @@ public class ClipRVswipeController extends Callback {
         this.swipeBG = new RectF();
 
         this.paint = new Paint();
-        this.paint.setColor(ContextCompat.getColor(ClipItApplication.getAppContext(), R.color.accent_red));
+        this.paint.setColor(ContextCompat.getColor(App.getContext(), R.color.accent_red));
 
         this.swipeBGradius = TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 2,
-                ClipItApplication.getAppContext().getResources().getDisplayMetrics()
+                App.getContext().getResources().getDisplayMetrics()
         );
     }
 
@@ -123,7 +123,7 @@ public class ClipRVswipeController extends Callback {
                         }
                         else {
                             attachedModel.increaseClipsVisibleBy(1);
-                            ((HomePresenter) attachedModel.getAttachedPresenter()).toggleNoClipsContainer();
+                            ((HomePresenter) attachedModel.getPresenter()).toggleNoClipsContainer();
                         }
                     }
                 }

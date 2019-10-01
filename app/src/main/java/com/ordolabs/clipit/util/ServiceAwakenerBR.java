@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data.util;
+package com.ordolabs.clipit.util;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

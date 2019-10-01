@@ -13,11 +13,11 @@ import io.realm.annotations.PrimaryKey;
 
 public class ClipObject extends RealmObject {
 
-    @PrimaryKey private int id;
-    @Nullable private String title;
-    @NonNull private String body;
-    @NonNull private String datetime;
-    @NonNull private boolean isViewed;
+    @PrimaryKey private int     id;
+    @Nullable   private String  title;
+    @NonNull    private String  body;
+    @NonNull    private String  datetime;
+    @NonNull    private boolean isViewed;
 
     public int getId() {
         return id;

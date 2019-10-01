@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data.util.categoryRV;
+package com.ordolabs.clipit.util.categoryRV;
 
 /**
  * Created by ordogod on 15.07.19.

@@ -1,21 +1,18 @@
 package com.ordolabs.clipit.ui.category;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.ordolabs.clipit.ClipItApplication;
 import com.ordolabs.clipit.R;
-import com.ordolabs.clipit.ui.base.BaseActivity;
 
 /**
  * Created by ordogod on 15.07.19.
  **/
 
-public class CategoryActivity extends BaseActivity implements CategoryMvpContract.View  {
+public class CategoryActivity extends AppCompatActivity {
 
     private CategoryPresenter<CategoryActivity> mvpPresenter;
 
@@ -45,11 +42,6 @@ public class CategoryActivity extends BaseActivity implements CategoryMvpContrac
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public static Intent getStartingIntent(Context callingContext) {
-        if (callingContext == null) callingContext = ClipItApplication.getAppContext();
-        return new Intent(callingContext, CategoryActivity.class);
     }
 
     @Override

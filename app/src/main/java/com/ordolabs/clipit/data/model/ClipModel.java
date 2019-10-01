@@ -1,24 +1,27 @@
-package com.ordolabs.clipit.data.model.clip;
+package com.ordolabs.clipit.data.model;
 
+import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
-import com.ordolabs.clipit.data.model.base.BaseModel;
+import com.ordolabs.clipit.generic.BaseModel;
 import com.ordolabs.clipit.ui.clip.ClipPresenter;
 
 /**
  * Created by ordogod on 03.07.19.
  **/
 
-public class ClipModel<P extends ClipPresenter> extends BaseModel<P> implements ClipModelContract<P> {
+public class ClipModel<P extends ClipPresenter> extends BaseModel<P> {
 
     private int clipPos;
     private ClipObject clip;
 
-    public ClipModel(P mvpPresenter, int clipPos) {
+    public ClipModel(P mvpPresenter) {
         attachPresenter(mvpPresenter);
 
+        this.clipPos = mvpPresenter
+                .getView().getIntent()
+                .getIntExtra(C.EXTRA_CLIP_POSITION, -1);
         this.clip = RealmDealer.getClipAtPos(clipPos, true);
-        this.clipPos = clipPos;
     }
 
     public String makeActivityTitle() {
@@ -47,17 +50,7 @@ public class ClipModel<P extends ClipPresenter> extends BaseModel<P> implements 
     }
 
     @Override
-    public void detachPresenter() {
-        super.detachPresenter();
-    }
-
-    @Override
-    public boolean isPresenterAttached() {
-        return super.isPresenterAttached();
-    }
-
-    @Override
-    public P getAttachedPresenter() {
-        return super.getAttachedPresenter();
+    public P getPresenter() {
+        return super.getPresenter();
     }
 }

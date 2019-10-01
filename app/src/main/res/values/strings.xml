@@ -30,8 +30,8 @@
     <!--==================== DATETIME ====================-->
     <string name="prettyDayTime_Today">today</string>
     <string name="prettyDayTime_Yesterday">yesterday</string>
-    <string name="prettyDayTime_LessThanMinuteAgo">less than minute ago</string>
-    <string name="prettyDayTime_MinuteAgo">1 minute ago</string>
+    <string name="prettyDayTime_JustNow">just now</string>
+    <string name="prettyDayTime_MinuteAgo">minute ago</string>
     <string name="prettyDayTime_MinutesAgo">minutes ago</string>
 
     <!--==================== SNACKBAR ====================-->

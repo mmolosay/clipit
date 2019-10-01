@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
-        android:name=".ClipItApplication"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/appName"
@@ -20,7 +20,7 @@
             android:process=":ClipboardListenerServiceProcess"/>
 
         <receiver
-            android:name=".data.util.ServiceAwakenerBR"
+            android:name=".util.ServiceAwakenerBR"
             android:enabled="true"
             android:exported="true"
             android:label="RestartServiceWhenStopped"

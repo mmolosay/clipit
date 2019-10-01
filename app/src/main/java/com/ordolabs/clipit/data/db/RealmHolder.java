@@ -1,6 +1,6 @@
 package com.ordolabs.clipit.data.db;
 
-import com.ordolabs.clipit.ClipItApplication;
+import com.ordolabs.clipit.App;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -9,24 +9,26 @@ import io.realm.RealmConfiguration;
  * Created by ordogod on 18.06.19.
  **/
 
-class RealmHolder {
+public class RealmHolder {
 
     private static volatile RealmHolder currentInstance;
-    public Realm realm;
+    private Realm realm;
 
     private RealmHolder() {
-        Realm.init(ClipItApplication.getAppContext());
-        RealmConfiguration config = new RealmConfiguration.Builder().name("dbname.realm")
+        Realm.init(App.getContext());
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .name("dbname.realm")
                 .deleteRealmIfMigrationNeeded()
                 .build();
         Realm.setDefaultConfiguration(config);
         realm = Realm.getDefaultInstance();
     }
 
-    public static RealmHolder getInstance() {
+    // returns the current instance of RealmHolder class
+    public static Realm i() {
         if (currentInstance == null) {
             currentInstance = new RealmHolder();
         }
-        return currentInstance;
+        return currentInstance.realm;
     }
 }

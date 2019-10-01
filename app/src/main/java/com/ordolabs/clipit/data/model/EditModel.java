@@ -1,24 +1,27 @@
-package com.ordolabs.clipit.data.model.edit;
+package com.ordolabs.clipit.data.model;
 
+import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
-import com.ordolabs.clipit.data.model.base.BaseModel;
+import com.ordolabs.clipit.generic.BaseModel;
 import com.ordolabs.clipit.ui.edit.EditPresenter;
 
 /**
  * Created by ordogod on 09.07.19.
  **/
 
-public class EditModel<P extends EditPresenter> extends BaseModel<P> implements EditModelContract<P> {
+public class EditModel<P extends EditPresenter> extends BaseModel<P> {
 
     private int clipPos;
     private ClipObject clip;
 
-    public EditModel(P mvpPresenter, int clipPos) {
+    public EditModel(P mvpPresenter) {
         attachPresenter(mvpPresenter);
 
+        this.clipPos = mvpPresenter
+                .getView().getIntent()
+                .getIntExtra(C.EXTRA_CLIP_POSITION, -1);
         this.clip = RealmDealer.getClipAtPos(clipPos, true);
-        this.clipPos = clipPos;
     }
 
     public ClipObject getClip() {
@@ -27,11 +30,7 @@ public class EditModel<P extends EditPresenter> extends BaseModel<P> implements 
 
     @Override
     public void updateData() {
-
-    }
-
-    public int getClipPos() {
-        return clipPos;
+        //
     }
 
     public void rewriteClip(String title, String body) {
@@ -44,17 +43,7 @@ public class EditModel<P extends EditPresenter> extends BaseModel<P> implements 
     }
 
     @Override
-    public void detachPresenter() {
-        super.detachPresenter();
-    }
-
-    @Override
-    public boolean isPresenterAttached() {
-        return super.isPresenterAttached();
-    }
-
-    @Override
-    public P getAttachedPresenter() {
-        return super.getAttachedPresenter();
+    public P getPresenter() {
+        return super.getPresenter();
     }
 }

@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data.model.home;
+package com.ordolabs.clipit.data.model;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -6,10 +6,10 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
-import com.ordolabs.clipit.data.model.base.BaseModel;
-import com.ordolabs.clipit.data.util.clipRV.ClipRaw;
-import com.ordolabs.clipit.data.util.clipRV.ClipRVadapter;
-import com.ordolabs.clipit.data.util.clipRV.ClipRVswipeController;
+import com.ordolabs.clipit.generic.BaseModel;
+import com.ordolabs.clipit.util.clipRV.ClipRaw;
+import com.ordolabs.clipit.util.clipRV.ClipRVadapter;
+import com.ordolabs.clipit.util.clipRV.ClipRVswipeController;
 import com.ordolabs.clipit.ui.home.HomePresenter;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import io.realm.RealmResults;
  * Created by ordogod on 17.06.19.
  **/
 
-public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements HomeModelContract<P> {
+public class HomeModel<P extends HomePresenter> extends BaseModel<P> {
 
     private ClipRVadapter adapter;
     private ClipRVswipeController swipeController;
@@ -33,7 +33,7 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements 
         this.clipsVisible = RealmDealer.getClipsCount();
         this.adapter = new ClipRVadapter(
                 getRawClipsListReversed(),
-                mvpPresenter.getAttachedView(),
+                mvpPresenter.getView(),
                 rv
         );
         this.swipeController = new ClipRVswipeController(adapter, this);
@@ -43,8 +43,8 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements 
 
     @Override
     public void updateData() {
-        C.updateData();
-        adapter.setClipsList(getRawClipsListReversed());
+        C.getPrettyDate();
+        adapter.setClips(getRawClipsListReversed());
         this.clipsVisible = adapter.getItemCount();
     }
 
@@ -81,6 +81,6 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> implements 
             throw new IllegalArgumentException("Final count of visible clips can not be less than zero.");
 
         this.clipsVisible += increment;
-        getAttachedPresenter().toggleNoClipsContainer();
+        getPresenter().toggleNoClipsContainer();
     }
 }

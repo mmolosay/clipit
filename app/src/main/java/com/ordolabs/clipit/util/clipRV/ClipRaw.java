@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data.util.clipRV;
+package com.ordolabs.clipit.util.clipRV;
 
 import javax.annotation.Nullable;
 

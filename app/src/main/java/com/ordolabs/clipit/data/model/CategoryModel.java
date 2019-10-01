@@ -1,14 +1,13 @@
-package com.ordolabs.clipit.data.model.category;
+package com.ordolabs.clipit.data.model;
 
 import android.support.v7.widget.RecyclerView;
 
 import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.db.realm_objects.CategoryObject;
-import com.ordolabs.clipit.data.model.base.BaseModel;
-import com.ordolabs.clipit.data.util.categoryRV.CategoryRVadapter;
-import com.ordolabs.clipit.data.util.categoryRV.CategoryRaw;
-import com.ordolabs.clipit.ui.category.CategoryMvpContract;
+import com.ordolabs.clipit.generic.BaseModel;
+import com.ordolabs.clipit.util.categoryRV.CategoryRVadapter;
+import com.ordolabs.clipit.util.categoryRV.CategoryRaw;
 import com.ordolabs.clipit.ui.category.CategoryPresenter;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import io.realm.RealmResults;
  * Created by ordogod on 15.07.19.
  **/
 
-public class CategoryModel<P extends CategoryPresenter> extends BaseModel<P> implements CategoryMvpContract {
+public class CategoryModel<P extends CategoryPresenter> extends BaseModel<P> {
 
     private CategoryRVadapter adapter;
 
@@ -35,7 +34,7 @@ public class CategoryModel<P extends CategoryPresenter> extends BaseModel<P> imp
 
     @Override
     public void updateData() {
-        C.updateData();
+        C.getPrettyDate();
         adapter.setCategoryList(getRawCategoryListReversed());
     }
 

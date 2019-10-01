@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data.util.clipRV;
+package com.ordolabs.clipit.util.clipRV;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -24,19 +24,19 @@ import java.util.ArrayList;
 
 public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
 
-    private ArrayList<ClipRaw> clipsList;
+    private ArrayList<ClipRaw> clips;
     private AppCompatActivity callingActivity;
     private RecyclerView recyclerView;
 
-    public ClipRVadapter(ArrayList<ClipRaw> clipsList, AppCompatActivity callingActivity, RecyclerView rv) {
-        this.clipsList = clipsList;
+    public ClipRVadapter(ArrayList<ClipRaw> clips, AppCompatActivity callingActivity, RecyclerView rv) {
+        this.clips = clips;
         this.callingActivity = callingActivity;
         this.recyclerView = rv;
     }
 
-    public void setClipsList(ArrayList<ClipRaw> clipsList) {
-        this.clipsList.clear();
-        this.clipsList.addAll(clipsList);
+    public void setClips(ArrayList<ClipRaw> clips) {
+        this.clips.clear();
+        this.clips.addAll(clips);
         this.notifyDataSetChanged();
     }
 
@@ -55,21 +55,17 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
     }
 
     private View.OnClickListener newOnClickListener(final View view) {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int itemPos = recyclerView.getChildLayoutPosition(view);
-                Intent i = ClipActivity
-                        .getStartingIntent(callingActivity)
-                        .putExtra(C.EXTRA_CLIP_POSITION, itemPos);
-                callingActivity.startActivity(i);
-            }
+        return v -> {
+            int itemPos = recyclerView.getChildLayoutPosition(view);
+            Intent i = new Intent(callingActivity, ClipActivity.class);
+            i.putExtra(C.EXTRA_CLIP_POSITION, itemPos);
+            callingActivity.startActivity(i);
         };
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ClipItemViewHolder holder, int i) {
-        ClipRaw clip = clipsList.get(i);
+        ClipRaw clip = clips.get(i);
 
         // in cause of only RVadapter has an ability to interact with RV items,
         // all VFX with them should be performed here :(
@@ -114,7 +110,7 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
     private String getDateTimePretty(String datetime) {
         // [ day, month, time, year ] from C.DATETIME_FORMAT pattern
         String[] given = datetime.split(" ");
-        String[] now = C.current_datetime.split(" ");
+        String[] now = C.getPrettyDate().split(" ");
 
         // (yeah, shitcode. if u know, how to
         // do it better, create an issue at repo, please)
@@ -129,7 +125,7 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
                     );
 
                     if (dMinutes == 0)
-                        return callingActivity.getResources().getString(R.string.prettyDayTime_LessThanMinuteAgo);
+                        return callingActivity.getResources().getString(R.string.prettyDayTime_JustNow);
                     if (dMinutes == 1)
                         return callingActivity.getResources().getString(R.string.prettyDayTime_MinuteAgo);
                     if (dMinutes > 1 && dMinutes < 10)
@@ -155,9 +151,9 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
     }
 
     ClipRaw deleteItem(int position) {
-        ClipRaw clip = clipsList.get(position);
+        ClipRaw clip = clips.get(position);
 
-        clipsList.remove(position);
+        clips.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, getItemCount());
 
@@ -165,15 +161,10 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
     }
 
     void restoreItem(final int position, ClipRaw clip) {
-        this.clipsList.add(position, clip);
+        this.clips.add(position, clip);
         notifyItemInserted(position);
 
-        recyclerView.post(new Runnable() {
-            @Override
-            public void run() {
-                recyclerView.smoothScrollToPosition(position);
-            }
-        });
+        recyclerView.post(() -> recyclerView.smoothScrollToPosition(position));
     }
 
     private void toggleTitleOnEmpty(TextView title) {
@@ -186,8 +177,8 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
 
     @Override
     public int getItemCount() {
-        if (clipsList != null)
-            return clipsList.size();
+        if (clips != null)
+            return clips.size();
         else
             return 0;
     }

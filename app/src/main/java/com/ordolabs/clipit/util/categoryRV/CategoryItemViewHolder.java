@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data.util.categoryRV;
+package com.ordolabs.clipit.util.categoryRV;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

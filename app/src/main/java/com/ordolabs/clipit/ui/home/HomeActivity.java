@@ -1,16 +1,13 @@
 package com.ordolabs.clipit.ui.home;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.ordolabs.clipit.ClipItApplication;
 import com.ordolabs.clipit.R;
-import com.ordolabs.clipit.ui.base.BaseActivity;
 
-public class HomeActivity extends BaseActivity implements HomeMvpContract.View {
+public class HomeActivity extends AppCompatActivity {
 
     private HomePresenter<HomeActivity> mvpPresenter;
 
@@ -42,20 +39,10 @@ public class HomeActivity extends BaseActivity implements HomeMvpContract.View {
         return super.onOptionsItemSelected(item);
     }
 
-    public static Intent getStartingIntent(Context callingContext) {
-        if (callingContext == null) callingContext = ClipItApplication.getAppContext();
-        return new Intent(callingContext, HomeActivity.class);
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
 
         mvpPresenter.updateView();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
     }
 }

@@ -1,44 +1,35 @@
 package com.ordolabs.clipit.data.service;
 
-import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
 
 import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.db.RealmDealer;
-import com.ordolabs.clipit.data.util.ServiceAwakenerBR;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Objects;
+import com.ordolabs.clipit.util.ServiceAwakenerBR;
 
 /**
  * Created by ordogod on 17.06.19.
  **/
 
-public class ClipboardListenerService extends Service {
+public final class ClipboardListenerService extends Service {
 
     private ClipboardManager clipboardManager;
-    private ClipboardManager.OnPrimaryClipChangedListener onPrimaryClipChangedListener =
-            new ClipboardManager.OnPrimaryClipChangedListener() {
-                @SuppressLint("SimpleDateFormat")
-                @Override
-                public void onPrimaryClipChanged() {
-                    String clipText = Objects.requireNonNull(clipboardManager.getPrimaryClip())
-                            .getItemAt(0)
-                            .getText().toString();
+    private final ClipboardManager.OnPrimaryClipChangedListener onPrimaryClipChangedListener =
+        new ClipboardManager.OnPrimaryClipChangedListener() {
+            @Override
+            public void onPrimaryClipChanged() {
+                String clipText = clipboardManager
+                    .getPrimaryClip().getItemAt(0)
+                    .getText().toString();
 
-                    if (RealmDealer.isSameBodyClipExist(clipText) == false) {
-                        RealmDealer.createClipObject(
-                                null,
-                                clipText,
-                                new SimpleDateFormat(C.DATETIME_FORMAT).format(new Date())
-                        );
-                    }
-                }
-            };
+                if (RealmDealer.isSameBodyClipExist(clipText) == false)
+                    RealmDealer.createClipObject(null, clipText, C.getPrettyDate());
+            }
+        };
 
     @Override
     public void onCreate() {
@@ -56,14 +47,14 @@ public class ClipboardListenerService extends Service {
 
     @Override
     public void onTaskRemoved(Intent rootIntent) {
-        Intent intent = new Intent().setAction("android.intent.action.REAWAKE_SERVICE").setClass(this, ServiceAwakenerBR.class);
-        this.sendBroadcast(intent);
+        Intent i = new Intent()
+            .setAction("android.intent.action.REAWAKE_SERVICE")
+            .setClass(this, ServiceAwakenerBR.class);
+        this.sendBroadcast(i);
     }
 
     @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
+    public IBinder onBind(Intent intent) { return null; }
 
     @Override
     public void onDestroy() {
@@ -71,5 +62,9 @@ public class ClipboardListenerService extends Service {
             clipboardManager.removePrimaryClipChangedListener(onPrimaryClipChangedListener);
         }
         super.onDestroy();
+    }
+
+    public static void start(@NonNull Context caller) {
+        caller.startService(new Intent(caller, ClipboardListenerService.class));
     }
 }
