@@ -115,17 +115,6 @@ public class ClipRVswipeController extends Callback {
                     attachedModel.getPresenter().updateViews();
                 }
             )
-//            .addCallback(
-//                new Snackbar.Callback() {
-//                    @Override
-//                    public void onDismissed(Snackbar transientBottomBar, int event) {
-//                        if (event == Snackbar.Callback.DISMISS_EVENT_ACTION) {
-//                            attachedModel.increaseClipsVisibleBy(1);
-//                            attachedModel.getPresenter().updateViews();
-//                        }
-//                    }
-//                }
-//            )
             .show();
     }
 
@@ -196,7 +185,7 @@ public class ClipRVswipeController extends Callback {
             );
         }
 
-        if (Math.abs(dX) < (itemView.getRight() - itemView.getLeft()) / 2) {
+        if (Math.abs(dX) < (float)(itemView.getRight() - itemView.getLeft()) / 2) {
             alphaBG = Math.round(Math.abs(dX) / ((itemView.getRight() - itemView.getLeft()) / 2) * 255);
         }
         else {

@@ -78,20 +78,13 @@ public class RealmDealer {
             getClipReversed(pos).setRemoved(mark));
     }
 
-    public static void deleteClip(final int pos) {
-        RealmHolder.i().executeTransaction(realm ->
-            getClipReversed(pos).deleteFromRealm()
-        );
-    }
-
     public static void deleteMarkedClips() {
-        RealmHolder.i().executeTransaction(realm -> {
+        RealmHolder.i().executeTransaction(realm ->
             getClips()
                 .where()
                 .equalTo("isRemoved", true)
                 .findAll()
-                .deleteAllFromRealm();
-        });
+                .deleteAllFromRealm());
     }
 
     public static boolean isSameBodyClipExist(final String body) {
