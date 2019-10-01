@@ -17,7 +17,6 @@ import com.ordolabs.clipit.App;
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.model.HomeModel;
-import com.ordolabs.clipit.ui.home.HomePresenter;
 
 import static android.support.v7.widget.helper.ItemTouchHelper.*;
 
@@ -36,7 +35,7 @@ public class ClipRVswipeController extends Callback {
     private Paint paint;
 
     private ClipRaw clipRemoved;
-    private int clipPosition;
+    private int clipPos;
 
     private final float DELETE_ICON_SCALE = 1.75f;
     private int deleteIconWidth;
@@ -96,38 +95,38 @@ public class ClipRVswipeController extends Callback {
             @NonNull RecyclerView.ViewHolder viewHolder,
             int direction)
     {
-        clipPosition = viewHolder.getAdapterPosition();
-        clipRemoved = adapter.deleteItem(clipPosition);
+        clipPos = viewHolder.getAdapterPosition();
+        clipRemoved = adapter.deleteItem(clipPos);
 
         attachedModel.increaseClipsVisibleBy(-1);
+        RealmDealer.markClipRemoved(clipPos, true);
 
         Snackbar
-                .make(
-                        viewHolder.itemView,
-                        R.string.clipDeleteSnackbarNotification,
-                        Snackbar.LENGTH_LONG
-                ).setAction(
-                R.string.clipDeleteSnackbarAction,
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        adapter.restoreItem(clipPosition, clipRemoved);
-                    }
+            .make(
+                viewHolder.itemView,
+                R.string.clipDeleteSnackbarNotification,
+                Snackbar.LENGTH_LONG
+            )
+            .setAction(
+                R.string.clipDeleteSnackbarAction, v -> {
+                    RealmDealer.markClipRemoved(clipPos, false);
+                    attachedModel.increaseClipsVisibleBy(+1);
+                    adapter.restoreItem(clipPos, clipRemoved);
+                    attachedModel.getPresenter().updateViews();
                 }
-        ).addCallback(
-                new Snackbar.Callback() {
-                    @Override
-                    public void onDismissed(Snackbar transientBottomBar, int event) {
-                        if (event != Snackbar.Callback.DISMISS_EVENT_ACTION) {
-                            RealmDealer.deleteClipAtPos(clipPosition);
-                        }
-                        else {
-                            attachedModel.increaseClipsVisibleBy(1);
-                            ((HomePresenter) attachedModel.getPresenter()).toggleNoClipsContainer();
-                        }
-                    }
-                }
-        ).show();
+            )
+//            .addCallback(
+//                new Snackbar.Callback() {
+//                    @Override
+//                    public void onDismissed(Snackbar transientBottomBar, int event) {
+//                        if (event == Snackbar.Callback.DISMISS_EVENT_ACTION) {
+//                            attachedModel.increaseClipsVisibleBy(1);
+//                            attachedModel.getPresenter().updateViews();
+//                        }
+//                    }
+//                }
+//            )
+            .show();
     }
 
     @Override

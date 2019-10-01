@@ -14,6 +14,8 @@ import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.ui.home.HomeActivity;
 
+import static com.ordolabs.clipit.data.db.RealmDealer.deleteMarkedClips;
+
 /**
  * Created by ordogod on 23.05.19.
  **/
@@ -34,6 +36,8 @@ public class SplashActivity extends AppCompatActivity {
 
             prefs.edit().putBoolean(FIRST_RUN, false).apply();
         }
+
+        deleteMarkedClips();
 
         startActivity(new Intent(this, HomeActivity.class));
         finish(); // removes current from activities stack

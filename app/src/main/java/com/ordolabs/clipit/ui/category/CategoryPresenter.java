@@ -45,8 +45,14 @@ public class CategoryPresenter<V extends CategoryActivity>
     }
 
     @Override
-    public void updateView() {
+    public void update() {
         mvpModel.updateData();
+        updateViews();
+    }
+
+    @Override
+    public void updateViews() {
+        //
     }
 
     void menuOnCategoryAdd() {

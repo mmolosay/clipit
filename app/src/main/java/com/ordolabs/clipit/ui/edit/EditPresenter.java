@@ -71,8 +71,13 @@ public class EditPresenter<V extends EditActivity>
     }
 
     @Override
-    public void updateView() {
+    public void update() {
+        //
+    }
 
+    @Override
+    public void updateViews() {
+        //
     }
 
     private void onMenuBack() {

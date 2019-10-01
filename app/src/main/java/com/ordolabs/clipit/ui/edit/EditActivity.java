@@ -43,6 +43,6 @@ public class EditActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        mvpPresenter.updateView();
+        mvpPresenter.update();
     }
 }

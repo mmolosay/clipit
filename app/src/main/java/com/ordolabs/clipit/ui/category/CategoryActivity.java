@@ -46,8 +46,8 @@ public class CategoryActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        mvpPresenter.updateView();
-
         super.onResume();
+
+        mvpPresenter.update();
     }
 }

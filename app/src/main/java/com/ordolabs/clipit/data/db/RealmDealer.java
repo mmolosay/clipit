@@ -28,7 +28,7 @@ public class RealmDealer {
         RealmHolder.i().executeTransaction(realm -> {
             ClipObject clip = RealmHolder.i().createObject(
                     ClipObject.class,
-                    getNewClipID()
+                    makeNewClipID()
             );
 
             clip.setTitle(title);
@@ -38,7 +38,7 @@ public class RealmDealer {
         });
     }
 
-    private synchronized static int getNewClipID() {
+    private synchronized static int makeNewClipID() {
         Number maxId = RealmHolder.i()
                 .where(ClipObject.class)
                 .max("id");
@@ -51,11 +51,11 @@ public class RealmDealer {
                 .findAll();
     }
 
-    public static ClipObject getClipAtPosReversed(final int pos) {
-        return getClipAtPos(getClipsCount() - pos - 1);
+    public static ClipObject getClipReversed(final int pos) {
+        return getClip(getClipsCount() - pos - 1);
     }
 
-    private static ClipObject getClipAtPos(final int pos) {
+    private static ClipObject getClip(final int pos) {
         RealmResults<ClipObject> clips = getClips();
         if (!BuildConfig.DEBUG && (pos >= clips.size() || pos < 0)) {
             throw new IllegalArgumentException(
@@ -70,13 +70,28 @@ public class RealmDealer {
 
     public synchronized static void markClipViewed(final int pos) {
         RealmHolder.i().executeTransaction(realm ->
-            getClipAtPosReversed(pos).setViewed(true));
+            getClipReversed(pos).setViewed(true));
     }
 
-    public static void deleteClipAtPos(final int pos) {
+    public synchronized static void markClipRemoved(final int pos, final boolean mark) {
         RealmHolder.i().executeTransaction(realm ->
-            getClipAtPosReversed(pos).deleteFromRealm()
+            getClipReversed(pos).setRemoved(mark));
+    }
+
+    public static void deleteClip(final int pos) {
+        RealmHolder.i().executeTransaction(realm ->
+            getClipReversed(pos).deleteFromRealm()
         );
+    }
+
+    public static void deleteMarkedClips() {
+        RealmHolder.i().executeTransaction(realm -> {
+            getClips()
+                .where()
+                .equalTo("isRemoved", true)
+                .findAll()
+                .deleteAllFromRealm();
+        });
     }
 
     public static boolean isSameBodyClipExist(final String body) {
@@ -89,7 +104,7 @@ public class RealmDealer {
 
     public static void editClip(final int clipPos, final String newTitle, final String newBody) {
         RealmHolder.i().executeTransaction(realm -> {
-            ClipObject clip = getClipAtPosReversed(clipPos);
+            ClipObject clip = getClipReversed(clipPos);
             clip.setBody(newBody);
             clip.setTitle(newTitle.length() == 0 ? null : newTitle);
         });
@@ -102,7 +117,7 @@ public class RealmDealer {
         RealmHolder.i().executeTransaction(realm -> {
             CategoryObject category = RealmHolder.i().createObject(
                     CategoryObject.class,
-                    getNewCategoryID()
+                    makeNewCategoryID()
             );
 
             category.setName(name);
@@ -111,7 +126,7 @@ public class RealmDealer {
         });
     }
 
-    private static int getNewCategoryID() {
+    private static int makeNewCategoryID() {
         Number maxId = RealmHolder.i()
                 .where(CategoryObject.class)
                 .max("id");

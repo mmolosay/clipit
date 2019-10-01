@@ -14,7 +14,9 @@ public abstract class BasePresenter<V extends AppCompatActivity> {
 
     protected abstract void prepareViews();
 
-    public abstract void updateView();
+    public abstract void update();
+
+    public abstract void updateViews();
 
     protected void attachView(V mvpView) {
         this.mvpView = mvpView;

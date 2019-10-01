@@ -56,6 +56,6 @@ public class ClipActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        mvpPresenter.updateView();
+        mvpPresenter.update();
     }
 }

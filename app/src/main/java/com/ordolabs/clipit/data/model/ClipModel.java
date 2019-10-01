@@ -21,7 +21,7 @@ public class ClipModel<P extends ClipPresenter> extends BaseModel<P> {
         this.clipPos = mvpPresenter
                 .getView().getIntent()
                 .getIntExtra(C.EXTRA_CLIP_POSITION, -1);
-        this.clip = RealmDealer.getClipAtPosReversed(clipPos);
+        this.clip = RealmDealer.getClipReversed(clipPos);
     }
 
     public String makeActivityTitle() {
@@ -37,7 +37,7 @@ public class ClipModel<P extends ClipPresenter> extends BaseModel<P> {
 
     @Override
     public void updateData() {
-        this.clip = RealmDealer.getClipAtPosReversed(clipPos);
+        this.clip = RealmDealer.getClipReversed(clipPos);
     }
 
     public int getClipPos() {

@@ -61,9 +61,13 @@ public class ClipPresenter<V extends ClipActivity>
     }
 
     @Override
-    public void updateView() {
+    public void update() {
         mvpModel.updateData();
+        updateViews();
+    }
 
+    @Override
+    public void updateViews() {
         toggleTitleOnEmpty();
         updateAllText();
         scrollToTop();
@@ -101,7 +105,7 @@ public class ClipPresenter<V extends ClipActivity>
             .setTitle(R.string.alertDialogDeleteTitle)
             .setMessage(R.string.alertDialogDeleteMessage)
             .setPositiveButton(R.string.alertDialogDeletePositive, (dialog, which) -> {
-                RealmDealer.deleteClipAtPos(mvpModel.getClipPos());
+                RealmDealer.markClipRemoved(mvpModel.getClipPos(), true);
                 mvpView.finish();
             })
             .setNegativeButton(R.string.alertDialogDeleteNegative, null)

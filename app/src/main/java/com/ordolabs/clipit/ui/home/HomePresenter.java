@@ -53,9 +53,13 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> {
     }
 
     @Override
-    public void updateView() {
+    public void update() {
         mvpModel.updateData();
+        updateViews();
+    }
 
+    @Override
+    public void updateViews() {
         toggleNoClipsContainer();
     }
 
