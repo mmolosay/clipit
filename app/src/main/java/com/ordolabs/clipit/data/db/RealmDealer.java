@@ -27,14 +27,11 @@ public class RealmDealer {
 
         RealmHolder.i().executeTransaction(realm -> {
             ClipObject clip = RealmHolder.i().createObject(
-                    ClipObject.class,
-                    makeNewClipID()
+                ClipObject.class,
+                makeNewClipID()
             );
 
-            clip.setTitle(title);
-            clip.setBody(body);
-            clip.setDateTime(datetime);
-            clip.setViewed(false);
+            clip.init(title, body, datetime, false, false);
         });
     }
 
@@ -58,15 +55,12 @@ public class RealmDealer {
     private static ClipObject getClip(final int pos) {
         RealmResults<ClipObject> clips = getClips();
         if (!BuildConfig.DEBUG && (pos >= clips.size() || pos < 0)) {
-            throw new IllegalArgumentException(
-                    "Position can not be negative or greater than total clips count:" +
-                    " pos: " + pos +
-                    " count: " + clips.size());
+            throw new IllegalPositionArgumentEcxeptioin(pos, clips.size());
         }
         return clips.get(pos);
     }
 
-    public static int getClipsCount() { return getClips().size(); }
+    private static int getClipsCount() { return getClips().size(); }
 
     public synchronized static void markClipViewed(final int pos) {
         RealmHolder.i().executeTransaction(realm ->
@@ -171,5 +165,14 @@ public class RealmDealer {
         RealmHolder.i().executeTransaction(realm ->
                 RealmHolder.i().where(obj).findAll().deleteAllFromRealm()
         );
+    }
+
+    private static class IllegalPositionArgumentEcxeptioin extends RuntimeException {
+        IllegalPositionArgumentEcxeptioin(int pos, int count) {
+            super("Position can not be negative or greater than total clips count:" +
+                  " pos: " + pos +
+                  " count: " + count + "."
+            );
+        }
     }
 }

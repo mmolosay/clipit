@@ -20,44 +20,34 @@ public class ClipObject extends RealmObject {
                 private boolean isViewed;
                 private boolean isRemoved;
 
-    public int getId() {
-        return id;
+    public ClipObject init(
+            String title,
+            String body,
+            String datetime,
+            boolean isViewed,
+            boolean isRemoved)
+    {
+        this.title = title;
+        this.body = body;
+        this.datetime = datetime;
+        this.isViewed = isViewed;
+        this.isRemoved = isRemoved;
+
+        return this;
     }
 
-    @Nullable
-    public String getTitle() { return title; }
+              public int getId() { return id; }
+    @Nullable public String getTitle() { return title; }
+    @NonNull  public String getBody() { return body; }
+    @NonNull  public String getDateTime() { return datetime; }
+              public boolean isRemoved() { return isRemoved; }
+              public boolean isViewed() { return isViewed; }
 
-    public boolean isRemoved() { return isRemoved; }
-
+    public void setTitle(@Nullable String title) { this.title = title; }
+    public void setBody(@NonNull String body) { this.body = body; }
+    public void setViewed(boolean viewed) { isViewed = viewed; }
     public void setRemoved(boolean removed) { isRemoved = removed; }
 
-    @NonNull
-    public String getBody() {
-        return body;
-    }
-
-    @NonNull
-    public String getDateTime() {
-        return datetime;
-    }
-
-    public boolean isViewed() {
-        return isViewed;
-    }
-
-    public void setTitle(@Nullable String title) {
-        this.title = title;
-    }
-
-    public void setBody(@NonNull String body) {
-        this.body = body;
-    }
-
-    public void setDateTime(@NonNull String date) {
-        this.datetime = date;
-    }
-
-    public void setViewed(boolean viewed) {
-        isViewed = viewed;
-    }
+    // no datetime and id setters – should not
+    // be editied and set in init() only
 }

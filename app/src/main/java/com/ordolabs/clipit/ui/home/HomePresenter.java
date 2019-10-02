@@ -64,7 +64,7 @@ public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> {
     }
 
     public void toggleNoClipsContainer() {
-        if (mvpModel.getClipsVisible() == 0)
+        if (mvpModel.getClipsCount() == 0)
             noClipsContainer.setVisibility(View.VISIBLE);
         else
             noClipsContainer.setVisibility(View.GONE);

@@ -20,7 +20,7 @@ public class ServiceAwakenerBR extends BroadcastReceiver {
         if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction()) ||
             Objects.requireNonNull(intent.getAction()).equals("android.intent.action.REAWAKE_SERVICE")) {
 
-            context.startService(new Intent(context, ClipboardListenerService.class));
+            ClipboardListenerService.start(context);
         }
     }
 }

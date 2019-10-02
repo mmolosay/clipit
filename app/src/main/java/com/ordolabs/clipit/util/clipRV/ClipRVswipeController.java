@@ -29,8 +29,8 @@ public class ClipRVswipeController extends Callback {
     private HomeModel attachedModel;
 
     private ClipRVadapter adapter;
-    private View itemView;
-    private Drawable deleteIcon;
+    private View v;
+    private Drawable icon;
     private RectF swipeBG;
     private Paint paint;
 
@@ -38,10 +38,10 @@ public class ClipRVswipeController extends Callback {
     private int clipPos;
 
     private final float DELETE_ICON_SCALE = 1.75f;
-    private int deleteIconWidth;
-    private int deleteIconHeight;
-    private int deleteIconCenteringOffset;
-    private int deleteIconMargin;
+    private int iconW;
+    private int iconH;
+    private int iconCenteringOffset;
+    private int iconMargin;
     private float swipeBGradius;
     private int alphaBG;
 
@@ -52,14 +52,14 @@ public class ClipRVswipeController extends Callback {
         Drawable deleteIcon = ContextCompat.getDrawable(App.getContext(), R.drawable.ic_delete_light_24dp);
         assert deleteIcon != null;
 
-        this.deleteIconWidth = Math.round(deleteIcon.getIntrinsicWidth() * DELETE_ICON_SCALE);
-        this.deleteIconHeight = Math.round(deleteIcon.getIntrinsicHeight() * DELETE_ICON_SCALE);
+        this.iconW = Math.round(deleteIcon.getIntrinsicWidth() * DELETE_ICON_SCALE);
+        this.iconH = Math.round(deleteIcon.getIntrinsicHeight() * DELETE_ICON_SCALE);
 
-        this.deleteIcon = new ScaleDrawable(
+        this.icon = new ScaleDrawable(
                 deleteIcon,
                 0,
-                deleteIconWidth,
-                deleteIconHeight
+                iconW,
+                iconH
         ).getDrawable();
 
         this.swipeBG = new RectF();
@@ -97,9 +97,8 @@ public class ClipRVswipeController extends Callback {
     {
         clipPos = viewHolder.getAdapterPosition();
         clipRemoved = adapter.deleteItem(clipPos);
-
-        attachedModel.increaseClipsVisibleBy(-1);
         RealmDealer.markClipRemoved(clipPos, true);
+        attachedModel.getPresenter().updateViews();
 
         Snackbar
             .make(
@@ -110,7 +109,6 @@ public class ClipRVswipeController extends Callback {
             .setAction(
                 R.string.clipDeleteSnackbarAction, v -> {
                     RealmDealer.markClipRemoved(clipPos, false);
-                    attachedModel.increaseClipsVisibleBy(+1);
                     adapter.restoreItem(clipPos, clipRemoved);
                     attachedModel.getPresenter().updateViews();
                 }
@@ -132,75 +130,73 @@ public class ClipRVswipeController extends Callback {
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
         }
 
-        this.itemView = viewHolder.itemView;
-        this.deleteIconMargin = (itemView.getHeight() - deleteIconHeight) / 2;
+        this.v = viewHolder.itemView;
+        this.iconMargin = (v.getHeight() - iconH) / 2;
 
-        if (Math.abs(dX) > deleteIconWidth + deleteIconMargin * 2) {
-            this.deleteIconCenteringOffset = Math.round(Math.abs(dX) - deleteIconWidth - deleteIconMargin * 2) / 2;
-        }
-        else {
-            this.deleteIconCenteringOffset = 0;
-        }
+        if (Math.abs(dX) > iconW + iconMargin * 2)
+            iconCenteringOffset = Math.round(Math.abs(dX) - iconW - iconMargin * 2) / 2;
+        else
+            iconCenteringOffset = 0;
 
         if (dX > 0) {
-            deleteIcon.setBounds(
-                    itemView.getLeft() + deleteIconMargin + deleteIconCenteringOffset,
-                    itemView.getTop() + deleteIconMargin,
-                    itemView.getLeft() + deleteIconMargin + deleteIconWidth + deleteIconCenteringOffset,
-                    itemView.getBottom() - deleteIconMargin
+            icon.setBounds(
+                    v.getLeft() + iconMargin + iconCenteringOffset,
+                    v.getTop() + iconMargin,
+                    v.getLeft() + iconMargin + iconW + iconCenteringOffset,
+                    v.getBottom() - iconMargin
             );
             c.clipRect(
-                    itemView.getLeft(),
-                    itemView.getTop(),
+                    v.getLeft(),
+                    v.getTop(),
                     (int) dX,
-                    itemView.getBottom()
+                    v.getBottom()
             );
 
             swipeBG.set(
-                    itemView.getLeft(),
-                    itemView.getTop(),
-                    (int) dX < itemView.getRight() ? (int) dX : itemView.getRight(),
-                    itemView.getBottom()
+                    v.getLeft(),
+                    v.getTop(),
+                    (int) dX < v.getRight() ? (int) dX : v.getRight(),
+                    v.getBottom()
             );
         }
         else {
-            deleteIcon.setBounds(
-                    itemView.getRight() - deleteIconMargin - deleteIconWidth - deleteIconCenteringOffset,
-                    itemView.getTop() + deleteIconMargin,
-                    itemView.getRight() - deleteIconMargin - deleteIconCenteringOffset,
-                    itemView.getBottom() - deleteIconMargin
+            icon.setBounds(
+                    v.getRight() - iconMargin - iconW - iconCenteringOffset,
+                    v.getTop() + iconMargin,
+                    v.getRight() - iconMargin - iconCenteringOffset,
+                    v.getBottom() - iconMargin
             );
             c.clipRect(
-                    itemView.getRight() + (int) dX + itemView.getLeft(),
-                    itemView.getTop(),
-                    itemView.getRight(),
-                    itemView.getBottom()
+                    v.getRight() + (int) dX + v.getLeft(),
+                    v.getTop(),
+                    v.getRight(),
+                    v.getBottom()
             );
 
             swipeBG.set(
-                    (int) -dX < itemView.getRight() ? itemView.getRight() + (int) dX + itemView.getLeft() : itemView.getLeft(),
-                    itemView.getTop(),
-                    itemView.getRight(),
-                    itemView.getBottom()
+                    (int) -dX < v.getRight() ? v.getRight() + (int) dX + v.getLeft() : v.getLeft(),
+                    v.getTop(),
+                    v.getRight(),
+                    v.getBottom()
             );
         }
 
-        if (Math.abs(dX) < (float)(itemView.getRight() - itemView.getLeft()) / 2) {
-            alphaBG = Math.round(Math.abs(dX) / ((itemView.getRight() - itemView.getLeft()) / 2) * 255);
+        if (Math.abs(dX) < (float)(v.getRight() - v.getLeft()) / 2) {
+            alphaBG = Math.round(Math.abs(dX) / ((v.getRight() - v.getLeft()) / 2) * 255);
         }
         else {
             alphaBG = 255;
-            deleteIcon.setAlpha(255);
+            icon.setAlpha(255);
             paint.setAlpha(255);
         }
 
         if (alphaBG != 255) {
-            deleteIcon.setAlpha(alphaBG);
+            icon.setAlpha(alphaBG);
             paint.setAlpha(alphaBG);
         }
 
         c.drawRoundRect(swipeBG, swipeBGradius, swipeBGradius, paint);
-        deleteIcon.draw(c);
+        icon.draw(c);
 
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
     }

@@ -3,7 +3,6 @@ package com.ordolabs.clipit.data.model;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
-import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
 import com.ordolabs.clipit.generic.BaseModel;
@@ -25,12 +24,10 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> {
 
     private ClipRVadapter adapter;
     private ClipRVswipeController swipeController;
-    private int clipsVisible;
 
     public HomeModel(P mvpPresenter, RecyclerView rv) {
         attachPresenter(mvpPresenter);
 
-        this.clipsVisible = RealmDealer.getClipsCount();
         this.adapter = new ClipRVadapter(
                 getClipsReversed(),
                 mvpPresenter.getView(),
@@ -43,40 +40,28 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> {
 
     @Override
     public void updateData() {
-        C.getPrettyDate();
         adapter.setClips(getClipsReversed());
-        this.clipsVisible = adapter.getItemCount();
     }
+
+    public int getClipsCount() { return  adapter.getClipsCount(); }
 
     private ArrayList<ClipRaw> getClipsReversed() {
-        ArrayList<ClipRaw> list = new ArrayList<>();
-        RealmResults<ClipObject> results = RealmDealer.getClips();
+        RealmResults<ClipObject> res = RealmDealer.getClips();
+        ArrayList<ClipRaw> clips = new ArrayList<>();
 
-        for (int i = 0; i < results.size(); i++)
-            list.add(new ClipRaw(
-                    results.get(i).getTitle(),
-                    results.get(i).getBody(),
-                    results.get(i).getDateTime(),
-                    results.get(i).isViewed()
-            ));
+        for (ClipObject item : res)
+            if (!item.isRemoved())
+                clips.add(new ClipRaw(
+                        item.getTitle(),
+                        item.getBody(),
+                        item.getDateTime(),
+                        item.isViewed(),
+                        false
+                ));
 
-        Collections.reverse(list);
-        return list;
+        Collections.reverse(clips);
+        return clips;
     }
 
-    public ClipRVadapter getRVadapter() {
-        return adapter;
-    }
-
-    public int getClipsVisible() {
-        return clipsVisible;
-    }
-
-    public void increaseClipsVisibleBy(int increment) {
-        if (clipsVisible + increment < 0)
-            throw new IllegalArgumentException("Final count of visible clips can not be less than zero.");
-
-        this.clipsVisible += increment;
-        getPresenter().toggleNoClipsContainer();
-    }
+    public ClipRVadapter getRVadapter() { return adapter; }
 }

@@ -12,20 +12,21 @@ public class ClipRaw {
     String body;
     String datetime;
     boolean isViewed;
+    boolean isRemoved;
 
-    public ClipRaw(String title, String body, String datetime, boolean isViewed) {
+    public ClipRaw(String title, String body, String datetime, boolean isViewed, boolean isRemoved) {
         this.title = title;
         this.body = body;
         this.datetime = datetime;
         this.isViewed = isViewed;
+        this.isRemoved = isRemoved;
     }
 
     @Override
     public boolean equals(@Nullable Object obj) {
         if (obj == null) return false;
         if (obj instanceof ClipRaw) {
-            return ((ClipRaw) obj).title.equals(this.title) &&
-                    ((ClipRaw) obj).body.equals(this.body);
+            return ((ClipRaw) obj).body.equals(this.body);
         }
         return false;
     }

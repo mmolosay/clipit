@@ -40,8 +40,9 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
         this.notifyDataSetChanged();
     }
 
-    @NonNull
-    @Override
+    public int getClipsCount() { return clips.size(); }
+
+    @Override @NonNull
     public ClipItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View view = LayoutInflater
                 .from(parent.getContext())
@@ -86,12 +87,10 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
 
             // hide driver mark at the end of animation
             anim.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {}
-                @Override
-                public void onAnimationRepeat(Animation animation) {}
-                @Override
-                public void onAnimationEnd(Animation animation) {
+                @Override public void onAnimationStart(Animation animation) {}
+                @Override public void onAnimationRepeat(Animation animation) {}
+
+                @Override public void onAnimationEnd(Animation animation) {
                     holder.newDriverMark.setVisibility(View.INVISIBLE);
                 }
             });

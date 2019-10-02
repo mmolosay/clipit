@@ -9,7 +9,7 @@ import io.realm.RealmConfiguration;
  * Created by ordogod on 18.06.19.
  **/
 
-public class RealmHolder {
+class RealmHolder {
 
     private static volatile RealmHolder currentInstance;
     private Realm realm;
@@ -25,7 +25,7 @@ public class RealmHolder {
     }
 
     // returns the current instance of RealmHolder class
-    public static Realm i() {
+    static Realm i() {
         if (currentInstance == null) {
             currentInstance = new RealmHolder();
         }
