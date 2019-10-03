@@ -2,15 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="6dp"
-    android:layout_marginTop="6dp"
-    android:layout_marginEnd="6dp"
+    android:layout_marginTop="3dp"
     android:background="@drawable/rv_item_box_rounded"
     android:clickable="true"
     android:elevation="1dp"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:theme="@style/SelectableItemTheme">
 
     <View
         android:id="@+id/RVclipsItemNewDriverMark"
@@ -52,14 +51,6 @@
                 android:textSize="14sp" />
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/RVclipsItemInfo"
-            style="@style/SubInfoTextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:gravity="end|center_vertical" />
 
     </LinearLayout>
 
