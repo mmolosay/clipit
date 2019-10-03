@@ -1,5 +1,6 @@
 package com.ordolabs.clipit.data.model;
 
+import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
@@ -26,7 +27,8 @@ public class ClipModel<P extends ClipPresenter> extends BaseModel<P> {
 
     public String makeActivityTitle() {
         if (clip.getTitle() == null)
-            return clip.getBody();
+            return mvpPresenter.getView().getResources()
+                    .getString(R.string.clipToolbarTitile);
         else
             return clip.getTitle();
     }

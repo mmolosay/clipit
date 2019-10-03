@@ -72,7 +72,7 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
 
         holder.titleTextView.setText(clip.title != null ? clip.title : "");
         holder.bodyTextView.setText(clip.body);
-        holder.infoTextView.setText( getDateTimePretty(clip.datetime) );
+//        holder.infoTextView.setText( makePrettyDateTime(clip.datetime) );
 
         toggleTitleOnEmpty(holder.titleTextView);
 
@@ -82,7 +82,7 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
             // doesn't work from xml file (android:layoutAnimation="...")
             Animation anim = AnimationUtils.loadAnimation(
                     caller,
-                    R.anim.rv_item_driver_mark_scale_hide_left_anim
+                    R.anim.rv_item_driver_mark_scale_hide_left
             );
 
             // hide driver mark at the end of animation
@@ -99,49 +99,6 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
             RealmDealer.markClipViewed(i);
             clip.isViewed = true;
         }
-    }
-
-    private String getDateTimePretty(String datetime) {
-        // [ day, month, time, year ] from C.DATETIME_FORMAT pattern
-        String[] given = datetime.split(" ");
-        String[] now = C.getPrettyDate().split(" ");
-
-        // (yeah, shitcode. if u know, how to
-        // do it better, create an issue at repo, please)
-
-        if (given[3].equals(now[3])) { // if this year
-            if (given[1].equals(now[1])) { // if this month
-                if (given[0].equals(now[0])) { // if this day
-                    // then print just minutes difference
-                    int dMinutes = Math.abs(
-                            (Integer.parseInt(now[2].split(":")[0]) * 60 + Integer.parseInt(now[2].split(":")[1])) -
-                            (Integer.parseInt(given[2].split(":")[0]) * 60 + Integer.parseInt(given[2].split(":")[1]))
-                    );
-
-                    if (dMinutes == 0)
-                        return caller.getResources().getString(R.string.prettyDayTime_JustNow);
-                    if (dMinutes == 1)
-                        return caller.getResources().getString(R.string.prettyDayTime_MinuteAgo);
-                    if (dMinutes > 1 && dMinutes < 10)
-                        return dMinutes + " " + caller.getResources().getString(R.string.prettyDayTime_MinutesAgo);
-
-                    return caller.getResources().getString(R.string.prettyDayTime_Today) + ", " + given[2];
-                }
-
-                // if yesterday
-                if (Integer.parseInt(now[0]) - Integer.parseInt(given[0]) == 1 ||
-                        (now[0].equals("1") &&
-                                (
-                                    given[0].equals("28") ||
-                                    given[0].equals("30") ||
-                                    given[0].equals("31")
-                                )
-                        )
-                ) return caller.getResources().getString(R.string.prettyDayTime_Yesterday) + ", " + given[2];
-            }
-            return given[0] + " " + given[1] + ", " + given[2];
-        }
-        return given[0] + " " + given[1] + ", " + given[2] + ", " + given[3];
     }
 
     ClipRaw deleteItem(int position) {

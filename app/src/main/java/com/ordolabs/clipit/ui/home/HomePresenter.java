@@ -51,8 +51,8 @@ public class HomePresenter<V extends HomeActivity>
 
     @Override
     public void initAnims() {
-        bumpUpShow = AnimationUtils.loadAnimation(mvpView, R.anim.bump_up_show_anim);
-        bumpUpHide = AnimationUtils.loadAnimation(mvpView, R.anim.bump_up_hide_anim);
+        bumpUpShow = AnimationUtils.loadAnimation(mvpView, R.anim.bump_up_show);
+        bumpUpHide = AnimationUtils.loadAnimation(mvpView, R.anim.bump_up_hide);
 
         bumpUpShow.setAnimationListener(new Animation.AnimationListener() {
             @Override public void onAnimationStart(Animation animation) {
@@ -92,9 +92,10 @@ public class HomePresenter<V extends HomeActivity>
         toggleNoClipsContainer();
     }
 
-    public void toggleNoClipsContainer() {
-        if (mvpModel.getClipsCount() == 0)
+    private void toggleNoClipsContainer() {
+        if (mvpModel.getClipsCount() == 0) {
             noClipsContainer.startAnimation(bumpUpShow);
+        }
         else if (noClipsContainer.getVisibility() == View.VISIBLE) {
             noClipsContainer.startAnimation(bumpUpHide);
         }

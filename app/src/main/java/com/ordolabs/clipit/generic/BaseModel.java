@@ -6,7 +6,7 @@ package com.ordolabs.clipit.generic;
 
 public abstract class BaseModel<P extends BasePresenter> {
 
-    private P mvpPresenter;
+    protected P mvpPresenter;
 
     protected abstract void updateData();
 
