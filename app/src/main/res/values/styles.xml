@@ -5,21 +5,22 @@
     <!-- Base theme for application -->
     <style name="AppTheme" parent="@style/Theme.AppCompat.NoActionBar">
         <item name="android:colorPrimaryDark">@color/status_bar</item>
-        <item name="colorPrimary">@color/content_clickable</item>
+        <item name="colorPrimary">@color/content</item>
         <item name="android:windowBackground">@color/background</item>
         <item name="android:navigationBarColor">@color/nav_bar</item>
         <item name="android:actionBarStyle">@style/ToolbarStyle</item>
+        <item name="colorControlHighlight"></item>
 
         <item name="android:colorEdgeEffect">@color/accent_bluish</item>
         <item name="android:textColorSecondary">@color/light1</item>
     </style>
 
-    <!--==================== FRAGMENTS ====================-->
+    <!--==================== PARTS ====================-->
 
     <!-- Toolbar -->
     <style name="ToolbarStyle" parent="@style/Widget.AppCompat.ActionBar.Solid">
         <item name="android:background">@color/toolbar</item>
-        <item name="colorPrimary">@color/content_clickable</item>
+        <item name="colorPrimary">@color/content</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:gravity">center_vertical</item>
     </style>
@@ -72,6 +73,10 @@
     <style name="CustomPopupTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:background">@color/menu_filler</item>
         <item name="android:overlapAnchor">false</item>
+    </style>
+
+    <style name="SelectableItemTheme">
+        <item name="colorControlHighlight">@color/content_ripple</item>
     </style>
 
 </resources>
