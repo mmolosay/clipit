@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="test">#CF1C1C</color>
-
-    <color name="status_bar">#28292e</color> <!--for status bar-->
-    <color name="toolbar">#32343a</color> <!--for toolbar-->
-    <color name="background">#222429</color> <!--for activity background-->
-    <color name="nav_bar">#28282C</color> <!--for navigation bar (if it presents)-->
+    <color name="status_bar">#1a242e</color> <!--for status bar-->
+    <color name="toolbar">#212d3b</color> <!--for toolbar-->
+    <color name="background">#151c27</color> <!--for activity background-->
+    <color name="nav_bar">#0c1218</color> <!--for navigation bar (if it presents)-->
 
     <color name="light1">#f0f8ff</color>
     <color name="light2">#B9BBBD</color>
     <color name="light3">#777879</color>
-    <color name="middle_gray">#424242</color>
+    <color name="light4">#424242</color>
 
     <color name="accent_bluish">#7B9197</color>
-    <color name="accent_blue">#8BC1CF</color>
-    <color name="accent_red">#A84747</color>
+    <color name="accent_blue">#4c6b81</color>
+    <color name="accent_red">#8b313c</color>
 
-    <color name="content_clickable">#32343a</color>
+    <color name="content">#1d2733</color>
+    <color name="content_ripple">#36768495</color>
 
     <color name="opac_filler">#4067717C</color>
     <color name="list_driver">#4D5255</color>
