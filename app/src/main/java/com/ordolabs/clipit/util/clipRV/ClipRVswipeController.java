@@ -37,12 +37,11 @@ public class ClipRVswipeController extends Callback {
     private ClipRaw clipRemoved;
     private int clipPos;
 
-    private final float DELETE_ICON_SCALE = 1.75f;
+    private final float DELETE_ICON_SCALE = 1.5f;
     private int iconW;
     private int iconH;
     private int iconCenteringOffset;
     private int iconMargin;
-    private float swipeBGradius;
     private int alphaBG;
 
     public ClipRVswipeController(ClipRVadapter adapter, HomeModel attachedModel) {
@@ -66,12 +65,6 @@ public class ClipRVswipeController extends Callback {
 
         this.paint = new Paint();
         this.paint.setColor(ContextCompat.getColor(App.getContext(), R.color.accent_red));
-
-        this.swipeBGradius = TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                2,
-                App.getContext().getResources().getDisplayMetrics()
-        );
     }
 
     @Override
@@ -195,7 +188,7 @@ public class ClipRVswipeController extends Callback {
             paint.setAlpha(alphaBG);
         }
 
-        c.drawRoundRect(swipeBG, swipeBGradius, swipeBGradius, paint);
+        c.drawRect(swipeBG, paint);
         icon.draw(c);
 
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
