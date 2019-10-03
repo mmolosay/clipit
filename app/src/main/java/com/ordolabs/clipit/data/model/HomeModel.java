@@ -1,8 +1,11 @@
 package com.ordolabs.clipit.data.model;
 
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
+import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.db.RealmDealer;
 import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
 import com.ordolabs.clipit.generic.BaseModel;
@@ -13,6 +16,7 @@ import com.ordolabs.clipit.ui.home.HomePresenter;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 import io.realm.RealmResults;
 
@@ -27,6 +31,15 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> {
 
     public HomeModel(P mvpPresenter, RecyclerView rv) {
         attachPresenter(mvpPresenter);
+
+        DividerItemDecoration divider = new DividerItemDecoration(
+                mvpPresenter.getView(), DividerItemDecoration.VERTICAL
+        );
+        divider.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(
+                mvpPresenter.getView(),
+                R.drawable.rv_divider_decoration
+        )));
+        rv.addItemDecoration(divider);
 
         this.adapter = new ClipRVadapter(
                 getClipsReversed(),
