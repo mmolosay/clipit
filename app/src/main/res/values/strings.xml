@@ -4,8 +4,9 @@
     <!--==================== ACTIVITIES ====================-->
     <string name="homeNoClipsInfo">Seems like this category is empty. Copy something into your clipboard or add a new clip!</string>
 
-    <!--==================== TITLES ====================-->
+    <!--==================== TOOLBARS ====================-->
     <string name="homeToolbarTitle">Your clips</string>
+    <string name="clipToolbarTitile">Clip viewing</string>
     <string name="editToolbarTitle">Clip editing</string>
     <string name="categoryToolbarTitle">Categories</string>
 

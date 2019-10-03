@@ -24,7 +24,7 @@
             android:orientation="vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:visibility="gone" >
+            android:layoutAnimation="@anim/bump_up_show_layout">
 
             <ImageView
                 android:id="@+id/homeNoCLipsImg"
@@ -52,7 +52,7 @@
                 android:scrollbars="vertical"
                 android:paddingBottom="6dp"
                 android:clipToPadding="false"
-                android:layoutAnimation="@anim/bump_up_show_layout_anim" />
+                android:layoutAnimation="@anim/bump_up_show_layout" />
 
     </RelativeLayout>
 

@@ -22,7 +22,7 @@
             android:scrollbars="vertical"
             android:paddingBottom="6dp"
             android:clipToPadding="false"
-            android:layoutAnimation="@anim/bump_up_show_layout_anim" />
+            android:layoutAnimation="@anim/bump_up_show_layout" />
 
     </LinearLayout>
 
