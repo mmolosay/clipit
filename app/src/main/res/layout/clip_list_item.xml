@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="3dp"
-    android:background="@drawable/rv_item_box_rounded"
+    android:background="@color/content"
     android:clickable="true"
     android:elevation="1dp"
     android:focusable="true"
@@ -28,7 +27,7 @@
         android:paddingBottom="8dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:baselineAligned="true">
@@ -43,14 +42,26 @@
                 android:maxLines="1" />
 
             <TextView
+                android:id="@+id/RVclipsItemDateTime"
+                style="@style/SubInfoTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="end|center_vertical" />
+
+        </LinearLayout>
+
+            <TextView
                 android:id="@+id/RVclipsItemBody"
                 style="@style/SecondaryTextStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:minLines="3"
                 android:maxLines="3"
-                android:textSize="14sp" />
-
-        </LinearLayout>
+                android:fontFamily="sans-serif-thin"
+                android:textStyle="bold"
+                android:textSize="15sp" />
 
     </LinearLayout>
 

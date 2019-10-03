@@ -6,11 +6,11 @@
     <color name="nav_bar">#0c1218</color> <!--for navigation bar (if it presents)-->
 
     <color name="light1">#f0f8ff</color>
-    <color name="light2">#B9BBBD</color>
+    <color name="light2">#8D949B</color>
     <color name="light3">#777879</color>
     <color name="light4">#424242</color>
 
-    <color name="accent_bluish">#7B9197</color>
+    <color name="accent_bluish">#7299A3</color>
     <color name="accent_blue">#4c6b81</color>
     <color name="accent_red">#8b313c</color>
 
