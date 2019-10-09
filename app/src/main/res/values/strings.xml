@@ -14,7 +14,7 @@
     <string name="homeNoClipsImgDescription">Empty folder image.</string>
 
     <!--==================== TOASTS ====================-->
-    <string name="autorunRequiredToast">Please, turn ON autorun for \"ClipIt!\" to keep it working even if app is closed</string>
+    <string name="autorunRequiredToast">Please, turn ON autorun for \"ClipIt!\" to keep it working when app is closed</string>
     <string name="clipCopiedToClipBoardToast">Clip copied to clipboard</string>
 
     <!--==================== MENU ====================-->
