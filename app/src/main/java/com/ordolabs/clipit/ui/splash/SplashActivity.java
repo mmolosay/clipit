@@ -11,10 +11,10 @@ import android.widget.Toast;
 
 import com.ordolabs.clipit.App;
 import com.ordolabs.clipit.R;
-import com.ordolabs.clipit.data.db.RealmDealer;
+import com.ordolabs.clipit.data.realm.RealmDealer;
 import com.ordolabs.clipit.ui.home.HomeActivity;
 
-import static com.ordolabs.clipit.data.db.RealmDealer.deleteMarkedClips;
+import static com.ordolabs.clipit.data.realm.RealmDealer.deleteMarkedClips;
 
 /**
  * Created by ordogod on 23.05.19.
@@ -40,7 +40,7 @@ public class SplashActivity extends AppCompatActivity {
         deleteMarkedClips();
 
         startActivity(new Intent(this, HomeActivity.class));
-        finish(); // removes current from activities stack
+        finish(); // removefrom activities stack
     }
 
     private void checkAutorun() {

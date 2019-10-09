@@ -10,12 +10,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper.Callback;
-import android.util.TypedValue;
 import android.view.View;
 
 import com.ordolabs.clipit.App;
 import com.ordolabs.clipit.R;
-import com.ordolabs.clipit.data.db.RealmDealer;
+import com.ordolabs.clipit.data.realm.RealmDealer;
 import com.ordolabs.clipit.data.model.HomeModel;
 
 import static android.support.v7.widget.helper.ItemTouchHelper.*;
@@ -64,7 +63,7 @@ public class ClipRVswipeController extends Callback {
         this.swipeBG = new RectF();
 
         this.paint = new Paint();
-        this.paint.setColor(ContextCompat.getColor(App.getContext(), R.color.accent_red));
+        this.paint.setColor(ContextCompat.getColor(App.getContext(), R.color.accentRedish));
     }
 
     @Override

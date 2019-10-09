@@ -3,9 +3,9 @@ package com.ordolabs.clipit.data.model;
 import android.support.v7.widget.RecyclerView;
 
 import com.ordolabs.clipit.data.C;
-import com.ordolabs.clipit.data.db.RealmDealer;
-import com.ordolabs.clipit.data.db.realm_objects.CategoryObject;
-import com.ordolabs.clipit.generic.BaseModel;
+import com.ordolabs.clipit.data.realm.RealmDealer;
+import com.ordolabs.clipit.data.realm.object.CategoryObject;
+import com.ordolabs.clipit.common.BaseModel;
 import com.ordolabs.clipit.util.categoryRV.CategoryRVadapter;
 import com.ordolabs.clipit.util.categoryRV.CategoryRaw;
 import com.ordolabs.clipit.ui.category.CategoryPresenter;

@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 
 
-import com.ordolabs.clipit.data.service.ClipboardListenerService;
-
 import java.util.Objects;
 
 /**

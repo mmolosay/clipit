@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.C;
-import com.ordolabs.clipit.data.db.RealmDealer;
+import com.ordolabs.clipit.data.realm.RealmDealer;
 import com.ordolabs.clipit.ui.clip.ClipActivity;
 
 import java.util.ArrayList;
@@ -82,7 +82,7 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
             // doesn't work from xml file (android:layoutAnimation="...")
             Animation anim = AnimationUtils.loadAnimation(
                     caller,
-                    R.anim.rv_item_driver_mark_scale_hide_left
+                    R.anim.scale_left_hide
             );
 
             // hide driver mark at the end of animation

@@ -6,9 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
 import com.ordolabs.clipit.R;
-import com.ordolabs.clipit.data.db.RealmDealer;
-import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
-import com.ordolabs.clipit.generic.BaseModel;
+import com.ordolabs.clipit.data.realm.RealmDealer;
+import com.ordolabs.clipit.data.realm.object.ClipObject;
+import com.ordolabs.clipit.common.BaseModel;
 import com.ordolabs.clipit.util.clipRV.ClipRaw;
 import com.ordolabs.clipit.util.clipRV.ClipRVadapter;
 import com.ordolabs.clipit.util.clipRV.ClipRVswipeController;
