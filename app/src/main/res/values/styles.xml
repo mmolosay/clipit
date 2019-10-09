@@ -1,45 +1,51 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!--==================== APP THEME ====================-->
+    <!--~~~~~~~~~~~~~~~~~~~~ APP THEME ~~~~~~~~~~~~~~~~~~~~-->
 
-    <!-- Base theme for application -->
-    <style name="AppTheme" parent="@style/Theme.AppCompat.NoActionBar">
-        <item name="android:colorPrimaryDark">@color/status_bar</item>
-        <item name="colorPrimary">@color/content</item>
+    <!-- Base application theme -->
+    <style name="Theme.ClipIt.Dark" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="android:statusBarColor">@color/actionBar</item>
         <item name="android:windowBackground">@color/background</item>
-        <item name="android:navigationBarColor">@color/nav_bar</item>
-        <item name="android:actionBarStyle">@style/ToolbarStyle</item>
-        <item name="colorControlHighlight"></item>
+        <item name="android:navigationBarColor">@color/navBar</item>
 
-        <item name="android:colorEdgeEffect">@color/accent_bluish</item>
-        <item name="android:textColorSecondary">@color/light1</item>
+        <item name="actionBarStyle">@style/Widget.ClipIt.ActionBarStyle</item>
+        <item name="actionBarTheme">@style/Widget.ClipIt.ActionBarTheme</item>
+
+        <item name="colorControlHighlight">@color/itemRipple</item>
+        <item name="android:colorEdgeEffect">@color/opacFiller</item>
+
     </style>
 
-    <!--==================== PARTS ====================-->
+    <!--~~~~~~~~~~~~~~~~~~~~ ACTION BAR ~~~~~~~~~~~~~~~~~~~~-->
 
-    <!-- Toolbar -->
-    <style name="ToolbarStyle" parent="@style/Widget.AppCompat.ActionBar.Solid">
-        <item name="android:background">@color/toolbar</item>
-        <item name="colorPrimary">@color/content</item>
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:gravity">center_vertical</item>
+    <style name="Widget.ClipIt.ActionBarStyle" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="background">@color/statusBar</item>
+        <item name="colorControlNormal">@color/textPrimary</item>
+        <item name="titleTextStyle">@style/Widget.ClipIt.ActionBarStyle.TitleTextStyle</item>
     </style>
 
-    <!-- Splash screen -->
-    <style name="SplashScreenTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
+    <style name="Widget.ClipIt.ActionBarStyle.TitleTextStyle"
+           parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+
+        <item name="android:textColor">@color/textPrimary</item>
+
     </style>
 
-    <!--==================== TEXT STYLES ====================-->
+    <style name="Widget.ClipIt.ActionBarTheme" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorControlNormal">@color/textPrimary</item>
+    </style>
+
+    <!--~~~~~~~~~~~~~~~~~~~~ TEXT STYLES ~~~~~~~~~~~~~~~~~~~~-->
 
     <style name="PrimaryTextStyle">
-        <item name="android:textColor">@color/light1</item>
+        <item name="android:textColor">@color/textPrimary</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <style name="SecondaryTextStyle">
-        <item name="android:textColor">@color/light2</item>
+        <item name="android:textColor">@color/textSecondary</item>
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
@@ -50,33 +56,38 @@
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
-    <style name="SubInfoTextStyle" parent="android:Widget.TextView">
-        <item name="android:textColor">@color/light3</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:fontFamily">sans-serif</item>
-    </style>
-
-    <style name="AccentTextStyle" parent="android:Widget.TextView">
-        <item name="android:textColor">@color/accent_blue</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:fontFamily">sans-serif</item>
-    </style>
-
     <style name="TitleTextStyle" parent="android:Widget.TextView">
-        <item name="android:textColor">@color/light1</item>
+        <item name="android:textColor">@color/textPrimary</item>
         <item name="android:textSize">21sp</item>
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
-    <!--==================== STUFF ====================-->
+    <style name="SubInfoTextStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/light3</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="AccentTextStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/accentBlue</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <!--~~~~~~~~~~~~~~~~~~~~ STUFF ~~~~~~~~~~~~~~~~~~~~-->
+
+    <style name="Theme.ClipIt.SplashScreen" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
 
     <style name="CustomPopupTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:background">@color/menu_filler</item>
+        <item name="android:background">@color/menuFiller</item>
         <item name="android:overlapAnchor">false</item>
     </style>
 
+    <!-- use with android:foreground="?android:attr/selectableItemBackground" -->
     <style name="SelectableItemTheme">
-        <item name="colorControlHighlight">@color/content_ripple</item>
+        <item name="colorControlHighlight">@color/itemRipple</item>
     </style>
 
 </resources>
