@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data.db;
+package com.ordolabs.clipit.data.realm;
 
 import com.ordolabs.clipit.App;
 

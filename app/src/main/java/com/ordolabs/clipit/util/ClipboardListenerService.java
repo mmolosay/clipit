@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.data.service;
+package com.ordolabs.clipit.util;
 
 import android.app.Service;
 import android.content.ClipboardManager;
@@ -8,8 +8,7 @@ import android.os.IBinder;
 import android.support.annotation.NonNull;
 
 import com.ordolabs.clipit.data.C;
-import com.ordolabs.clipit.data.db.RealmDealer;
-import com.ordolabs.clipit.util.ServiceAwakenerBR;
+import com.ordolabs.clipit.data.realm.RealmDealer;
 
 /**
  * Created by ordogod on 17.06.19.

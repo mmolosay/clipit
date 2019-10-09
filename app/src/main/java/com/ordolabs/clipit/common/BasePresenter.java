@@ -1,4 +1,4 @@
-package com.ordolabs.clipit.generic;
+package com.ordolabs.clipit.common;
 
 import android.support.v7.app.AppCompatActivity;
 

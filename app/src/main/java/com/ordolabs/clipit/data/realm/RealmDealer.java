@@ -1,11 +1,11 @@
-package com.ordolabs.clipit.data.db;
+package com.ordolabs.clipit.data.realm;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.ordolabs.clipit.BuildConfig;
-import com.ordolabs.clipit.data.db.realm_objects.CategoryObject;
-import com.ordolabs.clipit.data.db.realm_objects.ClipObject;
+import com.ordolabs.clipit.data.realm.object.CategoryObject;
+import com.ordolabs.clipit.data.realm.object.ClipObject;
 import com.ordolabs.clipit.util.categoryRV.CategoryRaw;
 
 import java.util.ArrayList;
@@ -100,7 +100,7 @@ public class RealmDealer {
     //============================== CATEGORIES ==============================//
 
     public static void createCategoryObject(@NonNull final String name,
-                                            final boolean isDefault) {
+                                                     final boolean isDefault) {
         RealmHolder.i().executeTransaction(realm -> {
             CategoryObject category = RealmHolder.i().createObject(
                     CategoryObject.class,
