@@ -5,6 +5,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -14,10 +15,9 @@ import android.widget.Toast;
 
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.C;
-import com.ordolabs.clipit.data.db.RealmDealer;
+import com.ordolabs.clipit.data.realm.RealmDealer;
 import com.ordolabs.clipit.data.model.ClipModel;
-import com.ordolabs.clipit.generic.AdvancedToolbar;
-import com.ordolabs.clipit.generic.BasePresenter;
+import com.ordolabs.clipit.common.BasePresenter;
 import com.ordolabs.clipit.ui.edit.EditActivity;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
@@ -27,13 +27,13 @@ import static android.content.Context.CLIPBOARD_SERVICE;
  **/
 
 public class ClipPresenter<V extends ClipActivity>
-        extends BasePresenter<V> implements AdvancedToolbar {
+        extends BasePresenter<V> {
 
     private ClipModel<ClipPresenter> mvpModel;
 
-    private Toolbar toolbar;
-    private TextView titleTextView;
-    private TextView bodyTextView;
+    private ActionBar actionBar;
+    private TextView titleView;
+    private TextView bodyView;
     private ScrollView scrollView;
 
     ClipPresenter(V mvpView) {
@@ -46,18 +46,20 @@ public class ClipPresenter<V extends ClipActivity>
 
     @Override
     protected void initViews() {
-        toolbar = mvpView.findViewById(R.id.clipToolbar);
+        actionBar = mvpView.getSupportActionBar();
 
-        titleTextView = mvpView.findViewById(R.id.clipTitleText);
-        bodyTextView = mvpView.findViewById(R.id.clipBodyText);
+        titleView = mvpView.findViewById(R.id.clipTitleText);
+        bodyView = mvpView.findViewById(R.id.clipBodyText);
 
         scrollView = mvpView.findViewById(R.id.clipScrollView);
     }
 
     @Override
     protected void prepareViews() {
-        AdvancedToolbar.prepareToolbar(mvpView, toolbar);
-        toolbar.setNavigationOnClickListener(v -> mvpView.finish());
+        if (actionBar != null) {
+            actionBar.setTitle(mvpModel.makeActivityTitle());
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -75,14 +77,14 @@ public class ClipPresenter<V extends ClipActivity>
 
     private void toggleTitleOnEmpty() {
         if (mvpModel.getClip().getTitle() != null)
-            titleTextView.setVisibility(View.VISIBLE);
+            titleView.setVisibility(View.VISIBLE);
         else
-            titleTextView.setVisibility(View.GONE);
+            titleView.setVisibility(View.GONE);
     }
 
     private void updateAllText() {
-        titleTextView.setText(mvpModel.getClip().getTitle());
-        bodyTextView.setText(mvpModel.getClip().getBody());
+        titleView.setText(mvpModel.getClip().getTitle());
+        bodyView.setText(mvpModel.getClip().getBody());
         assert (mvpView.getSupportActionBar() != null);
         mvpView.getSupportActionBar().setTitle(mvpModel.makeActivityTitle());
     }

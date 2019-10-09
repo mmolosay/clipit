@@ -13,8 +13,7 @@ import android.widget.TextView;
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.model.EditModel;
-import com.ordolabs.clipit.generic.AdvancedToolbar;
-import com.ordolabs.clipit.generic.BasePresenter;
+import com.ordolabs.clipit.common.BasePresenter;
 import com.ordolabs.clipit.ui.home.HomeActivity;
 
 /**
@@ -22,7 +21,7 @@ import com.ordolabs.clipit.ui.home.HomeActivity;
  **/
 
 public class EditPresenter<V extends EditActivity>
-        extends BasePresenter<V> implements AdvancedToolbar {
+        extends BasePresenter<V> {
 
     private EditModel<EditPresenter> mvpModel;
 
@@ -31,8 +30,8 @@ public class EditPresenter<V extends EditActivity>
     private EditText titleEdit;
     private EditText bodyEdit;
 
-    private TextView titleSymbolsCount;
-    private TextView bodySymbolsCount;
+    private TextView titleSymbCountView;
+    private TextView bodySymbCountView;
 
     private int accentBlue;
     private int accentRed;
@@ -42,8 +41,8 @@ public class EditPresenter<V extends EditActivity>
     EditPresenter(V mvpView) {
         attachView(mvpView);
 
-        accentBlue = mvpView.getResources().getColor(R.color.accent_blue);
-        accentRed = mvpView.getResources().getColor(R.color.accent_red);
+        accentBlue = mvpView.getResources().getColor(R.color.accentBlue);
+        accentRed = mvpView.getResources().getColor(R.color.accentRedish);
 
         initViews();
         mvpModel = new EditModel<>(this);
@@ -52,18 +51,16 @@ public class EditPresenter<V extends EditActivity>
 
     @Override
     protected void initViews() {
-        toolbar = mvpView.findViewById(R.id.editToolbar);
-
         titleEdit = mvpView.findViewById(R.id.editTitle);
         bodyEdit = mvpView.findViewById(R.id.editBody);
 
-        titleSymbolsCount = mvpView.findViewById(R.id.editTitleSymbolsCount);
-        bodySymbolsCount = mvpView.findViewById(R.id.editBodySymbolsCount);
+        titleSymbCountView = mvpView.findViewById(R.id.editTitleSymbolsCount);
+        bodySymbCountView = mvpView.findViewById(R.id.editBodySymbolsCount);
     }
 
     @Override
     protected void prepareViews() {
-        AdvancedToolbar.prepareToolbar(mvpView, toolbar);
+//        AdvancedToolbar.prepareToolbar(mvpView, toolbar);
         toolbar.setNavigationOnClickListener(v -> onMenuBack());
 
         prepareEditTexts();
@@ -118,11 +115,11 @@ public class EditPresenter<V extends EditActivity>
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (titleEdit.getText().length() == C.EDIT_MAX_TITLE_SYMBOLS)
-                    titleSymbolsCount.setTextColor(accentRed);
-                else if (titleSymbolsCount.getCurrentTextColor() != accentBlue)
-                    titleSymbolsCount.setTextColor(accentBlue);
+                    titleSymbCountView.setTextColor(accentRed);
+                else if (titleSymbCountView.getCurrentTextColor() != accentBlue)
+                    titleSymbCountView.setTextColor(accentBlue);
 
-                titleSymbolsCount.setText(titleEdit.getText().length() + "/" + C.EDIT_MAX_TITLE_SYMBOLS);
+                titleSymbCountView.setText(titleEdit.getText().length() + "/" + C.EDIT_MAX_TITLE_SYMBOLS);
                 wasEdited = true;
             }
 
@@ -138,11 +135,11 @@ public class EditPresenter<V extends EditActivity>
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (bodyEdit.getText().length() == C.EDIT_MAX_BODY_SYMBOLS)
-                    bodySymbolsCount.setTextColor(accentRed);
-                else if (bodySymbolsCount.getCurrentTextColor() != accentBlue)
-                    bodySymbolsCount.setTextColor(accentBlue);
+                    bodySymbCountView.setTextColor(accentRed);
+                else if (bodySymbCountView.getCurrentTextColor() != accentBlue)
+                    bodySymbCountView.setTextColor(accentBlue);
 
-                bodySymbolsCount.setText(bodyEdit.getText().length() + "/" + C.EDIT_MAX_BODY_SYMBOLS);
+                bodySymbCountView.setText(bodyEdit.getText().length() + "/" + C.EDIT_MAX_BODY_SYMBOLS);
                 wasEdited = true;
             }
 
@@ -153,7 +150,7 @@ public class EditPresenter<V extends EditActivity>
 
     @SuppressLint("SetTextI18n") // fake warning, it's all OK
     private void prepareTextViews() {
-        titleSymbolsCount.setText(titleEdit.getText().length() + "/" + C.EDIT_MAX_TITLE_SYMBOLS);
-        bodySymbolsCount.setText(bodyEdit.getText().length() + "/" + C.EDIT_MAX_BODY_SYMBOLS);
+        titleSymbCountView.setText(titleEdit.getText().length() + "/" + C.EDIT_MAX_TITLE_SYMBOLS);
+        bodySymbCountView.setText(bodyEdit.getText().length() + "/" + C.EDIT_MAX_BODY_SYMBOLS);
     }
 }

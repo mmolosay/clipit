@@ -1,19 +1,19 @@
 package com.ordolabs.clipit.ui.home;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import com.ordolabs.clipit.R;
-import com.ordolabs.clipit.data.service.ClipboardListenerService;
+import com.ordolabs.clipit.util.ClipboardListenerService;
 import com.ordolabs.clipit.data.model.HomeModel;
-import com.ordolabs.clipit.generic.Animatable;
-import com.ordolabs.clipit.generic.BasePresenter;
+import com.ordolabs.clipit.common.Animatable;
+import com.ordolabs.clipit.common.BasePresenter;
 import com.ordolabs.clipit.ui.category.CategoryActivity;
 
 /**
@@ -25,7 +25,7 @@ public class HomePresenter<V extends HomeActivity>
 
     private HomeModel<HomePresenter> mvpModel;
 
-    private Toolbar toolbar;
+    private ActionBar actionBar;
     private LinearLayout noClipsContainer;
     private RecyclerView clipsRV;
 
@@ -44,15 +44,16 @@ public class HomePresenter<V extends HomeActivity>
 
     @Override
     protected void initViews() {
-        toolbar = mvpView.findViewById(R.id.homeToolbar);
+        actionBar = mvpView.getSupportActionBar();
+
         noClipsContainer = mvpView.findViewById(R.id.homeNoClipsContainer);
         clipsRV = mvpView.findViewById(R.id.homeClipsRV);
     }
 
     @Override
     public void initAnims() {
-        bumpUpShow = AnimationUtils.loadAnimation(mvpView, R.anim.bump_up_show);
-        bumpUpHide = AnimationUtils.loadAnimation(mvpView, R.anim.bump_up_hide);
+        bumpUpShow = AnimationUtils.loadAnimation(mvpView, R.anim.bump_show);
+        bumpUpHide = AnimationUtils.loadAnimation(mvpView, R.anim.bump_hide);
 
         bumpUpShow.setAnimationListener(new Animation.AnimationListener() {
             @Override public void onAnimationStart(Animation animation) {
@@ -72,10 +73,9 @@ public class HomePresenter<V extends HomeActivity>
 
     @Override
     protected void prepareViews() {
-        mvpView.setSupportActionBar(toolbar);
-        assert mvpView.getSupportActionBar() != null;
-
-        mvpView.getSupportActionBar().setTitle(R.string.homeToolbarTitle);
+        if (actionBar != null) {
+            actionBar.setTitle(R.string.homeToolbarTitle);
+        }
 
         clipsRV.setLayoutManager(new LinearLayoutManager(mvpView));
         clipsRV.setAdapter(mvpModel.getRVadapter());
