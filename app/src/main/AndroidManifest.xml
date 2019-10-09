@@ -11,11 +11,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/appName"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/Theme.ClipIt.Dark"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"> <!-- TODO: delete before release -->
 
         <service
-            android:name=".data.service.ClipboardListenerService"
+            android:name=".util.ClipboardListenerService"
             android:enabled="true"
             android:process=":ClipboardListenerServiceProcess"/>
 
@@ -33,7 +33,7 @@
 
         <activity
             android:name=".ui.splash.SplashActivity"
-            android:theme="@style/SplashScreenTheme">
+            android:theme="@style/Theme.ClipIt.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
