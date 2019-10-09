@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="status_bar">#1a242e</color> <!--for status bar-->
-    <color name="toolbar">#212d3b</color> <!--for toolbar-->
+    <color name="statusBar">#212d3b</color> <!--for status bar-->
+    <color name="actionBar">#1a242e</color> <!--for toolbar (action bar)-->
     <color name="background">#151c27</color> <!--for activity background-->
-    <color name="nav_bar">#0c1218</color> <!--for navigation bar (if it presents)-->
+    <color name="navBar">#0c1218</color> <!--for navigation bar (if it presents)-->
 
-    <color name="light1">#f0f8ff</color>
-    <color name="light2">#8D949B</color>
+    <color name="textPrimary">#f0f8ff</color>
+    <color name="textSecondary">#8D949B</color>
     <color name="light3">#777879</color>
     <color name="light4">#424242</color>
 
-    <color name="accent_bluish">#7299A3</color>
-    <color name="accent_blue">#4c6b81</color>
-    <color name="accent_red">#8b313c</color>
+    <color name="accentBluish">#7299A3</color>
+    <color name="accentBlue">#4c6b81</color>
+    <color name="accentRedish">#8b313c</color>
 
-    <color name="content">#1d2733</color>
-    <color name="content_ripple">#36768495</color>
+    <color name="itemBackground">#1d2733</color>
+    <color name="itemRipple">#36718099</color>
 
-    <color name="opac_filler">#4067717C</color>
-    <color name="list_driver">#4D5255</color>
-    <color name="menu_filler">#28282B</color>
+    <color name="opacFiller">#40546A83</color>
+    <color name="listDriver">#4D5255</color>
+    <color name="menuFiller">#28282B</color>
 </resources>
