@@ -6,10 +6,6 @@
     android:orientation="vertical"
     tools:context=".ui.category.CategoryActivity">
 
-    <include
-        android:id="@+id/categoryToolbar"
-        layout="@layout/toolbar"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,8 +17,7 @@
             android:layout_height="match_parent"
             android:scrollbars="vertical"
             android:paddingBottom="6dp"
-            android:clipToPadding="false"
-            android:layoutAnimation="@anim/bump_up_show_layout" />
+            android:clipToPadding="false" />
 
     </LinearLayout>
 

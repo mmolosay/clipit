@@ -6,10 +6,6 @@
     android:orientation="vertical"
     tools:context=".ui.clip.ClipActivity">
 
-    <include
-        android:id="@+id/clipToolbar"
-        layout="@layout/toolbar" />
-
         <ScrollView
             android:id="@+id/clipScrollView"
             android:layout_width="match_parent"

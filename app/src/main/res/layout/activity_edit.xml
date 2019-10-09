@@ -6,10 +6,6 @@
     android:orientation="vertical"
     tools:context=".ui.edit.EditActivity">
 
-    <include
-        android:id="@+id/editToolbar"
-        layout="@layout/toolbar" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,9 +20,7 @@
             android:paddingEnd="8dp"
             android:paddingBottom="8dp"
             android:baselineAligned="false"
-            android:focusable="true"
-            android:descendantFocusability="afterDescendants"
-            android:focusableInTouchMode="true">
+            android:descendantFocusability="afterDescendants">
 
             <TextView
                 android:id="@+id/editTitleLabel"
@@ -43,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/editTitleHint"
                 android:inputType="textAutoCorrect|textCapSentences"
-                android:backgroundTint="@color/accent_blue"
+                android:backgroundTint="@color/accentBlue"
                 style="@style/PrimaryTextStyle" />
 
             <TextView
@@ -54,9 +48,9 @@
                 android:text=""
                 android:layout_marginBottom="10dp"
                 android:layout_marginEnd="1dp"
-                android:textColor="@color/accent_blue"
-                style="@style/AccentTextStyle"
-                android:fontFamily="sans-serif-light" />
+                android:textColor="@color/accentBlue"
+                style="@style/SubInfoTextStyle" />
+
 
             <TextView
                 android:id="@+id/editBodyLabel"
@@ -74,7 +68,7 @@
                 android:layout_weight="1"
                 android:hint="@string/editBodyHint"
                 android:inputType="textAutoCorrect|textCapSentences|textMultiLine"
-                android:backgroundTint="@color/accent_blue"
+                android:backgroundTint="@color/accentBlue"
                 style="@style/PrimaryTextStyle"
                 android:textSize="16sp"/>
 
@@ -86,9 +80,8 @@
                 android:text=""
                 android:layout_marginBottom="10dp"
                 android:layout_marginEnd="1dp"
-                android:textColor="@color/accent_blue"
-                style="@style/AccentTextStyle"
-                android:fontFamily="sans-serif-light"/>
+                android:textColor="@color/accentBlue"
+                style="@style/SubInfoTextStyle"/>
 
         </LinearLayout>
 
