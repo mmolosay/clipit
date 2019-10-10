@@ -89,7 +89,7 @@ public class ClipRVswipeController extends Callback {
     {
         clipPos = viewHolder.getAdapterPosition();
         clipRemoved = adapter.deleteItem(clipPos);
-        RealmDealer.markClipRemoved(clipPos, true);
+        RealmDealer.markClipRemoved(clipRemoved.id, true);
         attachedModel.getPresenter().updateViews();
 
         Snackbar
@@ -100,7 +100,7 @@ public class ClipRVswipeController extends Callback {
             )
             .setAction(
                 R.string.clipDeleteSnackbarAction, v -> {
-                    RealmDealer.markClipRemoved(clipPos, false);
+                    RealmDealer.markClipRemoved(clipRemoved.id, false);
                     adapter.restoreItem(clipPos, clipRemoved);
                     attachedModel.getPresenter().updateViews();
                 }

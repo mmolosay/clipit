@@ -2,8 +2,8 @@ package com.ordolabs.clipit.ui.edit;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -25,7 +25,7 @@ public class EditPresenter<V extends EditActivity>
 
     private EditModel<EditPresenter> mvpModel;
 
-    private Toolbar toolbar;
+    private ActionBar actionBar;
 
     private EditText titleEdit;
     private EditText bodyEdit;
@@ -51,6 +51,8 @@ public class EditPresenter<V extends EditActivity>
 
     @Override
     protected void initViews() {
+        actionBar = mvpView.getSupportActionBar();
+
         titleEdit = mvpView.findViewById(R.id.editTitle);
         bodyEdit = mvpView.findViewById(R.id.editBody);
 
@@ -60,8 +62,10 @@ public class EditPresenter<V extends EditActivity>
 
     @Override
     protected void prepareViews() {
-//        AdvancedToolbar.prepareToolbar(mvpView, toolbar);
-        toolbar.setNavigationOnClickListener(v -> onMenuBack());
+        if (actionBar != null) {
+            actionBar.setTitle(R.string.editToolbarTitle);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         prepareEditTexts();
         prepareTextViews();
@@ -77,8 +81,11 @@ public class EditPresenter<V extends EditActivity>
         //
     }
 
-    private void onMenuBack() {
-        if (wasEdited == false) mvpView.finish();
+    boolean onMenuBack() {
+        if (wasEdited == false) {
+            mvpView.finish();
+            return true;
+        }
         else
             new AlertDialog.Builder(mvpView)
                 .setTitle(R.string.alertDialogEditTitle)
@@ -90,6 +97,8 @@ public class EditPresenter<V extends EditActivity>
                 })
                 .setNegativeButton(R.string.alertDialogEditNegative, null)
                 .show();
+
+        return false;
     }
 
     void onMenuDone() {

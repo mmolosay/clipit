@@ -12,16 +12,16 @@ import com.ordolabs.clipit.ui.edit.EditPresenter;
 
 public class EditModel<P extends EditPresenter> extends BaseModel<P> {
 
-    private int clipPos;
+    private int clipID;
     private ClipObject clip;
 
     public EditModel(P mvpPresenter) {
         attachPresenter(mvpPresenter);
 
-        this.clipPos = mvpPresenter
+        this.clipID = mvpPresenter
                 .getView().getIntent()
-                .getIntExtra(C.EXTRA_CLIP_POSITION, -1);
-        this.clip = RealmDealer.getClipReversed(clipPos);
+                .getIntExtra(C.EXTRA_CLIP_ID, -1);
+        this.clip = RealmDealer.getClip(clipID);
     }
 
     public ClipObject getClip() {
@@ -34,16 +34,6 @@ public class EditModel<P extends EditPresenter> extends BaseModel<P> {
     }
 
     public void rewriteClip(String title, String body) {
-        RealmDealer.editClip(clipPos, title, body);
-    }
-
-    @Override
-    public void attachPresenter(P mvpPresenter) {
-        super.attachPresenter(mvpPresenter);
-    }
-
-    @Override
-    public P getPresenter() {
-        return super.getPresenter();
+        RealmDealer.editClip(clipID, title, body);
     }
 }

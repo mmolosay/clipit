@@ -13,16 +13,16 @@ import com.ordolabs.clipit.ui.clip.ClipPresenter;
 
 public class ClipModel<P extends ClipPresenter> extends BaseModel<P> {
 
-    private int clipPos;
+    private int clipID;
     private ClipObject clip;
 
     public ClipModel(P mvpPresenter) {
         attachPresenter(mvpPresenter);
 
-        this.clipPos = mvpPresenter
+        this.clipID = mvpPresenter
                 .getView().getIntent()
-                .getIntExtra(C.EXTRA_CLIP_POSITION, -1);
-        this.clip = RealmDealer.getClipReversed(clipPos);
+                .getIntExtra(C.EXTRA_CLIP_ID, -1);
+        this.clip = RealmDealer.getClip(clipID);
     }
 
     public String makeActivityTitle() {
@@ -39,10 +39,10 @@ public class ClipModel<P extends ClipPresenter> extends BaseModel<P> {
 
     @Override
     public void updateData() {
-        this.clip = RealmDealer.getClipReversed(clipPos);
+        this.clip = RealmDealer.getClip(clipID);
     }
 
-    public int getClipPos() {
-        return clipPos;
+    public int getClipID() {
+        return clipID;
     }
 }

@@ -3,7 +3,6 @@ package com.ordolabs.clipit.data.realm;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.ordolabs.clipit.BuildConfig;
 import com.ordolabs.clipit.data.realm.object.CategoryObject;
 import com.ordolabs.clipit.data.realm.object.ClipObject;
 import com.ordolabs.clipit.util.categoryRV.CategoryRaw;
@@ -48,28 +47,20 @@ public class RealmDealer {
                 .findAll();
     }
 
-    public static ClipObject getClipReversed(final int pos) {
-        return getClip(getClipsCount() - pos - 1);
-    }
-
-    private static ClipObject getClip(final int pos) {
+    public static ClipObject getClip(final int id) {
         RealmResults<ClipObject> clips = getClips();
-        if (!BuildConfig.DEBUG && (pos >= clips.size() || pos < 0)) {
-            throw new IllegalPositionArgumentEcxeptioin(pos, clips.size());
-        }
-        return clips.get(pos);
+
+        return clips.where().equalTo("id", id).findFirst();
     }
 
-    private static int getClipsCount() { return getClips().size(); }
-
-    public synchronized static void markClipViewed(final int pos) {
+    public synchronized static void markClipViewed(final int id) {
         RealmHolder.i().executeTransaction(realm ->
-            getClipReversed(pos).setViewed(true));
+            getClip(id).setViewed(true));
     }
 
-    public synchronized static void markClipRemoved(final int pos, final boolean mark) {
+    public synchronized static void markClipRemoved(final int id, final boolean mark) {
         RealmHolder.i().executeTransaction(realm ->
-            getClipReversed(pos).setRemoved(mark));
+            getClip(id).setRemoved(mark));
     }
 
     public static void deleteMarkedClips() {
@@ -89,9 +80,9 @@ public class RealmDealer {
         return false;
     }
 
-    public static void editClip(final int clipPos, final String newTitle, final String newBody) {
+    public static void editClip(final int id, final String newTitle, final String newBody) {
         RealmHolder.i().executeTransaction(realm -> {
-            ClipObject clip = getClipReversed(clipPos);
+            ClipObject clip = getClip(id);
             clip.setBody(newBody);
             clip.setTitle(newTitle.length() == 0 ? null : newTitle);
         });

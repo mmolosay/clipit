@@ -57,8 +57,8 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
                 caller,
                 ClipActivity.class
             ).putExtra(
-                C.EXTRA_CLIP_POSITION,
-                rv.getChildLayoutPosition(view)
+                C.EXTRA_CLIP_ID,
+                clips.get(rv.getChildLayoutPosition(view)).id
             )
         );
     }
@@ -73,7 +73,7 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
         holder.titleTextView.setText(clip.title != null ? clip.title : "");
         holder.bodyTextView.setText(clip.body);
 
-        toggleTitleOnEmpty(holder.titleTextView);
+        toggleClipTitle(holder.titleTextView);
 
         if (clip.isViewed == false) {
             holder.newDriverMark.setVisibility(View.VISIBLE);
@@ -95,7 +95,7 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
             });
             holder.newDriverMark.startAnimation(anim);
 
-            RealmDealer.markClipViewed(i);
+            RealmDealer.markClipViewed(clip.id);
             clip.isViewed = true;
         }
     }
@@ -117,11 +117,11 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
         rv.post(() -> rv.smoothScrollToPosition(position));
     }
 
-    private void toggleTitleOnEmpty(TextView title) {
-        if (title.getText() != null && title.getText().equals("") == false) {
-            title.setVisibility(View.VISIBLE);
-        } else {
+    private void toggleClipTitle(TextView title) {
+        if (title.getText() == null || title.getText().equals("")) {
             title.setVisibility(View.GONE);
+        } else {
+            title.setVisibility(View.VISIBLE);
         }
     }
 

@@ -14,10 +14,9 @@ public final class C {
 
     private static final String DATETIME_FORMAT = "d MMM HH:mm yyyy";
 
-    public static final String EXTRA_CLIP_POSITION = "EXTRA_CLIP_POSITION";
+    public static final String EXTRA_CLIP_ID = "EXTRA_CLIP_ID";
     public static final int EDIT_MAX_TITLE_SYMBOLS = 40;
     public static final int EDIT_MAX_BODY_SYMBOLS = 3000;
-
 
     public static int toInt(final String s) {
         return Integer.parseInt(s);

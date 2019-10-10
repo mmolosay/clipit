@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -91,7 +90,7 @@ public class ClipPresenter<V extends ClipActivity>
 
     void onMenuEdit(@NonNull Context from) {
         Intent i = new Intent(from, EditActivity.class);
-        i.putExtra(C.EXTRA_CLIP_POSITION, mvpModel.getClipPos());
+        i.putExtra(C.EXTRA_CLIP_ID, mvpModel.getClipID());
         mvpView.startActivity(i);
     }
 
@@ -107,7 +106,7 @@ public class ClipPresenter<V extends ClipActivity>
             .setTitle(R.string.alertDialogDeleteTitle)
             .setMessage(R.string.alertDialogDeleteMessage)
             .setPositiveButton(R.string.alertDialogDeletePositive, (dialog, which) -> {
-                RealmDealer.markClipRemoved(mvpModel.getClipPos(), true);
+                RealmDealer.markClipRemoved(mvpModel.getClipID(), true);
                 mvpView.finish();
             })
             .setNegativeButton(R.string.alertDialogDeleteNegative, null)

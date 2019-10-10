@@ -65,6 +65,7 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> {
         for (ClipObject item : res)
             if (!item.isRemoved())
                 clips.add(new ClipRaw(
+                        item.getId(),
                         item.getTitle(),
                         item.getBody(),
                         item.getDateTime(),

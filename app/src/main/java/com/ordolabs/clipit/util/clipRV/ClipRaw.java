@@ -8,13 +8,15 @@ import javax.annotation.Nullable;
 
 public class ClipRaw {
 
+    int id;
     String title;
     String body;
     String datetime;
     boolean isViewed;
     boolean isRemoved;
 
-    public ClipRaw(String title, String body, String datetime, boolean isViewed, boolean isRemoved) {
+    public ClipRaw(int id, String title, String body, String datetime, boolean isViewed, boolean isRemoved) {
+        this.id = id;
         this.title = title;
         this.body = body;
         this.datetime = datetime;
