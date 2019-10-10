@@ -1,8 +1,8 @@
 package com.ordolabs.clipit.ui.category;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.model.CategoryModel;
@@ -17,27 +17,30 @@ public class CategoryPresenter<V extends CategoryActivity>
 
     private CategoryModel<CategoryPresenter> mvpModel;
 
-    private Toolbar toolbar;
-    private RecyclerView categoryRV;
+    private ActionBar actionBar;
+    private RecyclerView categoryRV; // TODO: replace RV with ListView
 
     CategoryPresenter(V mvpView) {
         attachView(mvpView);
 
         initViews();
+        mvpModel = new CategoryModel<>(this, categoryRV);
         prepareViews();
     }
 
     @Override
     protected void initViews() {
-        categoryRV = mvpView.findViewById(R.id.categoryRV);
+        actionBar = mvpView.getSupportActionBar();
 
-        mvpModel = new CategoryModel<>(this, categoryRV);
+        categoryRV = mvpView.findViewById(R.id.categoryRV);
     }
 
     @Override
     protected void prepareViews() {
-//        AdvancedToolbar.prepareToolbar(mvpView);
-        toolbar.setNavigationOnClickListener(v -> mvpView.finish());
+        if (actionBar != null) {
+            actionBar.setTitle(R.string.categoryToolbarTitle);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         categoryRV.setLayoutManager(new LinearLayoutManager(mvpView));
         categoryRV.setAdapter(mvpModel.getRVadapter());
