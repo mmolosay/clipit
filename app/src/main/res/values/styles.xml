@@ -5,27 +5,29 @@
     <!-- Base application theme -->
     <style name="Theme.ClipIt.Dark" parent="Theme.AppCompat.Light.DarkActionBar">
 
-        <item name="android:statusBarColor">@color/actionBar</item>
+        <item name="android:statusBarColor">@color/statusBar</item>
         <item name="android:windowBackground">@color/background</item>
         <item name="android:navigationBarColor">@color/navBar</item>
 
         <item name="actionBarStyle">@style/Widget.ClipIt.ActionBarStyle</item>
         <item name="actionBarTheme">@style/Widget.ClipIt.ActionBarTheme</item>
+        <item name="actionBarPopupTheme">@style/Widget.ClipIt.ActionBarTheme.Popup</item>
 
-        <item name="colorControlHighlight">@color/itemRipple</item>
-        <item name="android:colorEdgeEffect">@color/opacFiller</item>
+        <item name="android:textColor">@color/textPrimary</item>
+
+        <item name="android:colorEdgeEffect">@color/edgeFiller</item>
 
     </style>
 
     <!--~~~~~~~~~~~~~~~~~~~~ ACTION BAR ~~~~~~~~~~~~~~~~~~~~-->
 
     <style name="Widget.ClipIt.ActionBarStyle" parent="Widget.AppCompat.Light.ActionBar">
-        <item name="background">@color/statusBar</item>
+        <item name="background">@color/actionBar</item>
         <item name="colorControlNormal">@color/textPrimary</item>
-        <item name="titleTextStyle">@style/Widget.ClipIt.ActionBarStyle.TitleTextStyle</item>
+        <item name="titleTextStyle">@style/Widget.ClipIt.ActionBarStyle.TitleStyle</item>
     </style>
 
-    <style name="Widget.ClipIt.ActionBarStyle.TitleTextStyle"
+    <style name="Widget.ClipIt.ActionBarStyle.TitleStyle"
            parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
 
         <item name="android:textColor">@color/textPrimary</item>
@@ -34,6 +36,12 @@
 
     <style name="Widget.ClipIt.ActionBarTheme" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="colorControlNormal">@color/textPrimary</item>
+        <item name="colorControlHighlight">@color/itemRipple</item>
+    </style>
+
+    <style name="Widget.ClipIt.ActionBarTheme.Popup" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:colorBackground">@color/statusBar</item>
+        <item name="colorControlHighlight">@color/itemRipple</item>
     </style>
 
     <!--~~~~~~~~~~~~~~~~~~~~ TEXT STYLES ~~~~~~~~~~~~~~~~~~~~-->
