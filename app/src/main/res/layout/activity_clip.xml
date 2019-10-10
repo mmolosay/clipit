@@ -20,8 +20,7 @@
                 android:paddingTop="8dp"
                 android:paddingEnd="8dp"
                 android:paddingBottom="8dp"
-                android:baselineAligned="false"
-                android:focusableInTouchMode="true">
+                android:baselineAligned="false">
 
                 <TextView
                     android:id="@+id/clipDatetime"
