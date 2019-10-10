@@ -72,7 +72,6 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
 
         holder.titleTextView.setText(clip.title != null ? clip.title : "");
         holder.bodyTextView.setText(clip.body);
-//        holder.infoTextView.setText( makePrettyDateTime(clip.datetime) );
 
         toggleTitleOnEmpty(holder.titleTextView);
 

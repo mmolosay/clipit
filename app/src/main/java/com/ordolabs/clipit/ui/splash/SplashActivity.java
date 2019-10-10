@@ -40,7 +40,7 @@ public class SplashActivity extends AppCompatActivity {
         deleteMarkedClips();
 
         startActivity(new Intent(this, HomeActivity.class));
-        finish(); // removefrom activities stack
+        finish(); // remove from activities stack
     }
 
     private void checkAutorun() {
