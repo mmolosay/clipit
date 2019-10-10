@@ -9,6 +9,7 @@ import com.ordolabs.clipit.util.categoryRV.CategoryRaw;
 
 import java.util.ArrayList;
 
+import io.realm.RealmModel;
 import io.realm.RealmResults;
 
 /**
@@ -113,19 +114,20 @@ public class RealmDealer {
 
     public static ArrayList<CategoryRaw> getDefaultCategoriesRaw() {
         ArrayList<CategoryRaw> list = new ArrayList<>();
-        CategoryObject defaultCategory;
+        CategoryObject obj;
 
-        defaultCategory = getCategoryWithId(0);
+        obj = getCategory(0);
         list.add(new CategoryRaw(
-                defaultCategory.getName(),
-                defaultCategory.isDefault(),
-                defaultCategory.isSelected()
+                obj.getName(),
+                obj.isDefault(),
+                obj.isSelected()
         ));
-        defaultCategory = getCategoryWithId(1);
+
+        obj = getCategory(1);
         list.add(new CategoryRaw(
-                defaultCategory.getName(),
-                defaultCategory.isDefault(),
-                defaultCategory.isSelected()
+                obj.getName(),
+                obj.isDefault(),
+                obj.isSelected()
         ));
 
         return list;
@@ -141,11 +143,7 @@ public class RealmDealer {
                 .findAll();
     }
 
-    public static int getCustomCategoriesCount() {
-        return getCustomCategories().size();
-    }
-
-    private static CategoryObject getCategoryWithId(final int id) {
+    private static CategoryObject getCategory(final int id) {
         return RealmHolder.i()
                 .where(CategoryObject.class)
                 .equalTo("id", id)
@@ -156,14 +154,5 @@ public class RealmDealer {
         RealmHolder.i().executeTransaction(realm ->
                 RealmHolder.i().where(obj).findAll().deleteAllFromRealm()
         );
-    }
-
-    private static class IllegalPositionArgumentEcxeptioin extends RuntimeException {
-        IllegalPositionArgumentEcxeptioin(int pos, int count) {
-            super("Position can not be negative or greater than total clips count:" +
-                  " pos: " + pos +
-                  " count: " + count + "."
-            );
-        }
     }
 }

@@ -27,7 +27,7 @@ public class CategoryModel<P extends CategoryPresenter> extends BaseModel<P> {
         attachPresenter(mvpPresenter);
 
         this.adapter = new CategoryRVadapter(
-                getRawCategoryListReversed(),
+                getRawCategoryList(),
                 rv
         );
     }
@@ -35,17 +35,17 @@ public class CategoryModel<P extends CategoryPresenter> extends BaseModel<P> {
     @Override
     public void updateData() {
         C.getPrettyDate();
-        adapter.setCategoryList(getRawCategoryListReversed());
+        adapter.setCategoryList(getRawCategoryList());
     }
 
-    private ArrayList<CategoryRaw> getRawCategoryListReversed() {
-        int categoriesCount = RealmDealer.getCustomCategoriesCount();
+    private ArrayList<CategoryRaw> getRawCategoryList() {
         ArrayList<CategoryRaw> list = new ArrayList<>();
         ArrayList<CategoryRaw> defaults = new ArrayList<>(RealmDealer.getDefaultCategoriesRaw());
 
         RealmResults<CategoryObject> results = RealmDealer.getCustomCategories();
+        int count = results.size();
 
-        for (int i = 0; i < categoriesCount; i++) {
+        for (int i = 0; i < count; i++) {
             list.add(new CategoryRaw(
                     results.get(i).getName(),
                     results.get(i).isDefault(),

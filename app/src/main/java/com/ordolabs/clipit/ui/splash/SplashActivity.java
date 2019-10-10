@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.ordolabs.clipit.App;
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.realm.RealmDealer;
+import com.ordolabs.clipit.data.realm.object.CategoryObject;
+import com.ordolabs.clipit.data.realm.object.ClipObject;
 import com.ordolabs.clipit.ui.home.HomeActivity;
 
 import static com.ordolabs.clipit.data.realm.RealmDealer.deleteMarkedClips;
@@ -36,8 +38,9 @@ public class SplashActivity extends AppCompatActivity {
 
             prefs.edit().putBoolean(FIRST_RUN, false).apply();
         }
-
-        deleteMarkedClips();
+        else {
+            deleteMarkedClips();
+        }
 
         startActivity(new Intent(this, HomeActivity.class));
         finish(); // remove from activities stack
@@ -85,7 +88,7 @@ public class SplashActivity extends AppCompatActivity {
         } catch (Exception e) { e.printStackTrace(); }
     }
 
-    private void addDefaultCategories() { // TODO: redisign
+    private void addDefaultCategories() {
         RealmDealer.createCategoryObject(
                 App.getContext().getResources().getString(R.string.categoryDefaultClipboardName),
                 true
