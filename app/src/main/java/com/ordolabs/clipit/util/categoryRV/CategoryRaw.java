@@ -7,12 +7,12 @@ package com.ordolabs.clipit.util.categoryRV;
 public class CategoryRaw {
 
     String name;
-    boolean isRemovable;
-    boolean isActive;
+    boolean isDefault;
+    boolean isSelected;
 
-    public CategoryRaw(String name, boolean isRemovable, boolean isActive) {
+    public CategoryRaw(String name, boolean isDefault, boolean isSelected) {
         this.name = name;
-        this.isRemovable = isRemovable;
-        this.isActive = isActive;
+        this.isDefault = isDefault;
+        this.isSelected = isSelected;
     }
 }
