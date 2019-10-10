@@ -5,11 +5,12 @@ import android.support.annotation.Nullable;
 
 import com.ordolabs.clipit.data.realm.object.CategoryObject;
 import com.ordolabs.clipit.data.realm.object.ClipObject;
+import com.ordolabs.clipit.util.PrettyDate;
 import com.ordolabs.clipit.util.categoryRV.CategoryRaw;
 
 import java.util.ArrayList;
+import java.util.Date;
 
-import io.realm.RealmModel;
 import io.realm.RealmResults;
 
 /**
@@ -22,8 +23,7 @@ public class RealmDealer {
 
     public static void createClipObject(
             @Nullable final String title,
-            @NonNull  final String body,
-            @NonNull  final String datetime) {
+            @NonNull  final String body) {
 
         RealmHolder.i().executeTransaction(realm -> {
             ClipObject clip = RealmHolder.i().createObject(
@@ -31,7 +31,7 @@ public class RealmDealer {
                 makeNewClipID()
             );
 
-            clip.init(title, body, datetime, false, false);
+            clip.init(title, body, PrettyDate.forNow(), false, false);
         });
     }
 

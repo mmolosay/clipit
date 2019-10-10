@@ -45,12 +45,9 @@ public class CategoryRVadapter extends RecyclerView.Adapter<CategoryItemViewHold
     }
 
     private View.OnClickListener newOnClickListener(final View view) {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int itemPos = recyclerView.getChildLayoutPosition(view);
-                // make active on click
-            }
+        return v -> {
+            int itemPos = recyclerView.getChildLayoutPosition(view);
+            // make active on click
         };
     }
 

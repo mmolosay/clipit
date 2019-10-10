@@ -34,7 +34,6 @@ public class CategoryModel<P extends CategoryPresenter> extends BaseModel<P> {
 
     @Override
     public void updateData() {
-        C.getPrettyDate();
         adapter.setCategoryList(getRawCategoryList());
     }
 
