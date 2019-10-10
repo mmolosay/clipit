@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="statusBar">#212d3b</color> <!--for status bar-->
-    <color name="actionBar">#1a242e</color> <!--for toolbar (action bar)-->
+    <color name="statusBar">#1a242e</color> <!--for status bar-->
+    <color name="actionBar">#212d3b</color> <!--for toolbar (action bar)-->
     <color name="background">#151c27</color> <!--for activity background-->
     <color name="navBar">#0c1218</color> <!--for navigation bar (if it presents)-->
 
@@ -17,7 +17,9 @@
     <color name="itemBackground">#1d2733</color>
     <color name="itemRipple">#36718099</color>
 
-    <color name="opacFiller">#40546A83</color>
+    <color name="edgeFiller">#40546A83</color>
     <color name="listDriver">#4D5255</color>
     <color name="menuFiller">#28282B</color>
+
+    <color name="test">#ff0000</color>
 </resources>
