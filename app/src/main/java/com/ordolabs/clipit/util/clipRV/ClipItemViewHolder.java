@@ -14,13 +14,15 @@ class ClipItemViewHolder extends RecyclerView.ViewHolder {
 
     TextView titleTextView;
     TextView bodyTextView;
-    View newDriverMark;
+    TextView dateTextView;
+    View     newDriverMark;
 
     ClipItemViewHolder(View view) {
         super(view);
 
         titleTextView = view.findViewById(R.id.RVclipsItemTitle);
-        bodyTextView = view.findViewById(R.id.RVclipsItemBody);
+        bodyTextView  = view.findViewById(R.id.RVclipsItemBody);
+        dateTextView  = view.findViewById(R.id.RVclipsItemDate);
         newDriverMark = view.findViewById(R.id.RVclipsItemNewDriverMark);
     }
 }

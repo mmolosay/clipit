@@ -15,6 +15,7 @@ import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.realm.RealmDealer;
 import com.ordolabs.clipit.ui.clip.ClipActivity;
+import com.ordolabs.clipit.util.PrettyDate;
 
 import java.util.ArrayList;
 
@@ -72,6 +73,7 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
 
         holder.titleTextView.setText(clip.title != null ? clip.title : "");
         holder.bodyTextView.setText(clip.body);
+        holder.dateTextView.setText(PrettyDate.from(clip.date));
 
         toggleClipTitle(holder.titleTextView);
 

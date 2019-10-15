@@ -42,7 +42,7 @@ public class EditPresenter<V extends EditActivity>
         attachView(mvpView);
 
         accentBlue = mvpView.getResources().getColor(R.color.accentBlue);
-        accentRed = mvpView.getResources().getColor(R.color.accentRedish);
+        accentRed = mvpView.getResources().getColor(R.color.accentRed);
 
         initViews();
         mvpModel = new EditModel<>(this);

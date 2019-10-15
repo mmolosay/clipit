@@ -25,7 +25,7 @@ public class PrettyDate {
      *
      * @return date of {@link String} type.
      **/
-    public static String forNow() {
+    public static String now() {
         String[] date = new SimpleDateFormat(
                 DATE_PATTERN_FULL,
                 App.getContext().getResources().getConfiguration().locale
@@ -47,7 +47,7 @@ public class PrettyDate {
     public static String from(final String date) {
         // 24 10 19 22:47 Thu Oct
         String[] dateFull = date.split(" ");
-        String[] nowFull  = forNow().split(" ");
+        String[] nowFull  = now().split(" ");
 
         int d = toInt(dateFull[0]);
         int m = toInt(dateFull[1]);

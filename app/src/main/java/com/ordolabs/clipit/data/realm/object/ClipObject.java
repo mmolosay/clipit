@@ -16,7 +16,7 @@ public class ClipObject extends RealmObject {
     @PrimaryKey private int     id;
     @Nullable   private String  title;
     @NonNull    private String  body;
-    @NonNull    private String  datetime;
+    @NonNull    private String  date;
                 private boolean isViewed;
                 private boolean isRemoved;
 
@@ -29,7 +29,7 @@ public class ClipObject extends RealmObject {
     {
         this.title = title;
         this.body = body;
-        this.datetime = datetime;
+        this.date = datetime;
         this.isViewed = isViewed;
         this.isRemoved = isRemoved;
 
@@ -39,7 +39,7 @@ public class ClipObject extends RealmObject {
               public int getId() { return id; }
     @Nullable public String getTitle() { return title; }
     @NonNull  public String getBody() { return body; }
-    @NonNull  public String getDateTime() { return datetime; }
+    @NonNull  public String getDateTime() { return date; }
               public boolean isRemoved() { return isRemoved; }
               public boolean isViewed() { return isViewed; }
 
@@ -48,6 +48,6 @@ public class ClipObject extends RealmObject {
     public void setViewed(boolean viewed) { isViewed = viewed; }
     public void setRemoved(boolean removed) { isRemoved = removed; }
 
-    // no datetime and id setters – should not
-    // be editied and set in init() only
+    // no date and id setters – should not
+    // be editied – set in init() only
 }

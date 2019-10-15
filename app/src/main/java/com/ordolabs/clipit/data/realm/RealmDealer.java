@@ -9,7 +9,6 @@ import com.ordolabs.clipit.util.PrettyDate;
 import com.ordolabs.clipit.util.categoryRV.CategoryRaw;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import io.realm.RealmResults;
 
@@ -31,7 +30,7 @@ public class RealmDealer {
                 makeNewClipID()
             );
 
-            clip.init(title, body, PrettyDate.forNow(), false, false);
+            clip.init(title, body, PrettyDate.now(), false, false);
         });
     }
 

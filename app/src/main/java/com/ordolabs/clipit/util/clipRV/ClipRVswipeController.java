@@ -63,7 +63,7 @@ public class ClipRVswipeController extends Callback {
         this.swipeBG = new RectF();
 
         this.paint = new Paint();
-        this.paint.setColor(ContextCompat.getColor(App.getContext(), R.color.accentRedish));
+        this.paint.setColor(ContextCompat.getColor(App.getContext(), R.color.accentRed));
     }
 
     @Override
