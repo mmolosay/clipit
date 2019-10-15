@@ -33,7 +33,7 @@ public class ClipRVswipeController extends Callback {
     private RectF swipeBG;
     private Paint paint;
 
-    private ClipRaw clipRemoved;
+    private Clip clipRemoved;
     private int clipPos;
 
     private final float DELETE_ICON_SCALE = 1.5f;

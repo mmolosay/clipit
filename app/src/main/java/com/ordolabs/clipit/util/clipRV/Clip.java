@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
  * Created by ordogod on 18.06.19.
  **/
 
-public class ClipRaw {
+public class Clip {
 
     int     id;
     String  title;
@@ -15,7 +15,7 @@ public class ClipRaw {
     boolean isViewed;
     boolean isRemoved;
 
-    public ClipRaw(int id, String title, String body, String date, boolean isViewed, boolean isRemoved) {
+    public Clip(int id, String title, String body, String date, boolean isViewed, boolean isRemoved) {
         this.id = id;
         this.title = title;
         this.body = body;
@@ -27,8 +27,8 @@ public class ClipRaw {
     @Override
     public boolean equals(@Nullable Object obj) {
         if (obj == null) return false;
-        if (obj instanceof ClipRaw) {
-            return ((ClipRaw) obj).body.equals(this.body);
+        if (obj instanceof Clip) {
+            return ((Clip) obj).body.equals(this.body);
         }
         return false;
     }

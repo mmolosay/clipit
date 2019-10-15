@@ -25,14 +25,6 @@ public class ClipModel<P extends ClipPresenter> extends BaseModel<P> {
         this.clip = RealmDealer.getClip(clipID);
     }
 
-    public String makeActivityTitle() {
-        if (clip.getTitle() == null)
-            return mvpPresenter.getView().getResources()
-                    .getString(R.string.clipToolbarTitile);
-        else
-            return clip.getTitle();
-    }
-
     public ClipObject getClip() {
         return clip;
     }

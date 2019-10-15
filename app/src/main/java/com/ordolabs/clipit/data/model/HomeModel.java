@@ -9,7 +9,7 @@ import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.realm.RealmDealer;
 import com.ordolabs.clipit.data.realm.object.ClipObject;
 import com.ordolabs.clipit.common.BaseModel;
-import com.ordolabs.clipit.util.clipRV.ClipRaw;
+import com.ordolabs.clipit.util.clipRV.Clip;
 import com.ordolabs.clipit.util.clipRV.ClipRVadapter;
 import com.ordolabs.clipit.util.clipRV.ClipRVswipeController;
 import com.ordolabs.clipit.ui.home.HomePresenter;
@@ -58,13 +58,13 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> {
 
     public int getClipsCount() { return  adapter.getClipsCount(); }
 
-    private ArrayList<ClipRaw> getClipsReversed() {
+    private ArrayList<Clip> getClipsReversed() {
         RealmResults<ClipObject> res = RealmDealer.getClips();
-        ArrayList<ClipRaw> clips = new ArrayList<>();
+        ArrayList<Clip> clips = new ArrayList<>();
 
         for (ClipObject item : res)
             if (!item.isRemoved())
-                clips.add(new ClipRaw(
+                clips.add(new Clip(
                         item.getId(),
                         item.getTitle(),
                         item.getBody(),

@@ -47,8 +47,8 @@ public class ClipPresenter<V extends ClipActivity>
     protected void initViews() {
         actionBar = mvpView.getSupportActionBar();
 
-        titleView = mvpView.findViewById(R.id.clipTitleText);
-        bodyView = mvpView.findViewById(R.id.clipBodyText);
+        titleView = mvpView.findViewById(R.id.clipTitle);
+        bodyView = mvpView.findViewById(R.id.clipBody);
 
         scrollView = mvpView.findViewById(R.id.clipScrollView);
     }
@@ -56,7 +56,7 @@ public class ClipPresenter<V extends ClipActivity>
     @Override
     protected void prepareViews() {
         if (actionBar != null) {
-            actionBar.setTitle(mvpModel.makeActivityTitle());
+            actionBar.setTitle(R.string.clipToolbarTitile);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
@@ -70,7 +70,7 @@ public class ClipPresenter<V extends ClipActivity>
     @Override
     public void updateViews() {
         toggleTitleOnEmpty();
-        updateAllText();
+        updateText();
         scrollToTop();
     }
 
@@ -81,11 +81,10 @@ public class ClipPresenter<V extends ClipActivity>
             titleView.setVisibility(View.GONE);
     }
 
-    private void updateAllText() {
+    private void updateText() {
+        actionBar.setTitle(R.string.clipToolbarTitile);
         titleView.setText(mvpModel.getClip().getTitle());
         bodyView.setText(mvpModel.getClip().getBody());
-        assert (mvpView.getSupportActionBar() != null);
-        mvpView.getSupportActionBar().setTitle(mvpModel.makeActivityTitle());
     }
 
     void onMenuEdit(@NonNull Context from) {

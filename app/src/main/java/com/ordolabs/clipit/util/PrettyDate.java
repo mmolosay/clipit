@@ -38,11 +38,9 @@ public class PrettyDate {
     }
 
     /**
-     * Makes nice representation of relation between current date and the given one.
+     * Makes nice text representation of relation between current date and the given one.
      *
      * @param date date string in {@link #DATE_PATTERN_FULL} format.
-     *
-     * @return {@link String} representation.
      */
     public static String from(final String date) {
         // 24 10 19 22:47 Thu Oct
