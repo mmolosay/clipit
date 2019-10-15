@@ -50,10 +50,16 @@
 
     <!--~~~~~~~~~~~~~~~~~~~~ TEXT STYLES ~~~~~~~~~~~~~~~~~~~~-->
 
+    <style name="TitleTextStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/textPrimary</item>
+        <item name="android:textSize">21sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
     <style name="PrimaryTextStyle">
         <item name="android:textColor">@color/textPrimary</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
     <style name="SecondaryTextStyle">
@@ -68,33 +74,28 @@
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
-    <style name="TitleTextStyle" parent="android:Widget.TextView">
-        <item name="android:textColor">@color/textPrimary</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-    </style>
-
     <style name="SubInfoTextStyle" parent="android:Widget.TextView">
         <item name="android:textColor">@color/textTertiary</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
-    <style name="AccentTextStyle" parent="android:Widget.TextView">
+    <style name="LabelTextStyle" parent="android:Widget.TextView">
         <item name="android:textColor">@color/accentBlue</item>
         <item name="android:textSize">15sp</item>
         <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="EditableTextStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/textPrimary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <!--~~~~~~~~~~~~~~~~~~~~ STUFF ~~~~~~~~~~~~~~~~~~~~-->
 
     <style name="Theme.ClipIt.SplashScreen" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
-    </style>
-
-    <style name="CustomPopupTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:background">@color/menuFiller</item>
-        <item name="android:overlapAnchor">false</item>
     </style>
 
     <!-- use with android:foreground="?android:attr/selectableItemBackground" -->
