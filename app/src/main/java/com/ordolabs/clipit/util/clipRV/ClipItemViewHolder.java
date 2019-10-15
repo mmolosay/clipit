@@ -10,19 +10,21 @@ import com.ordolabs.clipit.R;
  * Created by ordogod on 18.06.19.
  **/
 
-class ClipItemViewHolder extends RecyclerView.ViewHolder {
+final class ClipItemViewHolder extends RecyclerView.ViewHolder {
 
-    TextView titleTextView;
-    TextView bodyTextView;
-    TextView dateTextView;
+    TextView title;
+    TextView body;
+    TextView titleBody;
+    TextView dateText;
     View     newDriverMark;
 
     ClipItemViewHolder(View view) {
         super(view);
 
-        titleTextView = view.findViewById(R.id.RVclipsItemTitle);
-        bodyTextView  = view.findViewById(R.id.RVclipsItemBody);
-        dateTextView  = view.findViewById(R.id.RVclipsItemDate);
+        title = view.findViewById(R.id.RVclipsItemTitle);
+        body = view.findViewById(R.id.RVclipsItemBody);
+        titleBody = view.findViewById(R.id.RVclipsItemTitleBody);
+        dateText = view.findViewById(R.id.RVclipsItemDate);
         newDriverMark = view.findViewById(R.id.RVclipsItemNewDriverMark);
     }
 }
