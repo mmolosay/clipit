@@ -38,6 +38,19 @@ public class PrettyDate {
     }
 
     /**
+     * Makes suitable for user output text representation of given date.
+     *
+     * @param date date string in {@link #DATE_PATTERN_FULL} format.
+     *
+     * @return Date string in '22:47 | Oct 24, 2019' format
+     */
+    public static String fullWithSeparators(final String date) {
+        String[] split = date.split(" ");
+
+        return split[3] + " | " + split[5] + " " + split[0] + ", 20" + split[2];
+    }
+
+    /**
      * Makes nice text representation of relation between current date and the given one.
      *
      * @param date date string in {@link #DATE_PATTERN_FULL} format.

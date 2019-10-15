@@ -18,6 +18,7 @@ import com.ordolabs.clipit.data.realm.RealmDealer;
 import com.ordolabs.clipit.data.model.ClipModel;
 import com.ordolabs.clipit.common.BasePresenter;
 import com.ordolabs.clipit.ui.edit.EditActivity;
+import com.ordolabs.clipit.util.PrettyDate;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 
@@ -31,6 +32,7 @@ public class ClipPresenter<V extends ClipActivity>
     private ClipModel<ClipPresenter> mvpModel;
 
     private ActionBar actionBar;
+    private TextView dateTimeView;
     private TextView titleView;
     private TextView bodyView;
     private ScrollView scrollView;
@@ -47,6 +49,7 @@ public class ClipPresenter<V extends ClipActivity>
     protected void initViews() {
         actionBar = mvpView.getSupportActionBar();
 
+        dateTimeView = mvpView.findViewById(R.id.clipDatetime);
         titleView = mvpView.findViewById(R.id.clipTitle);
         bodyView = mvpView.findViewById(R.id.clipBody);
 
@@ -59,6 +62,7 @@ public class ClipPresenter<V extends ClipActivity>
             actionBar.setTitle(R.string.clipToolbarTitile);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        dateTimeView.setText(PrettyDate.fullWithSeparators(mvpModel.getClip().getDateTime()));
     }
 
     @Override
@@ -85,6 +89,7 @@ public class ClipPresenter<V extends ClipActivity>
         actionBar.setTitle(R.string.clipToolbarTitile);
         titleView.setText(mvpModel.getClip().getTitle());
         bodyView.setText(mvpModel.getClip().getBody());
+        dateTimeView.setText(PrettyDate.fullWithSeparators(mvpModel.getClip().getDateTime()));
     }
 
     void onMenuEdit(@NonNull Context from) {
