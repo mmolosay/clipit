@@ -1,6 +1,5 @@
 package com.ordolabs.clipit.data.model;
 
-import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.realm.RealmDealer;
 import com.ordolabs.clipit.data.realm.object.ClipObject;
@@ -25,14 +24,15 @@ public class ClipModel<P extends ClipPresenter> extends BaseModel<P> {
         this.clip = RealmDealer.getClip(clipID);
     }
 
-    public ClipObject getClip() {
-        return clip;
-    }
-
     @Override
     public void updateData() {
         this.clip = RealmDealer.getClip(clipID);
     }
+
+    public ClipObject getClip() {
+        return clip;
+    }
+
 
     public int getClipID() {
         return clipID;
