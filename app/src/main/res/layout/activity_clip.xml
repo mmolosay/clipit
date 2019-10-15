@@ -31,7 +31,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/clipTitleText"
+                    android:id="@+id/clipTitle"
                     style="@style/TitleTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
                     android:layout_marginBottom="8dp" />
 
                 <TextView
-                    android:id="@+id/clipBodyText"
+                    android:id="@+id/clipBody"
                     style="@style/SecondaryTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

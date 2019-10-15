@@ -29,59 +29,58 @@
                 android:text="@string/editTitleLabelText"
                 android:labelFor="@id/editTitle"
                 android:layout_marginStart="2dp"
-                style="@style/AccentTextStyle"/>
+                style="@style/LabelTextStyle"/>
 
             <EditText
                 android:id="@+id/editTitle"
+                style="@style/EditableTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/editTitleHint"
                 android:inputType="textAutoCorrect|textCapSentences"
-                android:backgroundTint="@color/accentBlue"
-                style="@style/PrimaryTextStyle" />
+                android:backgroundTint="@color/accentBlue" />
 
             <TextView
                 android:id="@+id/editTitleSymbolsCount"
+                style="@style/SubInfoTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|end"
                 android:text=""
                 android:layout_marginBottom="10dp"
                 android:layout_marginEnd="1dp"
-                android:textColor="@color/accentBlue"
-                style="@style/SubInfoTextStyle" />
+                android:textColor="@color/accentBlue" />
 
 
             <TextView
                 android:id="@+id/editBodyLabel"
+                style="@style/LabelTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/editBodyLabelText"
                 android:labelFor="@id/editBody"
-                android:layout_marginStart="2dp"
-                style="@style/AccentTextStyle"/>
+                android:layout_marginStart="2dp" />
 
             <EditText
                 android:id="@+id/editBody"
+                style="@style/EditableTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:hint="@string/editBodyHint"
                 android:inputType="textAutoCorrect|textCapSentences|textMultiLine"
-                android:backgroundTint="@color/accentBlue"
-                style="@style/PrimaryTextStyle"
-                android:textSize="16sp"/>
+                android:backgroundTint="@color/accentBlue" />
 
             <TextView
                 android:id="@+id/editBodySymbolsCount"
+                style="@style/SubInfoTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|end"
                 android:text=""
                 android:layout_marginBottom="10dp"
                 android:layout_marginEnd="1dp"
-                android:textColor="@color/accentBlue"
-                style="@style/SubInfoTextStyle"/>
+                android:textColor="@color/accentBlue" />
 
         </LinearLayout>
 
