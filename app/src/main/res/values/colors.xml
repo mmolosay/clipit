@@ -6,8 +6,8 @@
     <color name="navBar">#0c1218</color> <!--for navigation bar (if it presents)-->
 
     <color name="textPrimary">#f0f8ff</color>
-    <color name="textSecondary">#8999A8</color>
-    <color name="textTertiary">#6F7377</color>
+    <color name="textSecondary">#99ABBB</color>
+    <color name="textTertiary">#7F8B97</color>
     <color name="light4">#424242</color>
 
     <color name="accentBluish">#7299A3</color>
