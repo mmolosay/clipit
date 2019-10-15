@@ -58,26 +58,26 @@
 
     <style name="SecondaryTextStyle">
         <item name="android:textColor">@color/textSecondary</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <style name="TertiaryTextStyle" parent="android:Widget.TextView">
-        <item name="android:textColor">@color/light3</item>
+        <item name="android:textColor">@color/textTertiary</item>
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
     <style name="TitleTextStyle" parent="android:Widget.TextView">
         <item name="android:textColor">@color/textPrimary</item>
-        <item name="android:textSize">21sp</item>
-        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
     <style name="SubInfoTextStyle" parent="android:Widget.TextView">
-        <item name="android:textColor">@color/light3</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/textTertiary</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <style name="AccentTextStyle" parent="android:Widget.TextView">
