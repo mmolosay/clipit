@@ -87,7 +87,7 @@ public class EditPresenter<V extends EditActivity>
             return true;
         }
         else
-            new AlertDialog.Builder(mvpView)
+            new AlertDialog.Builder(mvpView, R.style.AlertDialogStyle)
                 .setTitle(R.string.alertDialogEditTitle)
                 .setMessage(R.string.alertDialogEditMessage)
                 .setPositiveButton(R.string.alertDialogEditPositive, (dialog, which) -> {

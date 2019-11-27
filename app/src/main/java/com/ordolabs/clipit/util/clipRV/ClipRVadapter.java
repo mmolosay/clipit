@@ -38,7 +38,7 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
     public ClipItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View view = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.clip_list_item, parent, false);
+                .inflate(R.layout.clip_card_item, parent, false);
         view.setOnClickListener(newOnClickListener(view));
 
         return new ClipItemViewHolder(view);
@@ -58,7 +58,7 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final ClipItemViewHolder holder, int i) {
         setTextViews(holder, clips.get(i));
-        setNewDriverMark(holder.newDriverMark, clips.get(i));
+//        setNewDriverMark(holder.newDriverMark, clips.get(i));
     }
 
     Clip deleteItem(final int position) {
@@ -79,22 +79,23 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
     }
 
     private void setTextViews(ClipItemViewHolder holder, Clip clip) {
-        if (clip.title == null || clip.title.length() == 0) {
-            holder.titleBody.setText(clip.body.replace("\n\n", "\n"));
-
-            holder.titleBody.setVisibility(View.VISIBLE);
-            holder.title.setVisibility(View.GONE);
-            holder.body.setVisibility(View.GONE);
-        }
-        else {
-            holder.title.setText(clip.title);
-            holder.body.setText(clip.body.replace("\n\n", "\n"));
-
-            holder.title.setVisibility(View.VISIBLE);
-            holder.body.setVisibility(View.VISIBLE);
-            holder.titleBody.setVisibility(View.GONE);
-        }
-        holder.dateText.setText(PrettyDate.from(clip.date));
+//        if (clip.title == null || clip.title.length() == 0) {
+//            holder.titleBody.setText(clip.body.replace("\n\n", "\n"));
+//
+//            holder.titleBody.setVisibility(View.VISIBLE);
+//            holder.title.setVisibility(View.GONE);
+//            holder.body.setVisibility(View.GONE);
+//        }
+//        else {
+//            holder.title.setText(clip.title);
+//            holder.body.setText(clip.body.replace("\n\n", "\n"));
+//
+//            holder.title.setVisibility(View.VISIBLE);
+//            holder.body.setVisibility(View.VISIBLE);
+//            holder.titleBody.setVisibility(View.GONE);
+//        }
+//        holder.dateText.setText(PrettyDate.from(clip.date));
+        holder.body.setText(clip.body);
     }
 
     private void setNewDriverMark(View mark, Clip clip) {
