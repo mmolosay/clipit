@@ -2,7 +2,7 @@ package com.ordolabs.clipit.ui.home;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.animation.Animation;
@@ -15,6 +15,7 @@ import com.ordolabs.clipit.data.model.HomeModel;
 import com.ordolabs.clipit.common.Animatable;
 import com.ordolabs.clipit.common.BasePresenter;
 import com.ordolabs.clipit.ui.category.CategoryActivity;
+import com.ordolabs.clipit.util.clipRV.ClipOffsetDecoration;
 
 /**
  * Created by ordogod on 23.05.19.
@@ -74,11 +75,14 @@ public class HomePresenter<V extends HomeActivity>
     @Override
     protected void prepareViews() {
         if (actionBar != null) {
-            actionBar.setTitle(R.string.homeToolbarTitle);
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            actionBar.setCustomView(R.layout.action_bar);
         }
 
-        clipsRV.setLayoutManager(new LinearLayoutManager(mvpView));
+        clipsRV.setLayoutManager(new GridLayoutManager(mvpView, 2));
         clipsRV.setAdapter(mvpModel.getRVadapter());
+        int rvItemsOffset = mvpView.getResources().getDimensionPixelOffset(R.dimen.content_margin);
+        clipsRV.addItemDecoration(new ClipOffsetDecoration(rvItemsOffset));
     }
 
     @Override

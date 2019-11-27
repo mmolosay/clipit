@@ -5,5 +5,5 @@
         android:id="@+id/menuCategory"
         android:title="@string/menuCategories"
         android:icon="@drawable/ic_folder_light_24dp"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="never"/>
 </menu>
