@@ -5,9 +5,9 @@
     <!-- Base application theme -->
     <style name="Theme.ClipIt.Dark" parent="Theme.AppCompat.Light.DarkActionBar">
 
-        <item name="android:statusBarColor">@color/statusBar</item>
+        <item name="android:statusBarColor">@color/background</item>
         <item name="android:windowBackground">@color/background</item>
-        <item name="android:navigationBarColor">@color/navBar</item>
+        <item name="android:navigationBarColor">@color/navbar</item>
 
         <item name="actionBarStyle">@style/Widget.ClipIt.ActionBarStyle</item>
         <item name="actionBarTheme">@style/Widget.ClipIt.ActionBarTheme</item>
@@ -26,8 +26,10 @@
     <!--~~~~~~~~~~~~~~~~~~~~ ACTION BAR ~~~~~~~~~~~~~~~~~~~~-->
 
     <style name="Widget.ClipIt.ActionBarStyle" parent="Widget.AppCompat.Light.ActionBar">
-        <item name="background">@color/actionBar</item>
+        <item name="background">@color/background</item>
         <item name="colorControlNormal">@color/textPrimary</item>
+        <item name="android:elevation">0dp</item>
+        <item name="elevation">0dp</item>
         <item name="titleTextStyle">@style/Widget.ClipIt.ActionBarStyle.TitleStyle</item>
     </style>
 
@@ -44,7 +46,7 @@
     </style>
 
     <style name="Widget.ClipIt.ActionBarTheme.Popup" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:colorBackground">@color/statusBar</item>
+        <item name="android:colorBackground">@color/background</item>
         <item name="colorControlHighlight">@color/itemRipple</item>
     </style>
 
@@ -64,7 +66,7 @@
 
     <style name="SecondaryTextStyle">
         <item name="android:textColor">@color/textSecondary</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
@@ -101,6 +103,14 @@
     <!-- use with android:foreground="?android:attr/selectableItemBackground" -->
     <style name="Theme.ClipIt.Dark.Selectable">
         <item name="colorControlHighlight">@color/itemRipple</item>
+    </style>
+
+    <style name="AlertDialogStyle" parent="Base.Theme.AppCompat.Light.Dialog">
+        <item name="android:colorBackground">@color/background</item>
+        <item name="android:textColor">@color/textPrimary</item>
+        <item name="colorPrimaryDark">@color/accentRed</item>
+        <item name="android:colorAccent">@color/accentBlue</item>
+
     </style>
 
 </resources>

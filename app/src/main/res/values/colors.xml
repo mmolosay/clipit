@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="statusBar">#1a242e</color> <!--for status bar-->
-    <color name="actionBar">#212d3b</color> <!--for toolbar (action bar)-->
-    <color name="background">#151c27</color> <!--for activity background-->
-    <color name="navBar">#0c1218</color> <!--for navigation bar (if it presents)-->
+    <color name="background">#1a242e</color> <!--for activity background-->
+    <color name="navbar">#1f2a35</color> <!--for navigation bar (if it presents)-->
 
     <color name="textPrimary">#f0f8ff</color>
-    <color name="textSecondary">#99ABBB</color>
+    <color name="textSecondary">#999999</color>
     <color name="textTertiary">#7F8B97</color>
     <color name="light4">#424242</color>
 
     <color name="accentBluish">#7299A3</color>
-    <color name="accentBlue">#4c6b81</color>
-    <color name="accentRed">#8b313c</color>
+    <color name="accentBlue">#2f6884</color>
+    <color name="accentRed">#752c33</color>
 
-    <color name="itemBackground">#1d2733</color>
+    <color name="itemBackground">#212f3a</color>
     <color name="itemRipple">#36718099</color>
+    <color name="itemEdge">#2e4249</color>
 
     <color name="edgeFiller">#40546A83</color>
     <color name="listDriver">#4D5255</color>
     <color name="menuFiller">#28282B</color>
-
-    <color name="test">#ff0000</color>
 </resources>

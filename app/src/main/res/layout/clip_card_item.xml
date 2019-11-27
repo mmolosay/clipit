@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:theme="@style/Theme.ClipIt.Dark.Selectable"
+    app:cardBackgroundColor="@color/itemBackground"
+    app:cardCornerRadius="@dimen/clip_card_radius"
+    app:strokeWidth="@dimen/clip_card_stroke_width"
+    app:strokeColor="@color/itemEdge">
+
+    <TextView
+        android:id="@+id/RVclipsItemBody"
+        style="@style/SecondaryTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:maxLines="5"
+        android:ellipsize="end"
+        android:padding="@dimen/clip_card_inner_padding"/>
+
+</android.support.design.card.MaterialCardView>
