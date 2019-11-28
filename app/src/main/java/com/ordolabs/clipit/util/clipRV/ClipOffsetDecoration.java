@@ -18,11 +18,6 @@ public class ClipOffsetDecoration extends RecyclerView.ItemDecoration {
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        if (parent.getChildLayoutPosition(view) % 2 == 0) {
-            outRect.right = offset / 2;
-        } else {
-            outRect.left = offset / 2;
-        }
-        outRect.bottom = offset;
+        outRect.set(offset, 0, offset, offset * 2);
     }
 }

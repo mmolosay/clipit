@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="@dimen/content_margin"
-    android:layout_marginEnd="@dimen/content_margin"
+    android:layout_marginStart="@dimen/content_margin_half"
+    android:layout_marginEnd="@dimen/content_margin_half"
     tools:context=".ui.home.HomeActivity">
 
         <LinearLayout
@@ -42,6 +42,7 @@
                 android:id="@+id/homeClipsRV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:overScrollMode="never"
                 android:scrollbars="vertical"
                 android:clipToPadding="false"/>
 
