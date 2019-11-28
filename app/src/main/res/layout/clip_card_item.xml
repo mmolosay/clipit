@@ -8,16 +8,22 @@
     app:cardBackgroundColor="@color/itemBackground"
     app:cardCornerRadius="@dimen/clip_card_radius"
     app:strokeColor="@color/itemEdge"
-    app:strokeWidth="@dimen/clip_card_stroke_width">
+    app:strokeWidth="@dimen/clip_card_stroke_width" >
 
     <TextView
-        android:id="@+id/RVclipsItemBody"
-        style="@style/ClipCardItemSecondaryTextStyle"
+        android:id="@+id/RVclipsItemText"
+        style="@style/ClipCardItemTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:ellipsize="end"
         android:maxLines="6"
         android:padding="@dimen/clip_card_inner_padding" />
+
+    <TextView
+        android:id="@+id/RVclipsItemDate"
+        style="@style/ClipCardItemDateTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
 
 </android.support.design.card.MaterialCardView>
