@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,42 +7,16 @@
     android:layout_marginEnd="@dimen/content_margin_half"
     tools:context=".ui.home.HomeActivity">
 
-        <LinearLayout
-            android:id="@+id/homeNoClipsContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:visibility="gone" >
+    <include
+        android:id="@+id/homeNoClipsContainer"
+        layout="@layout/activity_home_no_clips" />
 
-            <ImageView
-                android:id="@+id/homeNoCLipsImg"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:contentDescription="@string/homeNoClipsImgDescription"
-                android:scaleType="fitXY"
-                android:alpha="0.6"
-                app:srcCompat="@drawable/ic_folder_gray_24dp" />
-
-            <TextView
-                android:id="@+id/homeNoCLipsInfo"
-                style="@style/SecondaryTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/homeNoClipsInfo" />
-
-        </LinearLayout>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/homeClipsRV"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:overScrollMode="never"
-                android:scrollbars="vertical"
-                android:clipToPadding="false"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/homeClipsRV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:scrollbars="vertical" />
 
 </RelativeLayout>
