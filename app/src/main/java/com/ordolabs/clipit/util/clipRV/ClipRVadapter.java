@@ -20,6 +20,7 @@ import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.realm.RealmDealer;
 import com.ordolabs.clipit.ui.clip.ClipActivity;
+import com.ordolabs.clipit.util.PrettyDate;
 
 import java.util.ArrayList;
 
@@ -99,6 +100,8 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         );
         holder.textView.setText(text);
+
+        holder.dateView.setText(PrettyDate.from(clip.date));
     }
 
     private int getTitleLength(String clipText) {

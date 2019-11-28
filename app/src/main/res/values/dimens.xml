@@ -5,4 +5,5 @@
     <dimen name="clip_card_radius">12dp</dimen>
     <dimen name="clip_card_stroke_width">1dp</dimen>
     <dimen name="clip_card_inner_padding">12dp</dimen>
+    <dimen name="clip_card_date_margin">8dp</dimen>
 </resources>

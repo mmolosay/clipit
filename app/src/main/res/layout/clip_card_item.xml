@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:foreground="?android:attr/selectableItemBackground"
@@ -8,22 +9,31 @@
     app:cardBackgroundColor="@color/itemBackground"
     app:cardCornerRadius="@dimen/clip_card_radius"
     app:strokeColor="@color/itemEdge"
-    app:strokeWidth="@dimen/clip_card_stroke_width" >
+    app:strokeWidth="@dimen/clip_card_stroke_width">
 
-    <TextView
-        android:id="@+id/RVclipsItemText"
-        style="@style/ClipCardItemTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:ellipsize="end"
-        android:maxLines="6"
-        android:padding="@dimen/clip_card_inner_padding" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/clip_card_inner_padding" >
 
-    <TextView
-        android:id="@+id/RVclipsItemDate"
-        style="@style/ClipCardItemDateTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/RVclipsItemText"
+            style="@style/ClipCardItemTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="6"
+            tools:text="text text text" />
+
+        <TextView
+            android:id="@+id/RVclipsItemDate"
+            style="@style/ClipCardItemDateTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/clip_card_date_margin"
+            tools:text="16:28" />
+
+    </LinearLayout>
 
 </android.support.design.card.MaterialCardView>
