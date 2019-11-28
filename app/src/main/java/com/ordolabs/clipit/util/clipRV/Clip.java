@@ -9,16 +9,14 @@ import javax.annotation.Nullable;
 public class Clip {
 
     int     id;
-    String  title;
-    String  body;
+    String text;
     String  date;
     boolean isViewed;
     boolean isRemoved;
 
-    public Clip(int id, String title, String body, String date, boolean isViewed, boolean isRemoved) {
+    public Clip(int id, String text, String date, boolean isViewed, boolean isRemoved) {
         this.id = id;
-        this.title = title;
-        this.body = body;
+        this.text = text;
         this.date = date;
         this.isViewed = isViewed;
         this.isRemoved = isRemoved;
@@ -28,7 +26,7 @@ public class Clip {
     public boolean equals(@Nullable Object obj) {
         if (obj == null) return false;
         if (obj instanceof Clip) {
-            return ((Clip) obj).body.equals(this.body);
+            return ((Clip) obj).text.equals(this.text);
         }
         return false;
     }

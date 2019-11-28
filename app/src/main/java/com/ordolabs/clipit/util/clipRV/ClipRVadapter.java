@@ -1,20 +1,25 @@
 package com.ordolabs.clipit.util.clipRV;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import com.ordolabs.clipit.App;
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.C;
 import com.ordolabs.clipit.data.realm.RealmDealer;
 import com.ordolabs.clipit.ui.clip.ClipActivity;
-import com.ordolabs.clipit.util.PrettyDate;
 
 import java.util.ArrayList;
 
@@ -79,23 +84,28 @@ public class ClipRVadapter extends RecyclerView.Adapter<ClipItemViewHolder> {
     }
 
     private void setTextViews(ClipItemViewHolder holder, Clip clip) {
-//        if (clip.title == null || clip.title.length() == 0) {
-//            holder.titleBody.setText(clip.body.replace("\n\n", "\n"));
-//
-//            holder.titleBody.setVisibility(View.VISIBLE);
-//            holder.title.setVisibility(View.GONE);
-//            holder.body.setVisibility(View.GONE);
-//        }
-//        else {
-//            holder.title.setText(clip.title);
-//            holder.body.setText(clip.body.replace("\n\n", "\n"));
-//
-//            holder.title.setVisibility(View.VISIBLE);
-//            holder.body.setVisibility(View.VISIBLE);
-//            holder.titleBody.setVisibility(View.GONE);
-//        }
-//        holder.dateText.setText(PrettyDate.from(clip.date));
-        holder.body.setText(clip.body);
+        String trimmed = clip.text.trim().replaceAll("[\n]{2,}", "\n");
+        int titleLength = getTitleLength(trimmed);
+
+        SpannableStringBuilder text = new SpannableStringBuilder(trimmed);
+        text.setSpan(
+                new StyleSpan(Typeface.BOLD),
+                0, titleLength,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+        text.setSpan(
+                new ForegroundColorSpan(App.getContext().getResources().getColor(R.color.textPrimary)),
+                0, titleLength,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+        holder.textView.setText(text);
+    }
+
+    private int getTitleLength(String clipText) {
+        for (int i = 0; i < clipText.length() ; i++)
+            if (clipText.charAt(i) == '\n')
+                return i;
+        return clipText.length();
     }
 
     private void setNewDriverMark(View mark, Clip clip) {
