@@ -52,6 +52,12 @@
 
     <!--~~~~~~~~~~~~~~~~~~~~ TEXT STYLES ~~~~~~~~~~~~~~~~~~~~-->
 
+    <style name="ClipCardItemSecondaryTextStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/textSecondary</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
     <style name="TitleTextStyle" parent="android:Widget.TextView">
         <item name="android:textColor">@color/textPrimary</item>
         <item name="android:textSize">21sp</item>
