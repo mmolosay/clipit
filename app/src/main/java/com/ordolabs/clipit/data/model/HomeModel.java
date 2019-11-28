@@ -66,8 +66,7 @@ public class HomeModel<P extends HomePresenter> extends BaseModel<P> {
             if (!item.isRemoved())
                 clips.add(new Clip(
                         item.getId(),
-                        item.getTitle(),
-                        item.getBody(),
+                        item.getText(),
                         item.getDateTime(),
                         item.isViewed(),
                         false

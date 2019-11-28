@@ -1,7 +1,6 @@
 package com.ordolabs.clipit.data.realm;
 
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.ordolabs.clipit.data.realm.object.CategoryObject;
 import com.ordolabs.clipit.data.realm.object.ClipObject;
@@ -20,17 +19,14 @@ public class RealmDealer {
 
     //============================== CLIPS ==============================//
 
-    public static void createClipObject(
-            @Nullable final String title,
-            @NonNull  final String body) {
-
+    public static void createClipObject(@NonNull  final String text) {
         RealmHolder.i().executeTransaction(realm -> {
             ClipObject clip = RealmHolder.i().createObject(
                 ClipObject.class,
                 makeNewClipID()
             );
 
-            clip.init(title, body, PrettyDate.now(), false, false);
+            clip.init(text, PrettyDate.now(), false, false);
         });
     }
 
@@ -72,19 +68,18 @@ public class RealmDealer {
                 .deleteAllFromRealm());
     }
 
-    public static boolean isSameBodyClipExist(final String body) {
+    public static boolean isSameBodyClipExist(final String text) {
         RealmResults<ClipObject> clips = getClips();
         for (ClipObject clip : clips) {
-            if (clip.getBody().equalsIgnoreCase(body)) return true;
+            if (clip.getText().equalsIgnoreCase(text)) return true;
         }
         return false;
     }
 
-    public static void editClip(final int id, final String newTitle, final String newBody) {
+    public static void editClip(final int id, final String newTitle, final String newText) {
         RealmHolder.i().executeTransaction(realm -> {
             ClipObject clip = getClip(id);
-            clip.setBody(newBody);
-            clip.setTitle(newTitle.length() == 0 ? null : newTitle);
+            clip.setText(newText);
         });
     }
 

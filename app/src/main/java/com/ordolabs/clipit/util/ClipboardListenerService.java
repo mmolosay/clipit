@@ -26,7 +26,7 @@ public final class ClipboardListenerService extends Service {
                     .getText().toString();
 
                 if (RealmDealer.isSameBodyClipExist(clipText) == false)
-                    RealmDealer.createClipObject(null, clipText);
+                    RealmDealer.createClipObject(clipText);
             }
         };
 
