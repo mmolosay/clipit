@@ -4,7 +4,7 @@
     <color name="navbar">#1f2a35</color> <!--for navigation bar (if it presents)-->
 
     <color name="textPrimary">#f0f8ff</color>
-    <color name="textSecondary">#999999</color>
+    <color name="textSecondary">#ABB0B6</color>
     <color name="textTertiary">#7F8B97</color>
     <color name="light4">#424242</color>
 

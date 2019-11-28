@@ -73,23 +73,15 @@ public class ClipPresenter<V extends ClipActivity>
 
     @Override
     public void updateViews() {
-        toggleTitleOnEmpty();
         updateText();
         scrollToTop();
     }
 
-    private void toggleTitleOnEmpty() {
-        if (mvpModel.getClip().getTitle() != null)
-            titleView.setVisibility(View.VISIBLE);
-        else
-            titleView.setVisibility(View.GONE);
-    }
-
     private void updateText() {
-        actionBar.setTitle(R.string.clipToolbarTitile);
-        titleView.setText(mvpModel.getClip().getTitle());
-        bodyView.setText(mvpModel.getClip().getBody());
-        dateTimeView.setText(PrettyDate.fullWithSeparators(mvpModel.getClip().getDateTime()));
+//        actionBar.setTitle(R.string.clipToolbarTitile);
+//        titleView.setText(mvpModel.getClip().getTitle());
+//        bodyView.setText(mvpModel.getClip().getText());
+//        dateTimeView.setText(PrettyDate.fullWithSeparators(mvpModel.getClip().getDateTime()));
     }
 
     void onMenuEdit(@NonNull Context from) {
@@ -101,7 +93,7 @@ public class ClipPresenter<V extends ClipActivity>
     void onMenuCopy(@NonNull Context from) {
         ((ClipboardManager) from
                 .getSystemService(CLIPBOARD_SERVICE))
-                .setPrimaryClip(ClipData.newPlainText("", mvpModel.getClip().getBody()));
+                .setPrimaryClip(ClipData.newPlainText("", mvpModel.getClip().getText()));
         Toast.makeText(from, R.string.clipCopiedToClipBoardToast, Toast.LENGTH_SHORT).show();
     }
 

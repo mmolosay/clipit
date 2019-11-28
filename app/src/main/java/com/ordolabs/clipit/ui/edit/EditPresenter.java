@@ -110,8 +110,7 @@ public class EditPresenter<V extends EditActivity>
     }
 
     private void prepareEditTexts() {
-        titleEdit.setText(mvpModel.getClip().getTitle() != null ? mvpModel.getClip().getTitle() : "");
-        bodyEdit.setText(mvpModel.getClip().getBody());
+        bodyEdit.setText(mvpModel.getClip().getText());
 
         titleEdit.setFilters(new InputFilter[] { new InputFilter.LengthFilter(C.EDIT_MAX_TITLE_SYMBOLS)});
         bodyEdit.setFilters(new InputFilter[] { new InputFilter.LengthFilter(C.EDIT_MAX_BODY_SYMBOLS)});

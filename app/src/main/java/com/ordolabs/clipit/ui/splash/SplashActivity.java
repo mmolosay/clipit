@@ -13,7 +13,6 @@ import com.ordolabs.clipit.App;
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.data.realm.RealmDealer;
 import com.ordolabs.clipit.ui.home.HomeActivity;
-import com.ordolabs.clipit.util.PrettyDate;
 
 import static com.ordolabs.clipit.data.realm.RealmDealer.deleteMarkedClips;
 
