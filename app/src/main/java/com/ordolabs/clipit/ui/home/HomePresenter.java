@@ -1,13 +1,18 @@
 package com.ordolabs.clipit.ui.home;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.ordolabs.clipit.R;
 import com.ordolabs.clipit.util.ClipboardListenerService;
@@ -75,8 +80,11 @@ public class HomePresenter<V extends HomeActivity>
     @Override
     protected void prepareViews() {
         if (actionBar != null) {
-            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
             actionBar.setCustomView(R.layout.action_bar);
+
+            TextView title = actionBar.getCustomView().findViewById(R.id.actionBarTitle);
+            title.setText(R.string.homeActionBarTitle);
         }
 
         clipsRV.setLayoutManager(new StaggeredGridLayoutManager(2, 1));
@@ -103,9 +111,5 @@ public class HomePresenter<V extends HomeActivity>
         else if (noClipsContainer.getVisibility() == View.VISIBLE) {
             noClipsContainer.startAnimation(bumpUpHide);
         }
-    }
-
-    void menuOnCategory() {
-        mvpView.startActivity(new Intent(mvpView, CategoryActivity.class));
     }
 }

@@ -63,8 +63,11 @@ public class EditPresenter<V extends EditActivity>
     @Override
     protected void prepareViews() {
         if (actionBar != null) {
-            actionBar.setTitle(R.string.editToolbarTitle);
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            actionBar.setCustomView(R.layout.action_bar);
+            actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_left_light_18dp);
         }
 
         prepareEditTexts();

@@ -3,6 +3,7 @@ package com.ordolabs.clipit;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
+import android.util.TypedValue;
 
 /**
  * Created by ordogod on 18.06.19.
@@ -21,4 +22,12 @@ public class App extends Application {
     }
 
     public static Context getContext() { return context; }
+
+    public static float DIPtoPixels(float dip) {
+        return TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                dip,
+                context.getResources().getDisplayMetrics()
+        );
+    }
 }
