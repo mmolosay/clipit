@@ -1,5 +1,6 @@
 package com.ordolabs.clipit.util.clipRV;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
@@ -11,25 +12,39 @@ import android.widget.TextView;
 
 import com.ordolabs.clipit.App;
 import com.ordolabs.clipit.R;
+import com.ordolabs.clipit.data.C;
+import com.ordolabs.clipit.ui.edit.EditActivity;
 import com.ordolabs.clipit.util.PrettyDate;
 
 /**
  * Created by ordogod on 18.06.19.
  **/
 
-final class ClipItemViewHolder extends RecyclerView.ViewHolder {
+final class ClipHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    TextView textView;
-    TextView dateView;
+    private Clip clip;
 
-    ClipItemViewHolder(View view) {
+    private TextView textView;
+    private TextView dateView;
+
+    ClipHolder(View view) {
         super(view);
 
-        textView = view.findViewById(R.id.RVclipsItemText);
-        dateView = view.findViewById(R.id.RVclipsItemDate);
+        this.textView = itemView.findViewById(R.id.RVclipsItemText);
+        this.dateView = itemView.findViewById(R.id.RVclipsItemDate);
+        this.itemView.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent i = new Intent(itemView.getContext(), EditActivity.class);
+        i.putExtra(C.EXTRA_CLIP_ID, clip.id);
+
+        itemView.getContext().startActivity(i);
     }
 
     void bindData(Clip clip) {
+        this.clip = clip;
         // replaces all \n sequences with one
         String trimmed = clip.text.trim().replaceAll("[\n]{2,}", "\n");
         int titleLength = getTitleLength(trimmed);

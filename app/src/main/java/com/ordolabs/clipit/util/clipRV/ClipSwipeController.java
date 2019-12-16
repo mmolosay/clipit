@@ -23,11 +23,11 @@ import static android.support.v7.widget.helper.ItemTouchHelper.*;
  * Created by ordogod on 06.07.19.
  **/
 
-public class ClipRVswipeController extends Callback {
+public class ClipSwipeController extends Callback {
 
     private HomeModel attachedModel;
 
-    private ClipRVadapter adapter;
+    private ClipAdapter adapter;
     private View v;
     private Drawable icon;
     private RectF swipeBG;
@@ -43,7 +43,7 @@ public class ClipRVswipeController extends Callback {
     private int iconMargin;
     private int alphaBG;
 
-    public ClipRVswipeController(ClipRVadapter adapter, HomeModel attachedModel) {
+    public ClipSwipeController(ClipAdapter adapter, HomeModel attachedModel) {
         this.attachedModel = attachedModel;
         this.adapter = adapter;
 

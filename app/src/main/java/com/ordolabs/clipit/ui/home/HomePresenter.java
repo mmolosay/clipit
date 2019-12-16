@@ -1,17 +1,14 @@
 package com.ordolabs.clipit.ui.home;
 
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ordolabs.clipit.R;
@@ -19,31 +16,34 @@ import com.ordolabs.clipit.util.ClipboardListenerService;
 import com.ordolabs.clipit.data.model.HomeModel;
 import com.ordolabs.clipit.common.Animatable;
 import com.ordolabs.clipit.common.BasePresenter;
-import com.ordolabs.clipit.ui.category.CategoryActivity;
+import com.ordolabs.clipit.util.clipRV.ClipAdapter;
 import com.ordolabs.clipit.util.clipRV.ClipOffsetDecoration;
+
+import java.util.Objects;
 
 /**
  * Created by ordogod on 23.05.19.
  **/
 
-public class HomePresenter<V extends HomeActivity>
-        extends BasePresenter<V> implements Animatable {
+public class HomePresenter<V extends HomeActivity> extends BasePresenter<V> implements Animatable {
 
     private HomeModel<HomePresenter> mvpModel;
 
     private ActionBar actionBar;
     private LinearLayout noClipsContainer;
-    private RecyclerView clipsRV;
+    private RecyclerView clipRV;
 
     private Animation bumpUpShow;
     private Animation bumpUpHide;
+
+    public ClipAdapter adapter;
 
     HomePresenter(V mvpView) {
         attachView(mvpView);
         ClipboardListenerService.start(mvpView);
 
         initViews();
-        mvpModel = new HomeModel<>(this, clipsRV);
+        mvpModel = new HomeModel<>(this);
         initAnims();
         prepareViews();
     }
@@ -53,7 +53,7 @@ public class HomePresenter<V extends HomeActivity>
         actionBar = mvpView.getSupportActionBar();
 
         noClipsContainer = mvpView.findViewById(R.id.homeNoClipsContainer);
-        clipsRV = mvpView.findViewById(R.id.homeClipsRV);
+        clipRV = mvpView.findViewById(R.id.homeClipsRV);
     }
 
     @Override
@@ -87,10 +87,7 @@ public class HomePresenter<V extends HomeActivity>
             title.setText(R.string.homeActionBarTitle);
         }
 
-        clipsRV.setLayoutManager(new StaggeredGridLayoutManager(2, 1));
-        clipsRV.setAdapter(mvpModel.getRVadapter());
-        int rvItemsOffset = mvpView.getResources().getDimensionPixelOffset(R.dimen.content_margin_half);
-        clipsRV.addItemDecoration(new ClipOffsetDecoration(rvItemsOffset));
+        prepareRecyclerView();
     }
 
     @Override
@@ -105,11 +102,33 @@ public class HomePresenter<V extends HomeActivity>
     }
 
     private void toggleNoClipsContainer() {
-        if (mvpModel.getClipsCount() == 0) {
+        if (adapter.getItemCount() == 0) {
             noClipsContainer.startAnimation(bumpUpShow);
         }
         else if (noClipsContainer.getVisibility() == View.VISIBLE) {
             noClipsContainer.startAnimation(bumpUpHide);
         }
+    }
+
+    private void prepareRecyclerView() {
+        int rvItemsOffset = mvpView.getResources().getDimensionPixelOffset(R.dimen.content_margin_half);
+        adapter = new ClipAdapter(mvpModel.getClipsReversed());
+
+        clipRV.setLayoutManager(new StaggeredGridLayoutManager(2, 1));
+        clipRV.addItemDecoration(new ClipOffsetDecoration(rvItemsOffset));
+        clipRV.addItemDecoration(makeDividerDecoration());
+        clipRV.setAdapter(adapter);
+    }
+
+    private DividerItemDecoration makeDividerDecoration() {
+        DividerItemDecoration divider = new DividerItemDecoration(
+                getView(),
+                DividerItemDecoration.VERTICAL
+        );
+        divider.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(
+                getView(),
+                R.drawable.rv_divider_decoration
+        )));
+        return divider;
     }
 }
