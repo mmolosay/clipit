@@ -12,6 +12,8 @@
         <item name="actionBarStyle">@style/Widget.ClipIt.ActionBarStyle</item>
         <item name="actionBarTheme">@style/Widget.ClipIt.ActionBarTheme</item>
         <item name="actionBarPopupTheme">@style/Widget.ClipIt.ActionBarTheme.Popup</item>
+        <item name="actionOverflowButtonStyle">@style/Widget.ClipIt.ActionButton.Overflow</item>
+        <item name="actionOverflowMenuStyle">@style/Widget.ClipIt.ActionbarMenu.Popup</item>
 
         <item name="android:textColor">@color/textPrimary</item>
         <item name="android:editTextColor">@color/textPrimary</item>
@@ -25,6 +27,7 @@
 
     <!--~~~~~~~~~~~~~~~~~~~~ ACTION BAR ~~~~~~~~~~~~~~~~~~~~-->
 
+    <!-- action bar style -->
     <style name="Widget.ClipIt.ActionBarStyle" parent="Widget.AppCompat.Light.ActionBar">
         <item name="background">@color/background</item>
         <item name="colorControlNormal">@color/textPrimary</item>
@@ -33,21 +36,37 @@
         <item name="titleTextStyle">@style/Widget.ClipIt.ActionBarStyle.TitleStyle</item>
     </style>
 
+    <!-- action bar title -->
     <style name="Widget.ClipIt.ActionBarStyle.TitleStyle"
            parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
 
         <item name="android:textColor">@color/textPrimary</item>
+        <item name="android:letterSpacing">0.06</item>
+        <item name="android:singleLine">true</item>
 
     </style>
 
+    <!-- action bar theme -->
     <style name="Widget.ClipIt.ActionBarTheme" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="colorControlNormal">@color/textPrimary</item>
         <item name="colorControlHighlight">@color/itemRipple</item>
     </style>
 
+    <!-- action bar buttons -->
     <style name="Widget.ClipIt.ActionBarTheme.Popup" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:colorBackground">@color/background</item>
+        <item name="android:colorBackground">@color/navbar</item>
         <item name="colorControlHighlight">@color/itemRipple</item>
+    </style>
+
+    <!-- action bar menu button -->
+    <style name="Widget.ClipIt.ActionButton.Overflow" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_more_vert_light_24dp</item>
+        <item name="android:background">@color/background</item>
+    </style>
+
+    <!-- action bar menu -->
+    <style name="Widget.ClipIt.ActionbarMenu.Popup" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
+        <item name="android:popupBackground">@drawable/action_bar_menu</item>
     </style>
 
     <!--~~~~~~~~~~~~~~~~~~~~ TEXT STYLES ~~~~~~~~~~~~~~~~~~~~-->
